@@ -131,6 +131,7 @@
   "train:1698",
   "train:1708",
   "train:1711",
+  "train:1714",
   "train:1721",
   "train:1734",
   "train:1738",
@@ -170,7 +171,6 @@
   "train:195",
   "train:1957",
   "train:1970",
-  "train:1971",
   "train:1973",
   "train:1987",
   "train:1988",
@@ -217,7 +217,6 @@
   "train:2167",
   "train:2168",
   "train:2176",
-  "train:2177",
   "train:218",
   "train:2187",
   "train:2188",
@@ -331,6 +330,7 @@
   "train:2792",
   "train:2793",
   "train:2795",
+  "train:2796",
   "train:2798",
   "train:28",
   "train:2812",
@@ -368,6 +368,7 @@
   "train:3010",
   "train:3022",
   "train:3023",
+  "train:3028",
   "train:3033",
   "train:3042",
   "train:3043",
@@ -379,7 +380,6 @@
   "train:307",
   "train:3073",
   "train:308",
-  "train:3086",
   "train:3091",
   "train:3095",
   "train:3103",
@@ -457,7 +457,6 @@
   "train:3516",
   "train:3522",
   "train:3528",
-  "train:353",
   "train:3536",
   "train:354",
   "train:3547",
@@ -514,6 +513,7 @@
   "train:3832",
   "train:3833",
   "train:3836",
+  "train:3837",
   "train:384",
   "train:3846",
   "train:3853",
@@ -586,7 +586,6 @@
   "train:4221",
   "train:4231",
   "train:4233",
-  "train:4234",
   "train:4236",
   "train:4244",
   "train:4252",
@@ -659,7 +658,6 @@
   "train:4660",
   "train:4663",
   "train:4669",
-  "train:467",
   "train:4673",
   "train:4683",
   "train:4686",
@@ -679,6 +677,7 @@
   "train:477",
   "train:4772",
   "train:4775",
+  "train:4777",
   "train:4785",
   "train:4787",
   "train:4790",
@@ -725,7 +724,6 @@
   "train:508",
   "train:5080",
   "train:5092",
-  "train:5095",
   "train:5098",
   "train:51",
   "train:510",
@@ -754,6 +752,7 @@
   "train:5230",
   "train:5233",
   "train:5239",
+  "train:5241",
   "train:5249",
   "train:5254",
   "train:5264",
@@ -793,6 +792,7 @@
   "train:5453",
   "train:5459",
   "train:5461",
+  "train:5464",
   "train:5474",
   "train:5476",
   "train:5480",
@@ -879,6 +879,7 @@
   "train:6043",
   "train:6046",
   "train:6050",
+  "train:6051",
   "train:6056",
   "train:6057",
   "train:6058",
@@ -912,7 +913,6 @@
   "train:6228",
   "train:6229",
   "train:6234",
-  "train:6248",
   "train:6249",
   "train:625",
   "train:6255",
@@ -930,7 +930,6 @@
   "train:6331",
   "train:634",
   "train:6347",
-  "train:6355",
   "train:6367",
   "train:637",
   "train:6378",
@@ -950,7 +949,6 @@
   "train:6452",
   "train:6464",
   "train:6467",
-  "train:6477",
   "train:6484",
   "train:6494",
   "train:6495",
@@ -978,6 +976,7 @@
   "train:685",
   "train:687",
   "train:692",
+  "train:694",
   "train:702",
   "train:71",
   "train:713",
@@ -1012,6 +1011,7 @@
   "train:903",
   "train:908",
   "train:914",
+  "train:918",
   "train:93",
   "train:930",
   "train:931",
@@ -3515,6 +3515,25 @@
    },
    "complete": true
   },
+  "train:1714": {
+   "id": "train:1714",
+   "gsm8k_index": 1714,
+   "gold": "600",
+   "english_question": "There are two warehouses. The first warehouse has twice as many boxes as the second warehouse. If the first warehouse has 400 boxes, how many boxes are there in both warehouses combined?",
+   "questions": {
+    "en": "There are two warehouses. The first warehouse has twice as many boxes as the second warehouse. If the first warehouse has 400 boxes, how many boxes are there in both warehouses combined?",
+    "bn": "দুটি গুদাম আছে। প্রথম গুদামে দ্বিগুণ পরিমাণের বাক্স আছে। যদি প্রথম গুদামে 400 টি বাক্স থাকে, তবে দুটি গুদামে মোট কতটি বাক্স আছে?",
+    "de": "Es gibt zwei Lagerhallen. Die erste Lagerhalle hat doppelt so viele Kisten wie die zweite Lagerhalle. Wenn die erste Lagerhalle 400 Kisten hat, wie viele Kisten gibt es insgesamt in beiden Lagerhallen?",
+    "es": "Hay dos almacenes. El primer almacén tiene el doble de cajas que el segundo almacén. Si el primer almacén tiene 400 cajas, ¿cuántas cajas hay en total en ambos almacenes?",
+    "fr": "Il y a deux entrepôts. Le premier entrepôt a deux fois plus de boîtes que le deuxième entrepôt. Si le premier entrepôt a 400 boîtes, combien y a-t-il de boîtes au total dans les deux entrepôts ?",
+    "ja": "2つの倉庫があります。最初の倉庫は2番目の倉庫の2倍の箱があります。最初の倉庫には400個の箱がある場合、両方の倉庫には合計で何個の箱がありますか？",
+    "ru": "Есть два склада. Первый склад имеет в два раза больше коробок, чем второй склад. Если на первом складе 400 коробок, сколько коробок всего на обоих складах?",
+    "sw": "Kuna maghala mawili. Ghala la kwanza lina sanduku mara mbili ya ghala la pili. Ikiwa ghala la kwanza lina sanduku 400, kuna sanduku ngapi katika maghala yote mawili pamoja?",
+    "th": "มีโกดังสองแห่ง โกดังแรกมีกล่องสองเท่าของโกดังที่สอง ถ้าโกดังแรกมีกล่อง 400 กล่อง กล่องทั้งสองโกดังมีกล่องรวมกันกี่กล่อง?",
+    "zh": "有两个仓库。第一个仓库的箱子数量是第二个仓库的两倍。如果第一个仓库有400个箱子，两个仓库总共有多少个箱子？"
+   },
+   "complete": true
+  },
   "train:1721": {
    "id": "train:1721",
    "gsm8k_index": 1721,
@@ -4253,25 +4272,6 @@
     "sw": "Familia ilinunua sanduku moja la pizza ambalo limekatwa katika vipande 16. Chini ya robo tatu ya pizza ilikuliwa na familia. Vipande vingapi vya pizza vilisalia?",
     "th": "ครอบครัวซื้อกล่องพิซซ่า ที่ถูกแบ่งเป็น 16 ชิ้น ครอบครัวกินพิซซ่าไปแค่สามส่วนหนึ่งเท่านั้น มีชิ้นพิซซ่าที่เหลืออยู่กี่ชิ้น?",
     "zh": "一家人买了1盒披萨，切成了16片。这家人只吃了四分之三的披萨。还剩下多少片披萨？"
-   },
-   "complete": true
-  },
-  "train:1971": {
-   "id": "train:1971",
-   "gsm8k_index": 1971,
-   "gold": "4104",
-   "english_question": "Ms. Estrella is an entrepreneur with a startup company having 10 employees. The company makes a revenue of $400000 a month, paying 10% in taxes, 5% of the remaining amount on marketing and ads, 20% of the remaining amount on operational costs, and 15% of the remaining amount on employee wages.  Assuming each employee receives the same wage, calculate the amount of money each employee is paid monthly.",
-   "questions": {
-    "en": "Ms. Estrella is an entrepreneur with a startup company having 10 employees. The company makes a revenue of $400000 a month, paying 10% in taxes, 5% of the remaining amount on marketing and ads, 20% of the remaining amount on operational costs, and 15% of the remaining amount on employee wages.  Assuming each employee receives the same wage, calculate the amount of money each employee is paid monthly.",
-    "bn": "মিসেস এস্ট্রেলা একজন উদ্যোক্তা এবং তার স্টার্টআপ কোম্পানিতে 10 জন কর্মচারী আছে। কোম্পানিটি মাসে $400000 আয় করে, যা করে করে 10% করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে করে ক",
-    "de": "Frau Estrella ist eine Unternehmerin mit einem Startup-Unternehmen, das 10 Mitarbeiter hat. Das Unternehmen erwirtschaftet einen monatlichen Umsatz von 400.000 US-Dollar und zahlt 10% Steuern, 5% des verbleibenden Betrags für Marketing und Werbung, 20% des verbleibenden Betrags für Betriebskosten und 15% des verbleibenden Betrags für Mitarbeitergehälter. Unter der Annahme, dass jeder Mitarbeiter das gleiche Gehalt erhält, berechnen Sie den Betrag, den jeder Mitarbeiter monatlich erhält.",
-    "es": "La Sra. Estrella es una emprendedora con una empresa emergente que tiene 10 empleados. La empresa genera una ganancia de $400000 al mes, pagando el 10% en impuestos, el 5% del monto restante en marketing y publicidad, el 20% del monto restante en costos operativos y el 15% del monto restante en salarios de los empleados. Suponiendo que cada empleado recibe el mismo salario, calcula la cantidad de dinero que se paga a cada empleado mensualmente.",
-    "fr": "Mme Estrella est une entrepreneure avec une entreprise en démarrage qui compte 10 employés. L'entreprise réalise un chiffre d'affaires de 400 000 $ par mois, en payant 10 % d'impôts, 5 % du montant restant en marketing et publicité, 20 % du montant restant en frais opérationnels et 15 % du montant restant en salaires des employés. En supposant que chaque employé reçoit le même salaire, calculez le montant d'argent que chaque employé est payé mensuellement.",
-    "ja": "エストレラさんは、10人の従業員を抱えるスタートアップ企業の起業家です。 その会社は月に 40万ドルの収益を上げ、税金として収益の10%、残りの金額の5%をマーケティングと広告に、残りの金額の20%を運営費に、残りの金額の15%を従業員の給与に支払っています。 各従業員が同じ給与を受け取ると仮定して、各従業員が月に支払われる金額を計算してください。",
-    "ru": "Мисс Эстрелла - предприниматель с стартап-компанией, в которой работает 10 сотрудников. Компания получает доход в размере 400 000 долларов в месяц, платит 10% налогов, 5% от оставшейся суммы на маркетинг и рекламу, 20% от оставшейся суммы на операционные расходы и 15% от оставшейся суммы на зарплаты сотрудников. Предполагая, что каждый сотрудник получает одинаковую зарплату, рассчитайте сумму, которую каждый сотрудник получает ежемесячно.",
-    "sw": "Bi. Estrella ni mfanyabiashara na kampuni ya kuanza na wafanyakazi 10. Kampuni hupata mapato ya $400000 kwa mwezi, ikilipa 10% kama kodi, 5% ya kiasi kilichobaki kwa masoko na matangazo, 20% ya kiasi kilichobaki kwa gharama za uendeshaji, na 15% ya kiasi kilichobaki kwa mishahara ya wafanyakazi. Kwa kila mfanyakazi kupokea mshahara sawa, hesabu kiasi cha pesa kila mfanyakazi anapokea kila mwezi.",
-    "th": "นางสาวเอสเตรียเป็นผู้ประกอบการที่มีบริษัทเริ่มต้นที่มีพนักงาน 10 คน บริษัทมีรายได้รวมเดือนละ 400,000 ดอลลาร์ จ่ายภาษี 10% จากยอดเงินที่เหลือ จ่ายค่าการตลาดและโฆษณา 5% จากยอดเงินที่เหลือ จ่ายค่าใช้จ่ายในการดำเนินงาน 20% จากยอดเงินที่เหลือ และจ่ายค่าจ้างพนักงาน 15% จากยอดเงินที่เหลือ โดยสมมติว่าแต่ละคนได้รับค่าจ้างเท่ากัน คำนวณจำนวนเงินที่แต่ละคนได้รับรายเดือน",
-    "zh": "Estrella女士是一家创业公司的企业家，公司有10名员工。该公司每月的收入为40万美元，缴纳10%的税款，剩余金额的5%用于市场营销和广告，剩余金额的20%用于运营成本，剩余金额的15%用于员工工资。假设每位员工的工资相同，请计算每位员工每月的工资金额。"
    },
    "complete": true
   },
@@ -5146,25 +5146,6 @@
     "sw": "Maiya ana dada wawili. Dada wa kwanza ni mara mbili umri wa Maiya. Dada wa kwanza ni mwaka mmoja mdogo kuliko Maiya. Umri wao wa wastani ni miaka 5. Maiya ana umri gani?",
     "th": "ใหม่ย่ามีพี่สาวสองคน พี่สาวคนแรกอายุเป็นสองเท่าของใหม่ย่า พี่สาวคนแรกอายุน้อยกว่าใหม่ย่าหนึ่งปี อายุเฉลี่ยของพวกเขาคือ 5 ปี ใหม่ย่าอายุเท่าไหร่?",
     "zh": "麦雅有两个姐姐。第一个姐姐的年龄是麦雅的两倍。第一个姐姐比麦雅小一岁。他们的平均年龄是5岁。麦雅多大了？"
-   },
-   "complete": true
-  },
-  "train:2177": {
-   "id": "train:2177",
-   "gsm8k_index": 2177,
-   "gold": "39",
-   "english_question": "Toby, the Alaskan Malamute, can pull a sled at a speed of 20 miles per hour if the sled is unloaded, but he pulls the same sled at a speed of 10 miles per hour if the sled is fully loaded.  If Toby takes a continuous 4-part journey, first pulling the loaded sled for 180 miles, then pulling the unloaded sled for 120 miles, then pulling the loaded sled 80 miles, and finally, pulling the unloaded sled another 140 miles, how many hours in total will Toby spend pulling the sled?",
-   "questions": {
-    "en": "Toby, the Alaskan Malamute, can pull a sled at a speed of 20 miles per hour if the sled is unloaded, but he pulls the same sled at a speed of 10 miles per hour if the sled is fully loaded.  If Toby takes a continuous 4-part journey, first pulling the loaded sled for 180 miles, then pulling the unloaded sled for 120 miles, then pulling the loaded sled 80 miles, and finally, pulling the unloaded sled another 140 miles, how many hours in total will Toby spend pulling the sled?",
-    "bn": "টোবি, আলাস্কান মালামুট, যদি স্লেডটি আনলোড হয় তবে সে স্লেডটি প্রতি ঘন্টায় 20 মাইল চলতে পারে, কিন্তু সে যদি স্লেডটি পূর্ণ লোড করা হয় তবে সে স্লেডটি প্রতি ঘন্টায় 10 মাইল চলতে পারে। যদি টোবি একটি অবিচ্ছিন্ন 4 অংশের পথ অতিক্রম করে, প্রথমে লোড করা স্লেডটি 180 মাইল টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টোবি টো",
-    "de": "Toby, der Alaskan Malamute, kann einen Schlitten mit einer Geschwindigkeit von 20 Meilen pro Stunde ziehen, wenn der Schlitten unbeladen ist, aber er zieht denselben Schlitten mit einer Geschwindigkeit von 10 Meilen pro Stunde, wenn der Schlitten voll beladen ist. Wenn Toby eine kontinuierliche 4-teilige Reise unternimmt, zuerst den beladenen Schlitten für 180 Meilen zieht, dann den unbeladenen Schlitten für 120 Meilen zieht, dann den beladenen Schlitten für 80 Meilen zieht und schließlich den unbeladenen Schlitten für weitere 140 Meilen zieht, wie viele Stunden wird Toby insgesamt damit verbringen, den Schlitten zu ziehen?",
-    "es": "Toby, el Alaskan Malamute, puede tirar de un trineo a una velocidad de 20 millas por hora si el trineo está vacío, pero tira del mismo trineo a una velocidad de 10 millas por hora si el trineo está completamente cargado. Si Toby realiza un viaje continuo de 4 partes, primero tirando del trineo cargado durante 180 millas, luego tirando del trineo vacío durante 120 millas, luego tirando del trineo cargado durante 80 millas y finalmente, tirando del trineo vacío durante otras 140 millas, ¿cuántas horas en total pasará Toby tirando del trineo?",
-    "fr": "Toby, le Malamute d'Alaska, peut tirer un traîneau à une vitesse de 20 miles par heure si le traîneau est vide, mais il tire le même traîneau à une vitesse de 10 miles par heure si le traîneau est entièrement chargé. Si Toby effectue un voyage en quatre parties, en commençant par tirer le traîneau chargé sur 180 miles, puis en tirant le traîneau vide sur 120 miles, puis en tirant le traîneau chargé sur 80 miles, et enfin, en tirant le traîneau vide sur 140 miles, combien d'heures au total Toby passera-t-il à tirer le traîneau ?",
-    "ja": "アラスカンマラミュートのトビーは、荷物のない状態でそりを20マイル/時の速さで引くことができますが、そりが満載の場合は10マイル/時の速さで引きます。トビーは連続した4つの部分からなる旅をすることになります。最初に満載のそりを180マイル引き、次に荷物のないそりを120マイル引き、そして満載のそりを80マイル引き、最後にさらに荷物のないそりを140マイル引く場合、トビーは合計で何時間そりを引くことになりますか？",
-    "ru": "Тоби, аляскинский маламут, может тянуть сани со скоростью 20 миль в час, если сани не загружены, но он тянет те же сани со скоростью 10 миль в час, если сани полностью загружены. Если Тоби совершает непрерывное 4-частное путешествие, сначала тянет загруженные сани на 180 миль, затем тянет не загруженные сани на 120 миль, затем тянет загруженные сани на 80 миль и, наконец, тянет не загруженные сани еще на 140 миль, сколько часов Тоби проведет, тянущий сани?",
-    "sw": "Toby, Alaskan Malamute, anaweza kuvuta kizimbani kwa kasi ya maili 20 kwa saa ikiwa kizimba hakina mzigo, lakini anavuta kizimba kile kile kwa kasi ya maili 10 kwa saa ikiwa kizimba kimebeba mzigo. Ikiwa Toby anafanya safari ya sehemu 4 mfululizo, kwanza akivuta kizimba kilichobeba mzigo kwa umbali wa maili 180, kisha akivuta kizimba kisichobeba mzigo kwa umbali wa maili 120, kisha akivuta kizimba kilichobeba mzigo kwa umbali wa maili 80, na hatimaye, akivuta kizimba kisichobeba mzigo tena kwa umbali wa maili 140, atatumia muda gani jumla kuvuta kizimba?",
-    "th": "โทบี้ สุนัขพันธุ์อะลาสกันมาลามูตสามารถลากเลื่อนเลื่อนด้วยความเร็ว 20 ไมล์ต่อชั่วโมงเมื่อไม่มีของบรรทุก แต่เขาลากเลื่อนเดียวกันด้วยความเร็ว 10 ไมล์ต่อชั่วโมงเมื่อมีของบรรทุก ถ้าโทบี้ทำการเดินทาง 4 ส่วนต่อเนื่องกัน โดยเริ่มจากการลากเลื่อนเดียวกันที่มีของบรรทุกไป 180 ไมล์ จากนั้นลากเลื่อนเดียวกันที่ไม่มีของบรรทุกไป 120 ไมล์ ต่อมาลากเลื่อนเดียวกันที่มีของบรรทุกไป 80 ไมล์ และสุดท้ายลากเลื่อนเดียวกันที่ไม่มีของบรรทุกอีก 140 ไมล์ โทบี้จะใช้เวลาทั้งหมดกี่ชั่วโมงในการลากเลื่อนเดียวกัน?",
-    "zh": "阿拉斯加雪橇犬托比如果没有负载，可以以每小时20英里的速度拉雪橇，但如果雪橇装满了，他以每小时10英里的速度拉雪橇。如果托比进行连续的四段旅程，首先拉着装满货物的雪橇行驶180英里，然后拉着空载的雪橇行驶120英里，然后拉着装满货物的雪橇行驶80英里，最后再拉着空载的雪橇行驶140英里，托比总共会花多少小时拉雪橇？"
    },
    "complete": true
   },
@@ -7315,6 +7296,25 @@
    },
    "complete": true
   },
+  "train:2796": {
+   "id": "train:2796",
+   "gsm8k_index": 2796,
+   "gold": "36",
+   "english_question": "Julian has 80 Facebook friends. 60% are boys and 40% are girls. Boyd has twice as many friends who are girls and has 100 friends total. What percentage of Boyd’s friends are boys?",
+   "questions": {
+    "en": "Julian has 80 Facebook friends. 60% are boys and 40% are girls. Boyd has twice as many friends who are girls and has 100 friends total. What percentage of Boyd’s friends are boys?",
+    "bn": "জুলিয়ানের 80 জন ফেসবুক বন্ধু আছে। 60% ছেলে এবং 40% মেয়ে। বয়ডের মেয়ে বন্ধুর দ্বিগুণ আছে এবং মোট 100 জন বন্ধু আছে। বয়ডের বন্ধুদের কত শতাংশ ছেলে?",
+    "de": "Julian hat 80 Facebook-Freunde. 60% sind Jungen und 40% sind Mädchen. Boyd hat doppelt so viele Freundinnen wie Julian und insgesamt 100 Freunde. Welcher Prozentsatz von Boyds Freunden sind Jungen?",
+    "es": "Julian tiene 80 amigos en Facebook. El 60% son chicos y el 40% son chicas. Boyd tiene el doble de amigos que son chicas y tiene un total de 100 amigos. ¿Qué porcentaje de los amigos de Boyd son chicos?",
+    "fr": "Julian a 80 amis sur Facebook. 60% sont des garçons et 40% sont des filles. Boyd a deux fois plus d'amies filles que Julian et a un total de 100 amis. Quel pourcentage des amis de Boyd sont des garçons ?",
+    "ja": "ジュリアンは80人のFacebookの友達を持っています。そのうち60%が男の子で、40%が女の子です。ボイドは女の子の友達がジュリアンの2倍で、合計で100人の友達がいます。ボイドの友達のうち男の子の割合は何%ですか？",
+    "ru": "У Джулиана 80 друзей на Facebook. 60% - мальчики, а 40% - девочки. У Бойда в два раза больше друзей-девочек, и всего у него 100 друзей. Какой процент друзей Бойда - мальчики?",
+    "sw": "Julian ana marafiki 80 kwenye Facebook. Asilimia 60 ni wavulana na asilimia 40 ni wasichana. Boyd ana marafiki wawili zaidi ya Julian ambao ni wasichana na ana jumla ya marafiki 100. Asilimia ngapi ya marafiki wa Boyd ni wavulana?",
+    "th": "จูลี่มีเพื่อนบนเฟสบุ๊ค 80 คน 60% เป็นเพื่อนชายและ 40% เป็นเพื่อนหญิง บอยด์มีเพื่อนที่เป็นเพื่อนหญิงเป็นสองเท่าของจูลี่และมีเพื่อนทั้งหมด 100 คน ส่วนเปอร์เซ็นต์ของเพื่อนของบอยด์ที่เป็นเพื่อนชายเป็นกี่เปอร์เซ็นต์?",
+    "zh": "朱利安有80个Facebook朋友。60%是男孩，40%是女孩。博伊德有两倍于朱利安的女孩朋友，并且总共有100个朋友。博伊德的朋友中有多少百分比是男孩？"
+   },
+   "complete": true
+  },
   "train:2798": {
    "id": "train:2798",
    "gsm8k_index": 2798,
@@ -8018,6 +8018,25 @@
    },
    "complete": true
   },
+  "train:3028": {
+   "id": "train:3028",
+   "gsm8k_index": 3028,
+   "gold": "580",
+   "english_question": "There are 20 sandcastles on Mark's beach, each with 10 towers. On Jeff's beach, there are three times as many castles as on Mark's beach, each with 5 towers. What is the combined total number of sandcastles and towers on Mark's and Jeff's beaches?",
+   "questions": {
+    "en": "There are 20 sandcastles on Mark's beach, each with 10 towers. On Jeff's beach, there are three times as many castles as on Mark's beach, each with 5 towers. What is the combined total number of sandcastles and towers on Mark's and Jeff's beaches?",
+    "bn": "মার্কের সৈকতে 20টি বালুতে প্রতিটিতে 10টি টাওয়ার আছে। জেফের সৈকতে মার্কের সৈকতের তিনগুণ বেশি বালু আছে, প্রতিটিতে 5টি টাওয়ার আছে। মার্ক ও জেফের সৈকতে মিলিত মোট বালু ও টাওয়ারের সংখ্যা কত?",
+    "de": "Auf Marks Strand gibt es 20 Sandburgen, jede mit 10 Türmen. Auf Jeffs Strand gibt es dreimal so viele Burgen wie auf Marks Strand, jede mit 5 Türmen. Wie viele Sandburgen und Türme gibt es insgesamt auf Marks und Jeffs Stränden?",
+    "es": "En la playa de Mark hay 20 castillos de arena, cada uno con 10 torres. En la playa de Jeff, hay tres veces más castillos que en la playa de Mark, cada uno con 5 torres. ¿Cuál es el número total combinado de castillos de arena y torres en las playas de Mark y Jeff?",
+    "fr": "Il y a 20 châteaux de sable sur la plage de Mark, chacun avec 10 tours. Sur la plage de Jeff, il y a trois fois plus de châteaux que sur la plage de Mark, chacun avec 5 tours. Quel est le nombre total combiné de châteaux de sable et de tours sur les plages de Mark et Jeff ?",
+    "ja": "マークのビーチには1つの砂の城に10の塔があり、ジェフのビーチにはマークのビーチの3倍の城があります。ジェフのビーチの1つの城には5つの塔があります。マークとジェフのビーチの砂の城と塔の合計数は何ですか？",
+    "ru": "На пляже Марка есть 20 песчаных замков, каждый из которых имеет 10 башен. На пляже Джеффа есть в три раза больше замков, чем на пляже Марка, каждый из которых имеет 5 башен. Каково общее количество песчаных замков и башен на пляжах Марка и Джеффа?",
+    "sw": "Kuna ngome 20 za mchanga kwenye ufuo wa Mark, kila moja ikiwa na minara 10. Kwenye ufuo wa Jeff, kuna mara tatu ngome nyingi kuliko kwenye ufuo wa Mark, kila moja ikiwa na minara 5. Jumla ya idadi ya ngome za mchanga na minara kwenye ufuo wa Mark na Jeff ni ngapi?",
+    "th": "บนชายหาดของมาร์คมีป้อมทราย 20 ป้อม แต่ละป้อมมีหอคอย 10 หอคอย บนชายหาดของเจฟมีป้อมทราย 3 เท่าของชายหาดของมาร์ค แต่ละป้อมมีหอคอย 5 หอคอย รวมกันทั้งหมดมีป้อมทรายและหอคอยกี่อันบนชายหาดของมาร์คและเจฟ?",
+    "zh": "马克的海滩上有20座沙堡，每座沙堡有10座塔楼。杰夫的海滩上有马克海滩上的三倍多的沙堡，每座沙堡有5座塔楼。马克和杰夫的海滩上总共有多少座沙堡和塔楼？"
+   },
+   "complete": true
+  },
   "train:3033": {
    "id": "train:3033",
    "gsm8k_index": 3033,
@@ -8224,25 +8243,6 @@
     "sw": "Jason anachanganya kiasi cha rangi nyeusi. Anahitaji kuongeza gramu 2 za makaa ya mawe kwa kila mililita 30 ya maji. Ikiwa anaongeza mililita 900 za maji, anaweka makaa ya mawe kiasi gani?",
     "th": "เจสันกำลังผสมสีดำ ต้องเติมถ่านหิน 2 กรัมต่อน้ำ 30 มิลลิลิตร ถ้าเขาเติมน้ำ 900 มิลลิลิตร เขาต้องเติมถ่านหินเท่าไหร่?",
     "zh": "杰森正在混合一批黑色油漆。他需要每30毫升水加入2克木炭。如果他加入900毫升水，他需要加入多少木炭？"
-   },
-   "complete": true
-  },
-  "train:3086": {
-   "id": "train:3086",
-   "gsm8k_index": 3086,
-   "gold": "28000",
-   "english_question": "A retail store wants to hire 50 new phone reps to assist with the increased call volume that they will experience over the holiday.  Each phone rep will work 8 hours a day and will be paid $14.00 an hour.  After 5 days, how much will the company pay all 50 new employees?",
-   "questions": {
-    "en": "A retail store wants to hire 50 new phone reps to assist with the increased call volume that they will experience over the holiday.  Each phone rep will work 8 hours a day and will be paid $14.00 an hour.  After 5 days, how much will the company pay all 50 new employees?",
-    "bn": "একটি খুদরা দোকান চালানোর জন্য 50 জন নতুন ফোন রেপ নিয়োগ করতে চায় যারা উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে উদযাপন করবে",
-    "de": "Ein Einzelhandelsgeschäft möchte 50 neue Telefonvertreter einstellen, um bei dem erhöhten Anrufvolumen während der Feiertage zu helfen. Jeder Telefonvertreter wird 8 Stunden pro Tag arbeiten und 14,00 Dollar pro Stunde verdienen. Wie viel wird das Unternehmen nach 5 Tagen allen 50 neuen Mitarbeitern bezahlen?",
-    "es": "Una tienda minorista quiere contratar a 50 nuevos representantes telefónicos para ayudar con el aumento en el volumen de llamadas que experimentarán durante las vacaciones. Cada representante telefónico trabajará 8 horas al día y se le pagará $14.00 por hora. Después de 5 días, ¿cuánto pagará la empresa a los 50 nuevos empleados?",
-    "fr": "Un magasin de détail souhaite embaucher 50 nouveaux téléconseillers pour aider à gérer le volume d'appels accru pendant les vacances. Chaque téléconseiller travaillera 8 heures par jour et sera rémunéré 14,00 $ de l'heure. Après 5 jours, combien l'entreprise paiera-t-elle à tous les 50 nouveaux employés ?",
-    "ja": "小売店は、休日に増加する電話の通話量に対応するために、50人の新しい電話代理店を雇いたいと考えています。各電話代理店は1日8時間働き、時給は14ドルです。5日後、会社は50人の新しい従業員にいくら支払いますか？",
-    "ru": "Розничный магазин хочет нанять 50 новых телефонных операторов для помощи в увеличенном объеме звонков, которые они испытают во время праздников. Каждый телефонный оператор будет работать 8 часов в день и будет получать $14.00 в час. Сколько компания заплатит всем 50 новым сотрудникам через 5 дней?",
-    "sw": "Duka la rejareja linataka kuajiri wawakilishi wa simu 50 wapya ili kuwasaidia na ongezeko la simu watakazopokea wakati wa likizo. Kila mwakilishi wa simu atafanya kazi masaa 8 kwa siku na atalipwa $14.00 kwa saa. Baada ya siku 5, kampuni italipa kiasi gani kwa wafanyakazi wapya 50 wote?",
-    "th": "ร้านค้าปลีกต้องการจ้างพนักงานโทรศัพท์ใหม่ 50 คนเพื่อช่วยในการรับสายที่จะเพิ่มขึ้นในช่วงวันหยุดปีใหม่ แต่ละคนจะทำงาน 8 ชั่วโมงต่อวันและจะได้รับค่าจ้าง $14.00 ต่อชั่วโมง หลังจากทำงาน 5 วัน บริษัทจะจ่ายเงินให้พนักงานใหม่ทั้ง 50 คนเท่าไร?",
-    "zh": "一家零售店想要雇佣50名新的电话代表，以应对假期期间预计增加的电话量。每名电话代表每天工作8小时，时薪为14.00美元。经过5天，公司将支付给所有50名新员工多少钱？"
    },
    "complete": true
   },
@@ -9709,25 +9709,6 @@
    },
    "complete": true
   },
-  "train:353": {
-   "id": "train:353",
-   "gsm8k_index": 353,
-   "gold": "600",
-   "english_question": "On Friday, Remy paid Sally’s Woodworking LLC a total of $20,700 for 150 pieces of furniture. Later that evening, the company’s accountant discovered that a new intern in the sales department had overcharged Remy. If the cost of a piece of furniture is $134, how much money will Sally’s Woodworking LLC reimburse Remy?",
-   "questions": {
-    "en": "On Friday, Remy paid Sally’s Woodworking LLC a total of $20,700 for 150 pieces of furniture. Later that evening, the company’s accountant discovered that a new intern in the sales department had overcharged Remy. If the cost of a piece of furniture is $134, how much money will Sally’s Woodworking LLC reimburse Remy?",
-    "bn": "শুক্রবারে, রেমি সালি'স উডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওডওড",
-    "de": "Am Freitag zahlte Remy Sally's Woodworking LLC insgesamt 20.700 Dollar für 150 Möbelstücke. Später am Abend entdeckte der Buchhalter des Unternehmens, dass ein neuer Praktikant in der Verkaufsabteilung Remy zu viel berechnet hatte. Wenn der Preis für ein Möbelstück 134 Dollar beträgt, wie viel Geld wird Sally's Woodworking LLC Remy erstatten?",
-    "es": "El viernes, Remy pagó a Sally's Woodworking LLC un total de $20,700 por 150 piezas de muebles. Más tarde esa noche, el contador de la empresa descubrió que un nuevo pasante en el departamento de ventas había cobrado de más a Remy. Si el costo de una pieza de mueble es de $134, ¿cuánto dinero reembolsará Sally's Woodworking LLC a Remy?",
-    "fr": "Vendredi, Remy a payé Sally's Woodworking LLC un total de 20 700 $ pour 150 pièces de mobilier. Plus tard dans la soirée, le comptable de l'entreprise a découvert qu'un nouvel stagiaire du service des ventes avait surfacturé Remy. Si le coût d'une pièce de mobilier est de 134 $, combien d'argent Sally's Woodworking LLC remboursera-t-elle à Remy ?",
-    "ja": "金曜日、レミーはサリーズ・ウッドワーキングLLCに150個の家具の合計で$20,700を支払いました。その夜、会社の会計士は営業部の新しいインターンがレミーに過剰請求していたことを発見しました。家具1つのコストが$134の場合、サリーズ・ウッドワーキングLLCはレミーにいくら返金しますか？",
-    "ru": "В пятницу Реми заплатил компании Sally's Woodworking LLC общую сумму в размере 20 700 долларов за 150 предметов мебели. Позднее вечером бухгалтер компании обнаружил, что новый стажер в отделе продаж переплатил Реми. Если стоимость одного предмета мебели составляет 134 доллара, сколько денег компания Sally's Woodworking LLC вернет Реми?",
-    "sw": "Ijumaa, Remy alilipa Sally's Woodworking LLC jumla ya $20,700 kwa vipande 150 vya samani. Baadaye usiku huo, mhasibu wa kampuni aligundua kuwa mwanafunzi mpya katika idara ya mauzo alimtoza Remy zaidi. Ikiwa gharama ya kipande kimoja cha samani ni $134, Sally's Woodworking LLC itamlipa Remy kiasi gani cha pesa kama fidia?",
-    "th": "เมื่อวันศุกร์ เรมีจ่ายเงินให้กับ Sally's Woodworking LLC ทั้งหมด 20,700 ดอลลาร์สหรัฐสำหรับเฟอร์นิเจอร์ 150 ชิ้น ภายหลังในค่ำคืนนั้น นักบัญชีของบริษัทค้นพบว่านักศึกษาฝึกงานในแผนกขายเก็บเงินจากเรมีมากเกินไป หากราคาของเฟอร์นิเจอร์คือ 134 ดอลลาร์ บริษัท Sally's Woodworking LLC จะคืนเงินให้เรมีเท่าไหร่?",
-    "zh": "上周五，雷米支付给莎莉木工有限责任公司总共20700美元购买了150件家具。当晚，公司的会计发现销售部门的一名新实习生向雷米多收费了。如果一件家具的成本是134美元，莎莉木工有限责任公司将向雷米退还多少钱？"
-   },
-   "complete": true
-  },
   "train:3536": {
    "id": "train:3536",
    "gsm8k_index": 3536,
@@ -10789,6 +10770,25 @@
     "sw": "Shati tano zina gharama ya $85. Kati ya mashati hayo 5, kuna mashati 3 ambayo kila moja lina gharama ya $15. Ikiwa mashati yaliyobaki yana thamani sawa, ni gharama gani, kwa dola, ya shati moja lililobaki?",
     "th": "5 เสื้อรวมกันมีราคา $85 บาท ใน 5 เสื้อนั้น มีเสื้อ 3 ตัวที่มีราคา $15 บาทต่อตัว ถ้าเสื้อที่เหลือกันเป็นเสื้อที่มีมูลค่าเท่ากัน ราคาของเสื้อที่เหลืออยู่คือเท่าไหร่?",
     "zh": "五件衬衫总共花费85美元。其中有3件衬衫每件15美元。如果剩下的衬衫每件价值相等，那么剩下的一件衬衫的价格是多少美元？"
+   },
+   "complete": true
+  },
+  "train:3837": {
+   "id": "train:3837",
+   "gsm8k_index": 3837,
+   "gold": "12",
+   "english_question": "A pack of dogs found a pile of bones in the dumpster behind the butcher shop.  One by one, the dogs crawled into the dumpster, grabbed a mouthful of bones, and ran off with their newfound treasure.  In all, there were 5 dogs.  The first dog carried off 3 bones.  The second dog carried off 1 less bone than the first dog.  The third dog carried off twice as many as the second dog.  The fourth dog carried off one bone, and the fifth dog carried off twice the number of bones as the fourth dog carried, leaving no remaining bones in the dumpster.  How many bones were in the original pile of bones?",
+   "questions": {
+    "en": "A pack of dogs found a pile of bones in the dumpster behind the butcher shop.  One by one, the dogs crawled into the dumpster, grabbed a mouthful of bones, and ran off with their newfound treasure.  In all, there were 5 dogs.  The first dog carried off 3 bones.  The second dog carried off 1 less bone than the first dog.  The third dog carried off twice as many as the second dog.  The fourth dog carried off one bone, and the fifth dog carried off twice the number of bones as the fourth dog carried, leaving no remaining bones in the dumpster.  How many bones were in the original pile of bones?",
+    "bn": "একটি গাড়ি কুকুরদের একটি ঢেঁকির পাশে বাচ্চাদের জন্য একটি হাড়ের ঢেঁকি পেয়েছে। একে একে, কুকুররা ঢেঁকির পাশে ঢুকে, হাড়ের ঢেঁকি ধরে নিয়ে নিজেদের নতুন সম্পদ দিয়ে চলে গেল। মোটেই, এখানে 5 টি কুকুর ছিল। প্রথম কুকুর 3 টি হাড় নিয়ে চলে গেল। দ্বিতীয় কুকুর প্রথম কুকুরের থেকে 1 টি হাড় কম নিয়ে চলে গেল। তৃতীয় কুকুর দ্বিগুণ হাড় নিয়ে চলে গেল। চতুর্থ কুকুর একটি হাড় নিয়ে চলে গেল, এবং পঞ্চম কুকুর চতুর্থ কুকুরের নিয়ে চলে গেল, ঢেঁকির পাশে কোন হাড় বাকি রাখতে না পারে। মূল হাড়ের সংখ্যা কত ছিল?",
+    "de": "Eine Gruppe von Hunden hat einen Haufen Knochen in der Mülltonne hinter dem Metzgerladen gefunden. Einer nach dem anderen krochen die Hunde in die Mülltonne, schnappten sich einen Mundvoll Knochen und rannten mit ihrem neu gefundenen Schatz davon. Insgesamt gab es 5 Hunde. Der erste Hund nahm 3 Knochen mit. Der zweite Hund nahm einen Knochen weniger mit als der erste Hund. Der dritte Hund nahm doppelt so viele Knochen mit wie der zweite Hund. Der vierte Hund nahm einen Knochen mit und der fünfte Hund nahm doppelt so viele Knochen mit wie der vierte Hund, sodass keine Knochen mehr in der Mülltonne übrig blieben. Wie viele Knochen waren ursprünglich in dem Haufen Knochen?",
+    "es": "Un grupo de perros encontró un montón de huesos en el contenedor detrás de la carnicería. Uno por uno, los perros se metieron en el contenedor, agarraron un puñado de huesos y se fueron corriendo con su nuevo tesoro. En total, había 5 perros. El primer perro se llevó 3 huesos. El segundo perro se llevó 1 hueso menos que el primer perro. El tercer perro se llevó el doble de huesos que el segundo perro. El cuarto perro se llevó un hueso, y el quinto perro se llevó el doble de la cantidad de huesos que el cuarto perro se llevó, dejando cero huesos restantes en el contenedor. ¿Cuántos huesos había en el montón original de huesos?",
+    "fr": "Une meute de chiens a trouvé un tas d'os dans la benne derrière la boucherie. Un par un, les chiens se sont glissés dans la benne, ont attrapé une bouchée d'os et sont partis avec leur nouveau trésor. Au total, il y avait 5 chiens. Le premier chien a emporté 3 os. Le deuxième chien a emporté 1 os de moins que le premier chien. Le troisième chien a emporté deux fois plus d'os que le deuxième chien. Le quatrième chien a emporté un os, et le cinquième chien a emporté deux fois plus d'os que le quatrième chien, ne laissant aucun os dans la benne. Combien d'os y avait-il dans le tas d'os d'origine ?",
+    "ja": "肉屋の後ろのゴミ箱に、一団の犬たちが骨の山を見つけました。一匹ずつ、犬たちはゴミ箱に入り、骨の一口をつかんで新たな宝物を持ち去りました。合計で5匹の犬がいました。最初の犬は3本の骨を持ち去りました。2番目の犬は最初の犬より1本少ない骨を持ち去りました。3番目の犬は2番目の犬の2倍の数の骨を持ち去りました。4番目の犬は1本の骨を持ち去り、5番目の犬は4番目の犬が持ち去った骨の2倍の数を持ち去り、ゴミ箱には残りの骨がありませんでした。元の骨の山には何本の骨がありましたか？",
+    "ru": "Собачья стая нашла кучу костей в мусорном баке за мясной лавкой. По одной, собаки забирались в мусорный бак, брали в пасть горсть костей и убегали с новым сокровищем. Всего было 5 собак. Первая собака унесла 3 кости. Вторая собака унесла на одну кость меньше, чем первая собака. Третья собака унесла в два раза больше, чем вторая собака. Четвертая собака унесла одну кость, а пятая собака унесла в два раза больше костей, чем унесла четвертая собака, не оставив ни одной кости в мусорном баке. Сколько костей было в исходной куче костей?",
+    "sw": "Kundi la mbwa lilipata rundo la mifupa katika kontena nyuma ya duka la kasoro. Mmoja baada ya mwingine, mbwa walijikokota ndani ya kontena, wakachukua mdomo wa mifupa, na kukimbia na hazina yao mpya. Jumla, kulikuwa na mbwa 5. Mbwa wa kwanza aliondoka na mifupa 3. Mbwa wa pili aliondoka na mifupa 1 chini ya mbwa wa kwanza. Mbwa wa tatu aliondoka na mara mbili ya mbwa wa pili. Mbwa wa nne aliondoka na mfupa mmoja, na mbwa wa tano aliondoka na mara mbili ya idadi ya mifupa ambayo mbwa wa nne aliondoka nayo, hivyo hakubaki mifupa yoyote katika kontena. Mifupa mingapi ilikuwepo katika rundo la awali la mifupa?",
+    "th": "กลุ่มสุนัขพบกองกระดูกในถังขยะข้างหลังร้านขายเนื้อสัตว์ ตามลำดับ สุนัขแต่ละตัวเข้าไปในถังขยะ และหยิบกระดูกออกมาเป็นปากกาหนึ่ง ๆ แล้ววิ่งหนีไปกับทรัพย์สมบัติใหม่ที่พบ ทั้งหมดมีสุนัข 5 ตัว สุนัขตัวแรกหยิบกระดูกออกมา 3 ก้อน สุนัขตัวที่สองหยิบกระดูกออกมาน้อยกว่าสุนัขตัวแรก 1 ก้อน สุนัขตัวที่สามหยิบกระดูกออกมาเป็นสองเท่าของสุนัขตัวที่สอง สุนัขตัวที่สี่หยิบกระดูกออกมา 1 ก้อน และสุนัขตัวที่ห้าหยิบกระดูกออกมาเป็นสองเท่าของจำนวนกระดูกที่สุนัขตัวที่สี่หยิบ โดยไม่เหลือกระดูกในถังขยะเลย กระดูกทั้งหมดในกองกระดูกเดิมมีกี่ก้อน?",
+    "zh": "一群狗在肉店后面的垃圾箱里发现了一堆骨头。狗们一个接一个地爬进垃圾箱，抓了一口骨头，带着他们新发现的财宝跑了。总共有5只狗。第一只狗带走了3根骨头。第二只狗带走的骨头比第一只狗少1根。第三只狗带走的骨头是第二只狗的两倍。第四只狗带走了1根骨头，第五只狗带走的骨头是第四只狗带走的两倍，垃圾箱里没有剩下的骨头。原来的骨头堆里有多少根骨头？"
    },
    "complete": true
   },
@@ -12160,25 +12160,6 @@
    },
    "complete": true
   },
-  "train:4234": {
-   "id": "train:4234",
-   "gsm8k_index": 4234,
-   "gold": "10",
-   "english_question": "There are three times as many hogs as cats in King Henry's kingdom. If there are 75 hogs, what's 5 less than 60% of the number of cats in King Henry's kingdom?",
-   "questions": {
-    "en": "There are three times as many hogs as cats in King Henry's kingdom. If there are 75 hogs, what's 5 less than 60% of the number of cats in King Henry's kingdom?",
-    "bn": "রাজা হেনরির রাজ্যে মাছরাঙ্গা বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্বিত বিলম্ব",
-    "de": "Es gibt dreimal so viele Schweine wie Katzen im Königreich von König Heinrich. Wenn es 75 Schweine gibt, was ist 5 weniger als 60% der Anzahl der Katzen im Königreich von König Heinrich?",
-    "es": "Hay tres veces más cerdos que gatos en el reino del Rey Henry. Si hay 75 cerdos, ¿cuánto es 5 menos que el 60% del número de gatos en el reino del Rey Henry?",
-    "fr": "Il y a trois fois plus de cochons que de chats dans le royaume du roi Henry. S'il y a 75 cochons, combien y a-t-il de chats dans le royaume du roi Henry, moins 5 que 60% du nombre de chats ?",
-    "ja": "キングヘンリーの王国には猫の数の3倍のブタがいます。 ブタが75匹いる場合、キングヘンリーの王国の猫の数の60％から5引いた数は何匹ですか？",
-    "ru": "В королевстве короля Генриха трижды больше свиней, чем кошек. Если свиней 75, то насколько меньше 60% от числа кошек в королевстве короля Генриха?",
-    "sw": "Kuna nguruwe mara tatu zaidi ya paka katika ufalme wa Mfalme Henry. Ikiwa kuna nguruwe 75, ni nini 5 chini ya asilimia 60 ya idadi ya paka katika ufalme wa Mfalme Henry?",
-    "th": "ในอาณาจักรของกษัตริย์เฮนรี่มีหมูจำนวนสามเท่าของแมว ถ้ามีหมู 75 ตัว จำนวนแมวในอาณาจักรของกษัตริย์เฮนรี่มีกี่ตัว?",
-    "zh": "亨利国王的王国里有猪的数量是猫的三倍。如果有75只猪，那么亨利国王的王国里猫的数量的60%减去5是多少？"
-   },
-   "complete": true
-  },
   "train:4236": {
    "id": "train:4236",
    "gsm8k_index": 4236,
@@ -13547,25 +13528,6 @@
    },
    "complete": true
   },
-  "train:467": {
-   "id": "train:467",
-   "gsm8k_index": 467,
-   "gold": "6",
-   "english_question": "Hadley wore his cowboy boots everywhere.  He walked 2 miles to the grocery store in his boots.  Then he walked 1 less than two miles to the pet store in his boots.  Then, he walked one less than four miles back home in his boots.  How far, in miles, did Hadley walk in his boots?",
-   "questions": {
-    "en": "Hadley wore his cowboy boots everywhere.  He walked 2 miles to the grocery store in his boots.  Then he walked 1 less than two miles to the pet store in his boots.  Then, he walked one less than four miles back home in his boots.  How far, in miles, did Hadley walk in his boots?",
-    "bn": "হ্যাডলি তার কাউবয় বুট সবজায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয়ায় পরিয",
-    "de": "Hadley trug seine Cowboy-Stiefel überall hin. Er lief 2 Meilen zum Lebensmittelgeschäft in seinen Stiefeln. Dann lief er 1 weniger als zwei Meilen zum Tiergeschäft in seinen Stiefeln. Dann lief er eine weniger als vier Meilen nach Hause in seinen Stiefeln. Wie weit ist Hadley in seinen Stiefeln gelaufen?",
-    "es": "Hadley llevaba sus botas de vaquero a todas partes. Caminó 2 millas hasta la tienda de comestibles con sus botas. Luego caminó una menos que dos millas hasta la tienda de mascotas con sus botas. Luego, caminó una menos que cuatro millas de regreso a casa con sus botas. ¿Qué distancia, en millas, caminó Hadley con sus botas?",
-    "fr": "Hadley portait ses bottes de cowboy partout. Il a marché 2 miles jusqu'au supermarché avec ses bottes. Ensuite, il a marché 1 mile de moins que deux miles jusqu'au magasin d'animaux avec ses bottes. Ensuite, il a marché un mile de moins que quatre miles pour rentrer chez lui avec ses bottes. Combien de miles Hadley a-t-il marché avec ses bottes ?",
-    "ja": "ハドリーはいつもカウボーイブーツを履いていました。彼はブーツを履いて食料品店まで2マイル歩きました。その後、ペットショップまで2マイル未満を歩きました。そして、帰宅するために4マイル未満を歩きました。ハドリーはブーツを履いて合計で何マイル歩いたでしょうか？",
-    "ru": "Хэдли носил свои ковбойские сапоги повсюду. Он прошел 2 мили до продуктового магазина в своих сапогах. Затем он прошел на одну милю меньше двух миль до зоомагазина в своих сапогах. Затем он прошел на одну милю меньше четырех миль домой в своих сапогах. Как далеко, в милях, Хэдли прошел в своих сапогах?",
-    "sw": "Hadley alivaa viatu vyake vya kawaida kila mahali. Alienda kwa miguu umbali wa maili 2 hadi duka la vyakula akiwa na viatu vyake. Kisha alienda kwa miguu umbali wa maili 1 chini ya maili 2 hadi duka la wanyama akiwa na viatu vyake. Kisha, alienda kwa miguu umbali wa maili 1 chini ya maili 4 kurudi nyumbani akiwa na viatu vyake. Alikwenda umbali gani, kwa maili, Hadley akiwa na viatu vyake?",
-    "th": "แฮดลีย์สวมรองเท้าสเต็ปของเขาไปทุกที่ เขาเดินไปที่ร้านซื้อของในระยะทาง 2 ไมล์ ในรองเท้าของเขา จากนั้นเขาเดินไปที่ร้านขายสัตว์เลี้ยงในระยะทางน้อยกว่าสองไมล์ และเขาเดินไปที่บ้านกลับอีกน้อยกว่าสี่ไมล์ ในรองเท้าของเขา เขาเดินไปทั้งหมดกี่ไมล์?",
-    "zh": "哈德利到处都穿着他的牛仔靴。他穿着靴子走了2英里去杂货店。然后他穿着靴子走了比两英里少1英里去宠物店。然后，他穿着靴子走了比四英里少1英里回家。哈德利穿着靴子走了多远，以英里为单位？"
-   },
-   "complete": true
-  },
   "train:4673": {
    "id": "train:4673",
    "gsm8k_index": 4673,
@@ -13924,6 +13886,25 @@
     "sw": "Baada ya miaka 7, Kaylee atakuwa mara tatu umri wa Matt kwa sasa. Ikiwa Matt ana umri wa miaka 5 kwa sasa, Kaylee ana umri gani sasa?",
     "th": "ในอีก 7 ปี คายลี่จะมีอายุเป็น 3 เท่าของแมทตอนนี้ ถ้าแมทมีอายุ 5 ปีในปัจจุบัน คายลี่มีอายุเท่าไหร่ในปัจจุบัน?",
     "zh": "7年后，凯莉的年龄将是马特现在年龄的3倍。如果马特现在5岁，那么凯莉现在多大？"
+   },
+   "complete": true
+  },
+  "train:4777": {
+   "id": "train:4777",
+   "gsm8k_index": 4777,
+   "gold": "105",
+   "english_question": "Big Lots is having a sale. All chairs are 25% off. If you buy more than 5 chairs, you get an additional 1/3 off the discounted price of the number of chairs over 5. If you bought 8 chairs that were normally priced at $20, how much do the chairs cost in total?",
+   "questions": {
+    "en": "Big Lots is having a sale. All chairs are 25% off. If you buy more than 5 chairs, you get an additional 1/3 off the discounted price of the number of chairs over 5. If you bought 8 chairs that were normally priced at $20, how much do the chairs cost in total?",
+    "bn": "Big Lots এ একটি বিক্রয় চলছে। সব চেয়ার 25% ছাড়। যদি আপনি 5 টির বেশি চেয়ার কিনেন, তবে 5 এর উপরের সংখ্যার ছাড় মোট দামের 1/3 আরও পাবেন। যদি আপনি 8 টি চেয়ার কিনেন যা সাধারণত $20 দামে ছিল, তবে চেয়ারগুলি মোট কত দামে পাবেন?",
+    "de": "Big Lots hat einen Ausverkauf. Alle Stühle sind um 25% reduziert. Wenn man mehr als 5 Stühle kauft, bekommt man zusätzlich 1/3 Rabatt auf den reduzierten Preis der Stühle über 5. Wenn man 8 Stühle kauft, die normalerweise $20 kosten, wie viel kosten die Stühle insgesamt?",
+    "es": "Big Lots está teniendo una venta. Todas las sillas tienen un descuento del 25%. Si compras más de 5 sillas, obtienes un descuento adicional de 1/3 sobre el precio descontado del número de sillas por encima de 5. Si compraste 8 sillas que tenían un precio normal de $20, ¿cuánto cuestan las sillas en total?",
+    "fr": "Big Lots fait une vente. Toutes les chaises sont à 25% de réduction. Si vous achetez plus de 5 chaises, vous obtenez une réduction supplémentaire de 1/3 sur le prix réduit du nombre de chaises au-dessus de 5. Si vous avez acheté 8 chaises qui étaient normalement au prix de 20 $, combien coûtent les chaises au total ?",
+    "ja": "ビッグロットではセールを行っています。すべての椅子が25%オフです。5脚以上の椅子を購入すると、5脚を超える椅子の割引価格からさらに1/3オフになります。通常価格が$20の椅子を8脚購入した場合、椅子の合計価格はいくらですか？",
+    "ru": "Big Lots проводит распродажу. Все стулья со скидкой 25%. Если вы покупаете более 5 стульев, вы получаете дополнительную скидку 1/3 от скидочной цены на количество стульев сверх 5. Если вы купили 8 стульев, которые обычно стоят 20 долларов, сколько стоят стулья в общей сложности?",
+    "sw": "Big Lots ina mauzo. Viti vyote vina punguzo la 25%. Ikiwa unanunua zaidi ya viti 5, unapata punguzo la ziada la 1/3 kwenye bei iliyopunguzwa ya idadi ya viti zaidi ya 5. Ikiwa ulinunua viti 8 ambavyo kawaida vinauzwa kwa $20, viti hivyo vina gharama jumla kiasi gani?",
+    "th": "Big Lots กำลังจัดโปรโมชั่น ราคาเก้าอี้ลด 25% หากซื้อเก้าอี้มากกว่า 5 ตัว จะได้ส่วนลดเพิ่มอีก 1/3 ของราคาเก้าอี้ที่เกิน 5 ตัว หากคุณซื้อเก้าอี้ 8 ตัว ที่มีราคาปกติ 20 เหรียญ ราคาเก้าอี้ทั้งหมดเท่าไหร่?",
+    "zh": "Big Lots正在举行促销活动。所有椅子都打75折。如果你购买超过5把椅子，你还可以在超过5把椅子的折扣价上再额外打三分之一的折扣。如果你购买了8把原价为20美元的椅子，这些椅子总共多少钱？"
    },
    "complete": true
   },
@@ -14801,25 +14782,6 @@
    },
    "complete": true
   },
-  "train:5095": {
-   "id": "train:5095",
-   "gsm8k_index": 5095,
-   "gold": "90",
-   "english_question": "The number of Christmas presents David found was twice as many as the number of birthday presents. If David found a total of 60 Christmas presents, how many presents did he get all together?",
-   "questions": {
-    "en": "The number of Christmas presents David found was twice as many as the number of birthday presents. If David found a total of 60 Christmas presents, how many presents did he get all together?",
-    "bn": "ডেভিড খুঁজেছিল ক্রিসমাস উপহারের সংখ্যা জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন্য জন",
-    "de": "Die Anzahl der Weihnachtsgeschenke, die David gefunden hat, war doppelt so hoch wie die Anzahl der Geburtstagsgeschenke. Wenn David insgesamt 60 Weihnachtsgeschenke gefunden hat, wie viele Geschenke hat er insgesamt bekommen?",
-    "es": "El número de regalos de Navidad que David encontró fue el doble que el número de regalos de cumpleaños. Si David encontró un total de 60 regalos de Navidad, ¿cuántos regalos recibió en total?",
-    "fr": "Le nombre de cadeaux de Noël que David a trouvés était deux fois plus élevé que le nombre de cadeaux d'anniversaire. Si David a trouvé un total de 60 cadeaux de Noël, combien de cadeaux a-t-il eu au total ?",
-    "ja": "デビッドが見つけたクリスマスプレゼントの数は、誕生日プレゼントの数の2倍でした。デビッドが合計で60個のクリスマスプレゼントを見つけた場合、彼は合計で何個のプレゼントを手に入れましたか？",
-    "ru": "Количество рождественских подарков, которые нашел Дэвид, в два раза больше, чем количество дней рождения. Если Дэвид нашел всего 60 рождественских подарков, сколько подарков он получил всего?",
-    "sw": "Idadi ya zawadi za Krismasi ambazo David alipata ilikuwa mara mbili ya idadi ya zawadi za siku ya kuzaliwa. Ikiwa David alipata jumla ya zawadi 60 za Krismasi, alipata zawadi ngapi kwa jumla?",
-    "th": "จำนวนของของขวัญคริสต์มาสที่เดวิดพบมีสองเท่าของของขวัญวันเกิด ถ้าเดวิดพบทั้งหมด 60 ของขวัญคริสต์มาส เดวิดพบของขวัญทั้งหมดกี่ของ?",
-    "zh": "大卫找到的圣诞礼物数量是生日礼物数量的两倍。如果大卫找到了总共60个圣诞礼物，他一共得到了多少礼物？"
-   },
-   "complete": true
-  },
   "train:5098": {
    "id": "train:5098",
    "gsm8k_index": 5098,
@@ -15349,6 +15311,25 @@
     "sw": "Uncle Lou alipewa mifuko minne ya karanga kula wakati wa safari yake ya ndege ya masaa 2. Kila mfuko una karanga 30. Ikiwa atakula karanga zote wakati wa safari, moja kwa moja, kwa kuzila kwa wakati uliogawanywa sawasawa, ni muda gani, kwa dakika, kati ya kula kila karanga?",
     "th": "ลุงหลู่ได้รับถุงถั่วมา 4 ถุงเพื่อที่จะกินในเวลาเดินเครื่องบิน 2 ชั่วโมง แต่ละถุงมีถั่ว 30 ลูก ถ้าเขากินถั่วทั้งหมดในระหว่างเดินเครื่องบิน โดยกินทีละลูก โดยกินที่ระยะเวลาเท่ากัน ระหว่างการกินถั่วแต่ละลูกจะใช้เวลากี่นาที?",
     "zh": "路叔叔在他2小时的飞机航班上被给了四袋花生吃。每袋有30颗花生。如果他在飞行期间吃完所有花生，每次吃一颗，间隔相等，那么每颗花生之间的时间长度是多少分钟？"
+   },
+   "complete": true
+  },
+  "train:5241": {
+   "id": "train:5241",
+   "gsm8k_index": 5241,
+   "gold": "500",
+   "english_question": "Chloe bought chocolate-dipped strawberries at $50 a dozen. She then sold them for $30 for half a dozen during the Mother's Day celebration. How much is Chloe's profit if she sold 50 dozens?",
+   "questions": {
+    "en": "Chloe bought chocolate-dipped strawberries at $50 a dozen. She then sold them for $30 for half a dozen during the Mother's Day celebration. How much is Chloe's profit if she sold 50 dozens?",
+    "bn": "ক্লোই চকলেট-ডিপড স্ট্রবেরি এক ডজনের জন্য $50 কেনেছেন। তারপর মাতৃদিন উপলক্ষে সে তাদের আধ ডজনের জন্য $30 বিক্রি করেছেন। ক্লোইর লাভ কত হবে যদি সে 50 ডজন বিক্রি করে?",
+    "de": "Chloe hat Schokolade-überzogene Erdbeeren für 50 Dollar pro Dutzend gekauft. Sie hat sie dann während des Muttertagsfestes für 30 Dollar für ein halbes Dutzend verkauft. Wie hoch ist Chloes Gewinn, wenn sie 50 Dutzend verkauft hat?",
+    "es": "Chloe compró fresas bañadas en chocolate a $50 por docena. Luego las vendió a $30 por media docena durante la celebración del Día de la Madre. ¿Cuánto es la ganancia de Chloe si vendió 50 docenas?",
+    "fr": "Chloe a acheté des fraises trempées dans du chocolat à 50 $ la douzaine. Elle les a ensuite vendues à 30 $ la demi-douzaine lors de la fête des mères. Combien est le profit de Chloe si elle vend 50 douzaines ?",
+    "ja": "クロエさんは、1ダースのチョコレートがかかるドルでチョコレートにディップされたイチゴを購入しました。その後、彼女は母の日のお祝いのために半ダースを30ドルで販売しました。50ダースを販売した場合、クロエさんの利益はいくらでしょうか？",
+    "ru": "Хлоя купила шоколадные клубники по цене $50 за дюжину. Затем она продала их по цене $30 за полдюжины во время празднования Дня матери. Сколько составляет прибыль Хлои, если она продала 50 дюжин?",
+    "sw": "Chloe alinunua matunda ya parachichi yaliyopakwa chokoleti kwa $50 kwa kizibo. Kisha akawauza kwa $30 kwa nusu kizibo wakati wa sherehe ya siku ya Mama. Chloe atapata faida kiasi gani ikiwa atauza dozeni 50?",
+    "th": "โคลีซื้อสตรอเบอร์รี่ที่จุดช็อกโกแลตราคา 50 ดอลลาร์ต่อเม็ด แล้วเธอขายให้ครึ่งหนึ่งดอลลาร์ต่อครึ่งหนึ่งในงานฉลองวันแม่ ถ้าเธอขาย 50 ดอลลาร์ จะได้กำไรเท่าไหร่ถ้าเธอขาย 50 ดอลลาร์?",
+    "zh": "克洛伊以每打50美元的价格购买了巧克力蘸草莓。然后在母亲节庆祝活动期间，她以每半打30美元的价格出售。如果她卖出50打，克洛伊的利润是多少？"
    },
    "complete": true
   },
@@ -16090,6 +16071,25 @@
     "sw": "Mama wa June anamwahidi kumlipa senti 1 kwa kila jani la shamrock anayochuma kutoka kwenye nyasi. June anachuma shamrock 200 kwa jumla. 75% ina majani 3. 24% ina majani 2 na 1% ina majani 4. June anapata senti ngapi?",
     "th": "แม่ของจูนสัญญาจะจ่ายเธอ 1 เซนต์สำหรับทุกใบดอกโคลเวอร์ที่เธอเก็บจากสวนหญ้า จูนเก็บโคลเวอร์ทั้งหมด 200 ใบ 75% มีดอก 3 ใบ 24% มีดอก 2 ใบ และ 1% มีดอก 4 ใบ จูนสร้างรายได้เท่าไหร่?",
     "zh": "六月的妈妈答应给她每摘一片三叶草就付给她1美分。六月总共摘了200片三叶草。其中75%有3片叶子，24%有两片叶子，1%有四片叶子。六月能赚多少美分？"
+   },
+   "complete": true
+  },
+  "train:5464": {
+   "id": "train:5464",
+   "gsm8k_index": 5464,
+   "gold": "41",
+   "english_question": "Bill milked his cow and got 16 gallons of milk. He turned 1/4 into sour cream, 1/4 into butter, and kept the rest as whole milk. It takes 4 gallons of milk to make one gallon of butter and 2 gallons of milk to make 1 gallon of sour cream. If Bill sells butter for $5/gallon, sour cream for $6/gallon, and whole milk for $3/gallon, how much money does he make?",
+   "questions": {
+    "en": "Bill milked his cow and got 16 gallons of milk. He turned 1/4 into sour cream, 1/4 into butter, and kept the rest as whole milk. It takes 4 gallons of milk to make one gallon of butter and 2 gallons of milk to make 1 gallon of sour cream. If Bill sells butter for $5/gallon, sour cream for $6/gallon, and whole milk for $3/gallon, how much money does he make?",
+    "bn": "বিল তার গাভী দুধ খেঁতে গেল এবং 16 গ্যালন দুধ পেয়েছেন। তিনি 1/4 দুধকে খট্টা ক্রিমে পরিণত করেছেন, 1/4 দুধকে মাখনে পরিণত করেছেন এবং বাকি অংশটি পূর্ণ দুধ হিসাবে রাখেন। 4 গ্যালন দুধ দ্বারা 1 গ্যালন মাখন তৈরি করতে হয় এবং 2 গ্যালন দুধ দ্বারা 1 গ্যালন খট্টা ক্রিম তৈরি করতে হয়। যদি বিল মাখনটি $5/গ্যালনে, খট্টা ক্রিমটি $6/গ্যালনে এবং পূর্ণ দুধটি $3/গ্যালনে বিক্রি করেন, তবে তিনি কত টাকা আয় করেন?",
+    "de": "Bill hat seine Kuh gemolken und 16 Gallonen Milch bekommen. Er hat 1/4 in Sauerrahm, 1/4 in Butter umgewandelt und den Rest als Vollmilch behalten. Es werden 4 Gallonen Milch benötigt, um eine Gallone Butter herzustellen, und 2 Gallonen Milch, um eine Gallone Sauerrahm herzustellen. Wenn Bill Butter für $5/Gallone, Sauerrahm für $6/Gallone und Vollmilch für $3/Gallone verkauft, wie viel Geld verdient er?",
+    "es": "Bill ordeñó a su vaca y obtuvo 16 galones de leche. Convirtió 1/4 en crema agria, 1/4 en mantequilla y guardó el resto como leche entera. Se necesitan 4 galones de leche para hacer un galón de mantequilla y 2 galones de leche para hacer un galón de crema agria. Si Bill vende la mantequilla a $5/galón, la crema agria a $6/galón y la leche entera a $3/galón, ¿cuánto dinero gana?",
+    "fr": "Bill a trait sa vache et a obtenu 16 gallons de lait. Il a transformé 1/4 en crème sure, 1/4 en beurre et a gardé le reste comme lait entier. Il faut 4 gallons de lait pour faire un gallon de beurre et 2 gallons de lait pour faire un gallon de crème sure. Si Bill vend le beurre à 5 $/gallon, la crème sure à 6 $/gallon et le lait entier à 3 $/gallon, combien d'argent gagne-t-il ?",
+    "ja": "ビルは自分の牛を搾って16ガロンの牛乳を手に入れました。彼は1/4をサワークリームに、1/4をバターに変え、残りを生乳として保ちました。バターを作るのには4ガロンの牛乳が1ガロン必要で、サワークリームを作るのには2ガロンの牛乳が1ガロン必要です。ビルはバターを1ガロンあたり$5で、サワークリームを1ガロンあたり$6で、生乳を1ガロンあたり$3で売ります。彼はいくら稼ぐのでしょうか？",
+    "ru": "Билл подоил свою корову и получил 16 галлонов молока. Он превратил 1/4 в сметану, 1/4 в масло и оставил остальное в виде цельного молока. Для производства 1 галлона масла требуется 4 галлона молока, а для производства 1 галлона сметаны требуется 2 галлона молока. Если Билл продает масло по цене $5/галлон, сметану по цене $6/галлон и цельное молоко по цене $3/галлон, сколько денег он заработает?",
+    "sw": "Bill alimwagilia ng'ombe wake na kupata galoni 16 za maziwa. Aliyabadilisha 1/4 kuwa mtindi, 1/4 kuwa siagi, na akabaki na maziwa yaliyosalia. Inachukua galoni 4 za maziwa kutengeneza galoni 1 ya siagi na galoni 2 za maziwa kutengeneza galoni 1 ya mtindi. Ikiwa Bill anauza siagi kwa $5/galoni, mtindi kwa $6/galoni, na maziwa safi kwa $3/galoni, anapata kiasi gani cha pesa?",
+    "th": "บิลนั่งสั่งนมจากวัวของเขาและได้รับนม 16 แกลลอน เขาแปลง 1/4 เป็นครีมเปรี้ยว 1/4 เป็นเนยและเก็บส่วนที่เหลือเป็นนมสด ใช้นม 4 แกลลอนเพื่อทำน้ำมันเนย 1 แกลลอนและใช้นม 2 แกลลอนเพื่อทำครีมเปรี้ยว 1 แกลลอน ถ้าบิลขายเนยในราคา $5/แกลลอน ครีมเปรี้ยวในราคา $6/แกลลอน และนมสดในราคา $3/แกลลอน เขาทำรายได้เท่าไหร่?",
+    "zh": "比尔挤了他的奶牛，得到了16加仑的牛奶。他把1/4的牛奶变成了酸奶，1/4的牛奶变成了黄油，剩下的保留为全脂牛奶。制作1加仑黄油需要4加仑牛奶，制作1加仑酸奶需要2加仑牛奶。如果比尔以每加仑5美元的价格卖黄油，以每加仑6美元的价格卖酸奶，以每加仑3美元的价格卖全脂牛奶，他能赚多少钱？"
    },
    "complete": true
   },
@@ -17727,6 +17727,25 @@
    },
    "complete": true
   },
+  "train:6051": {
+   "id": "train:6051",
+   "gsm8k_index": 6051,
+   "gold": "5",
+   "english_question": "Hartley has 4 puppies that each weigh 7.5 kilograms. The rescue center has 14 cats that each weigh 2.5 kilograms. How many kilograms more do the cats weigh than the puppies?",
+   "questions": {
+    "en": "Hartley has 4 puppies that each weigh 7.5 kilograms. The rescue center has 14 cats that each weigh 2.5 kilograms. How many kilograms more do the cats weigh than the puppies?",
+    "bn": "হার্টলির চারটি পাঠ্যশিশু আছে যাদের প্রতিটি 7.5 কিলোগ্রাম ওজন আছে। রিসকিউ সেন্টারে 14 টি বিড়াল আছে যাদের প্রতিটি 2.5 কিলোগ্রাম ওজন আছে। বিড়ালরা পাঠ্যশিশুগুলির চেয়ে কত কিলোগ্রাম বেশি ওজন করে?",
+    "de": "Hartley hat 4 Welpen, die jeweils 7,5 Kilogramm wiegen. Das Rettungszentrum hat 14 Katzen, die jeweils 2,5 Kilogramm wiegen. Wie viele Kilogramm mehr wiegen die Katzen als die Welpen?",
+    "es": "Hartley tiene 4 cachorros que pesan cada uno 7.5 kilogramos. El centro de rescate tiene 14 gatos que pesan cada uno 2.5 kilogramos. ¿Cuántos kilogramos más pesan los gatos que los cachorros?",
+    "fr": "Hartley a 4 chiots qui pèsent chacun 7,5 kilogrammes. Le centre de sauvetage a 14 chats qui pèsent chacun 2,5 kilogrammes. De combien de kilogrammes les chats pèsent-ils plus que les chiots ?",
+    "ja": "ハートリーさんは、それぞれが7.5キログラムの4匹の子犬を飼っています。保護センターには、それぞれが2.5キログラムの14匹の猫がいます。猫は子犬よりも何キログラム多く重さますか？",
+    "ru": "У Хартли есть 4 щенка, каждый весит 7,5 килограмма. В приюте есть 14 кошек, каждая весит 2,5 килограмма. На сколько килограммов кошки весят больше, чем щенки?",
+    "sw": "Hartley ana mbwa 4 ambao kila mmoja ana uzito wa kilogramu 7.5. Kituo cha kuokoa kina paka 14 ambao kila mmoja ana uzito wa kilogramu 2.5. Paka wanazidi kwa kilogramu ngapi uzito wa mbwa?",
+    "th": "ฮาร์ทลีย์มีลูกสุนัข 4 ตัว แต่ละตัวมีน้ำหนัก 7.5 กิโลกรัม ศูนย์กู้ภัยมีแมว 14 ตัว แต่ละตัวมีน้ำหนัก 2.5 กิโลกรัม แมวมีน้ำหนักมากกว่าลูกสุนัขกี่กิโลกรัม?",
+    "zh": "哈特利有4只小狗，每只重7.5公斤。救助中心有14只猫，每只重2.5公斤。猫比小狗重多少公斤？"
+   },
+   "complete": true
+  },
   "train:6056": {
    "id": "train:6056",
    "gsm8k_index": 6056,
@@ -18354,25 +18373,6 @@
    },
    "complete": true
   },
-  "train:6248": {
-   "id": "train:6248",
-   "gsm8k_index": 6248,
-   "gold": "30",
-   "english_question": "James has five huskies, two pitbulls and four golden retrievers, all female. They became pregnant and each golden retriever had two more pups than each husky. If the huskies and pitbulls had 3 pups each, How many more pups than adult dogs are there in total?",
-   "questions": {
-    "en": "James has five huskies, two pitbulls and four golden retrievers, all female. They became pregnant and each golden retriever had two more pups than each husky. If the huskies and pitbulls had 3 pups each, How many more pups than adult dogs are there in total?",
-    "bn": "জেমসের পাঁচটি হাস্কি, দুটি পিটবুল এবং চারটি গোল্ডেন রিট্রিভার আছে, সবাই মাদার। তারা গর্ভবতী হয়েছে এবং প্রতিটি গোল্ডেন রিট্রিভার হাস্কির চেয়ে দুটি বেশি পাপ পালন করেছে। যদি হাস্কি এবং পিটবুল প্রতিটির পাপ হয় ৩, তবে মোট কতগুলি পাপ প্রাপ্ত হয়েছে প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত প্রাপ্ত",
-    "de": "James hat fünf Huskys, zwei Pitbulls und vier Golden Retriever, alle weiblich. Sie sind schwanger geworden und jeder Golden Retriever hatte zwei Welpen mehr als jeder Husky. Wenn die Huskys und Pitbulls jeweils 3 Welpen hatten, wie viele Welpen gibt es insgesamt mehr als erwachsene Hunde?",
-    "es": "James tiene cinco huskies, dos pitbulls y cuatro golden retrievers, todos hembras. Quedaron embarazadas y cada golden retriever tuvo dos cachorros más que cada husky. Si los huskies y pitbulls tuvieron 3 cachorros cada uno, ¿cuántos cachorros más que perros adultos hay en total?",
-    "fr": "James a cinq huskies, deux pitbulls et quatre golden retrievers, tous femelles. Ils sont tombés enceintes et chaque golden retriever a eu deux chiots de plus que chaque husky. Si les huskies et les pitbulls ont eu 3 chiots chacun, combien y a-t-il de chiots de plus que de chiens adultes au total ?",
-    "ja": "ジェームズさんは、メスのハスキーが5匹、メスのピットブルが2匹、メスのゴールデンレトリバーが4匹を飼っています。彼らは妊娠し、ゴールデンレトリバーはハスキーよりも2匹多くの子犬を産みました。ハスキーとピットブルはそれぞれ3匹の子犬を産みました。成犬の数よりも子犬は合計で何匹多いですか？",
-    "ru": "У Джеймса есть пять хаски, две питбуля и четыре золотистых ретривера, все самки. Они забеременели, и каждый золотистый ретривер родил на два щенка больше, чем каждый хаски. Если у хаски и питбулей было по 3 щенка, сколько больше щенков, чем взрослых собак, всего?",
-    "sw": "James ana mbwa wa kufugwa watano, mbwa wa pitbull wawili na mbwa wa golden retriever wanne, wote ni wa kike. Wote wamepata mimba na kila mbwa wa golden retriever alikuwa na watoto wawili zaidi ya kila mbwa wa husky. Ikiwa mbwa wa husky na pitbull walikuwa na watoto watatu kila mmoja, kuna watoto wangapi zaidi kuliko mbwa wazima kwa jumla?",
-    "th": "เจมส์มีสุนัขพันธุ์ฮัสกี้ 5 ตัว พิทบูล 2 ตัว และโกลเด้นรีทรีฟเวอร์ 4 ตัว ทั้งหมดเป็นเพศเมีย พวกเขาตั้งครรภ์และแต่ละตัวของโกลเด้นรีทรีฟเวอร์มีลูกมากกว่าสุนัขพันธุ์ฮัสกี้ 2 ตัว ถ้าสุนัขพันธุ์ฮัสกี้และพิทบูลมีลูกแต่ละตัว 3 ตัว จะมีลูกมากกว่าสุนัขพันธุ์ฮัสกี้และพิทบูลทั้งหมดกี่ตัว?",
-    "zh": "詹姆斯有五只哈士奇，两只比特犬和四只金毛犬，全部都是母狗。它们怀孕了，每只金毛犬比每只哈士奇多生两只小狗。如果哈士奇和比特犬每只都有3只小狗，总共比成年狗多多少只小狗？"
-   },
-   "complete": true
-  },
   "train:6249": {
    "id": "train:6249",
    "gsm8k_index": 6249,
@@ -18693,25 +18693,6 @@
     "sw": "Karen ni mtunza mbwa. Rottweilers huchukua dakika 20 kwa kumtunza, border collies huchukua dakika 10 kwa kumtunza, na chihuahuas huchukua dakika 45 kwa kumtunza kwa sababu wanapinga kwa ukali. Itamchukua Karen dakika ngapi kumtunza Rottweilers 6, border collies 9, na chihuahua 1?",
     "th": "แคเรนเป็นช่างตัดขนสุนัข ใช้เวลาตัดขนสุนัขพันธุ์ร็อตไวเลอร์ 20 นาที, พันธุ์บอร์เดอร์คอลลี่ 10 นาที และพันธุ์ชิวาวา 45 นาที เพราะพวกเขาต่อต้านอย่างดุร้าย ใช้เวลากี่นาทีในการตัดขนสุนัข 6 ตัวร็อตไวเลอร์, 9 ตัวบอร์เดอร์คอลลี่ และ 1 ตัวชิวาวา?",
     "zh": "Karen是一名狗美容师。罗威纳犬需要花费20分钟美容，边境牧羊犬需要花费10分钟美容，而吉娃娃需要花费45分钟美容，因为它们非常顽固。Karen美容6只罗威纳犬，9只边境牧羊犬和1只吉娃娃需要多少分钟？"
-   },
-   "complete": true
-  },
-  "train:6355": {
-   "id": "train:6355",
-   "gsm8k_index": 6355,
-   "gold": "5",
-   "english_question": "Louis is making himself a velvet suit for a formal event. The velvet fabric he chose was $24 per yard. He bought a pattern for $15, and two spools of silver thread for $3 each. If he spent $141 for the pattern, thread, and fabric, how many yards of fabric did he buy?",
-   "questions": {
-    "en": "Louis is making himself a velvet suit for a formal event. The velvet fabric he chose was $24 per yard. He bought a pattern for $15, and two spools of silver thread for $3 each. If he spent $141 for the pattern, thread, and fabric, how many yards of fabric did he buy?",
-    "bn": "লুইস একটি আনুষ্ঠানিক ইভেন্টের জন্য নিজের জন্য একটি ভেলভেট সুট তৈরি করছেন। ভেলভেট কাপড় যা তিনি নির্বাচন করেছিলেন তা প্রতি গজে $24। তিনি একটি প্যাটার্ন কিনেছেন $15 এবং দুটি সিলভার থ্রেড কিনেছেন প্রতি টাকায় $3। যদি তিনি প্যাটার্ন, থ্রেড এবং কাপড়ের জন্য $141 খরচ করেন, তবে তিনি কত গজ কাপড় কিনেছেন?",
-    "de": "Louis macht sich einen Samtanzug für eine formelle Veranstaltung. Der Samtstoff, den er gewählt hat, kostet 24 $ pro Yard. Er kaufte ein Muster für 15 $ und zwei Spulen silbernen Fadens für jeweils 3 $. Wenn er insgesamt 141 $ für das Muster, den Faden und den Stoff ausgegeben hat, wie viele Yards Stoff hat er gekauft?",
-    "es": "Louis se está haciendo un traje de terciopelo para un evento formal. La tela de terciopelo que eligió cuesta $24 por yarda. Compró un patrón por $15 y dos carretes de hilo plateado por $3 cada uno. Si gastó $141 en el patrón, el hilo y la tela, ¿cuántas yardas de tela compró?",
-    "fr": "Louis se fait un costume en velours pour un événement formel. Le tissu en velours qu'il a choisi coûte 24 $ la verge. Il a acheté un patron pour 15 $ et deux bobines de fil argenté pour 3 $ chacune. S'il a dépensé 141 $ pour le patron, le fil et le tissu, combien de verges de tissu a-t-il acheté ?",
-    "ja": "ルイスさんはフォーマルイベントのために自分用のベルベットのスーツを作っています。彼が選んだベルベットの生地は1ヤードあたり$24です。彼は$15のパターンと$3の銀色の糸を2つ買いました。パターン、糸、生地の合計で$141を使った場合、彼は何ヤードの生地を買ったのでしょうか？",
-    "ru": "Луишь делает себе бархатный костюм для официального мероприятия. Бархатная ткань, которую он выбрал, стоит 24 доллара за ярд. Он купил выкройку за 15 долларов и две катушки серебряной нитки по 3 доллара каждая. Если он потратил 141 доллар на выкройку, нитку и ткань, сколько ярдов ткани он купил?",
-    "sw": "Louis anajitengenezea suti ya velvet kwa ajili ya tukio rasmi. Kitambaa cha velvet alichochagua ni $24 kwa yadi. Alinunua kielelezo kwa $15, na vitambaa viwili vya uzi wa fedha kwa $3 kila kimoja. Ikiwa alitumia $141 kwa kielelezo, uzi, na kitambaa, alinunua vipande vingapi vya kitambaa?",
-    "th": "หลุยส์กำลังทำสูทเสื้อผ้าไวเล็ตสำหรับงานสำคัญ เขาเลือกผ้าไวเล็ตราคา $24 ต่อหลา ซื้อแพทเทิร์นราคา $15 และด้ายเงินสีเงินสองม้วนราคา $3 ต่อม้วน ถ้าเขาใช้เงิน $141 สำหรับแพทเทิร์น ด้าย และผ้า จำนวนหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลายหลา",
-    "zh": "路易斯正在为一个正式场合做一套天鹅绒西装。他选择的天鹅绒面料是每码24美元。他买了一份15美元的图案，还买了两卷3美元的银线。如果他在图案、线和面料上花了141美元，他买了多少码的面料？"
    },
    "complete": true
   },
@@ -19073,25 +19054,6 @@
     "sw": "Joto huko New York mwezi Juni 2020 lilikuwa nyuzi 80. Ikiwa joto huko Miami siku hiyo lilikuwa nyuzi 10 zaidi ya joto huko New York, na nyuzi 25 baridi kuliko joto huko San Diego, joto wastani kwa miji yote mitatu lilikuwa kiasi gani?",
     "th": "อุณหภูมิในนิวยอร์กในเดือนมิถุนายน 2020 คือ 80 องศา ถ้าอุณหภูมิในไมอามีในวันนี้สูงกว่าอุณหภูมิในนิวยอร์ก 10 องศา และต่ำกว่าอุณหภูมิในซานดีเอโก 25 องศา อุณหภูมิเฉลี่ยของสามเมืองนี้เท่าไหร่?",
     "zh": "2020年6月纽约的温度为80度。如果当天迈阿密的温度比纽约高10度，并且比圣地亚哥低25度，那么这三个城市的平均温度是多少？"
-   },
-   "complete": true
-  },
-  "train:6477": {
-   "id": "train:6477",
-   "gsm8k_index": 6477,
-   "gold": "88",
-   "english_question": "Jackson works 5 days a week going door-to-door collecting for charity. His goal is to raise $1000 for the week. He earned $300 on Monday and $40 on Tuesday. If he collects an average of $10 for every 4 houses he visits, how many houses will he have to visit on each of the remaining days of the week to meet his goal?",
-   "questions": {
-    "en": "Jackson works 5 days a week going door-to-door collecting for charity. His goal is to raise $1000 for the week. He earned $300 on Monday and $40 on Tuesday. If he collects an average of $10 for every 4 houses he visits, how many houses will he have to visit on each of the remaining days of the week to meet his goal?",
-    "bn": "জ্যাকসন সাপ্তাহিক পরিমাণ জন্য 5 দিন প্রতিদিন দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দরজা দর",
-    "de": "Jackson arbeitet 5 Tage die Woche und geht von Tür zu Tür, um Spenden für wohltätige Zwecke zu sammeln. Sein Ziel ist es, $1000 für die Woche zu sammeln. Er hat am Montag $300 und am Dienstag $40 verdient. Wenn er durchschnittlich $10 für je 4 besuchte Häuser sammelt, wie viele Häuser muss er dann an jedem der verbleibenden Tage der Woche besuchen, um sein Ziel zu erreichen?",
-    "es": "Jackson trabaja 5 días a la semana y va de puerta en puerta recolectando dinero para caridad. Su objetivo es recaudar $1000 para la semana. Ganó $300 el lunes y $40 el martes. Si recolecta un promedio de $10 por cada 4 casas que visita, ¿cuántas casas tendrá que visitar cada uno de los días restantes de la semana para alcanzar su objetivo?",
-    "fr": "Jackson works 5 days a week going door-to-door collecting for charity. His goal is to raise $1000 for the week. He earned $300 on Monday and $40 on Tuesday. If he collects an average of $10 for every 4 houses he visits, how many houses will he have to visit on each of the remaining days of the week to meet his goal?",
-    "ja": "ジャクソンさんは週に5日、チャリティーのためにドア・トゥ・ドアで募金活動をしています。彼の目標は週に1000ドルを reaise することです。彼は月曜日に300ドル、火曜日に40ドルを稼ぎました。彼は4軒の家を訪れるごとに平均10ドルを集めることができるので、残りの日にはそれぞれ何軒の家を訪れる必要がありますか？",
-    "ru": "Джексон работает 5 дней в неделю, ходя от двери к двери, собирая пожертвования на благотворительность. Его цель - собрать $1000 за неделю. В понедельник он заработал $300, а во вторник - $40. Если он собирает в среднем $10 за каждые 4 дома, сколько домов ему нужно посетить в каждый из оставшихся дней недели, чтобы достичь своей цели?",
-    "sw": "Jackson anafanya kazi siku 5 kwa wiki akikusanya michango kwa kugonga mlango kwa ajili ya hisani. Lengo lake ni kukusanya $1000 kwa wiki. Alipata $300 Jumatatu na $40 Jumanne. Ikiwa anakusanya wastani wa $10 kwa kila nyumba 4 anayotembelea, anapaswa kutembelea nyumba ngapi kila siku iliyobaki ya wiki ili kukidhi lengo lake?",
-    "th": "Jackson ทำงาน 5 วันต่อสัปดาห์เพื่อเก็บเงินบริจาคจากบ้านเป็นการกุศล เป้าหมายของเขาคือการสะสมเงิน $1000 ในช่วงสัปดาห์ วันจันทร์เขาได้รับเงิน $300 และวันอังคารเขาได้รับเงิน $40 ถ้าเขาเก็บเฉลี่ย $10 สำหรับทุก ๆ 4 บ้านที่เขาเยี่ยมชม เขาจะต้องเยี่ยมชมบ้านกี่หลังในแต่ละวันที่เหลือของสัปดาห์เพื่อให้ได้ตรงกับเป้าหมายของเขา?",
-    "zh": "杰克逊每周工作5天，挨家挨户为慈善机构募捐。他的目标是一周筹集1000美元。他星期一赚了300美元，星期二赚了40美元。如果他每访问4户人家就能平均筹集10美元，那么他还需要在剩下的几天里每天访问多少户人家才能达到目标？"
    },
    "complete": true
   },
@@ -19605,6 +19567,25 @@
     "sw": "Mshahara wa Edric kwa mwezi ni $576. Ikiwa anafanya kazi masaa 8 kwa siku kwa siku 6 kwa wiki, kiasi chake cha saa ni kiasi gani?",
     "th": "เงินเดือนของเอดริคคือ 576 เหรียญ ถ้าเขาทำงาน 8 ชั่วโมงต่อวันเป็นเวลา 6 วันต่อสัปดาห์ เขามีอัตราค่าจ้างต่อชั่วโมงเท่าไหร่?",
     "zh": "埃德里克的月薪是576美元。如果他每天工作8小时，一周工作6天，他的小时工资是多少？"
+   },
+   "complete": true
+  },
+  "train:694": {
+   "id": "train:694",
+   "gsm8k_index": 694,
+   "gold": "300",
+   "english_question": "If one fourth of the engines are defective, and there are 5 batches of 80 engines each. How many engines are not defective?",
+   "questions": {
+    "en": "If one fourth of the engines are defective, and there are 5 batches of 80 engines each. How many engines are not defective?",
+    "bn": "যদি ইঞ্জিনের এক চতুর্থাংশ খারাপ হয় এবং প্রতি ব্যাচে 80 টি ইঞ্জিন থাকে, তবে কতগুলি ইঞ্জিন খারাপ নয়?",
+    "de": "Wenn ein Viertel der Motoren defekt ist und es 5 Chargen mit jeweils 80 Motoren gibt, wie viele Motoren sind dann nicht defekt?",
+    "es": "Si una cuarta parte de los motores son defectuosos, y hay 5 lotes de 80 motores cada uno. ¿Cuántos motores no son defectuosos?",
+    "fr": "Si un quart des moteurs sont défectueux et qu'il y a 5 lots de 80 moteurs chacun, combien de moteurs ne sont pas défectueux ?",
+    "ja": "もしエンジンの1/4が不良品であり、80個のエンジンが5つのバッチに分けられている場合、不良品でないエンジンはいくつありますか？",
+    "ru": "Если четверть двигателей являются неисправными, а имеется 5 партий по 80 двигателей каждая. Сколько двигателей не являются неисправными?",
+    "sw": "Ikiwa robo moja ya injini ni mbovu, na kuna makundi 5 ya injini 80 kila moja. Injini ngapi hazina kasoro?",
+    "th": "ถ้าเครื่องยนต์ 1/4 เสีย และมีชุดเครื่องยนต์ 5 ชุด ที่ละ 80 เครื่อง จะมีเครื่องยนต์ที่ไม่เสียกี่เครื่อง?",
+    "zh": "如果四分之一的发动机是有问题的，而且有5批次，每批80台发动机。有多少台发动机是没有问题的？"
    },
    "complete": true
   },
@@ -20251,6 +20232,25 @@
     "sw": "Kuna ndege sita zaidi za rangi nyeupe karibu na gereza kuliko ndege za rangi ya kijivu ndani ya gereza. Ikiwa idadi ya ndege za rangi ya kijivu ndani ya gereza ni 40, na baada ya dakika kumi, nusu ya ndege ndani ya gereza zinaachiliwa na kuruka mbali, hesabu idadi jumla ya ndege zilizobaki.",
     "th": "มีนกสีขาวอีก 6 ตัว อยู่ข้างๆกรงมากกว่านกสีเทาในกรง ถ้าจำนวนนกสีเทาในกรงคือ 40 ตัว และหลังจาก 10 นาที ครึ่งหนึ่งของนกในกรงถูกปล่อยปลายและบินหลุดไป คำนวณจำนวนนกทั้งหมดที่เหลืออยู่",
     "zh": "笼子旁边有比笼子里的灰鸟多六只白鸟。如果笼子里的灰鸟数量是40只，并且十分钟后，有一半的鸟被释放飞走，计算剩下的鸟的总数。"
+   },
+   "complete": true
+  },
+  "train:918": {
+   "id": "train:918",
+   "gsm8k_index": 918,
+   "gold": "232",
+   "english_question": "The house is 20.5 feet by 10 feet. The porch measures 6 feet by 4.5 feet. The house and the porch need shingles. How many square feet of shingles will be needed to roof the house and the porch?",
+   "questions": {
+    "en": "The house is 20.5 feet by 10 feet. The porch measures 6 feet by 4.5 feet. The house and the porch need shingles. How many square feet of shingles will be needed to roof the house and the porch?",
+    "bn": "বাড়িটি 20.5 ফুট দৈর্ঘ্যে এবং 10 ফুট প্রস্থে। পর্চ মাপ করা হয় 6 ফুট দৈর্ঘ্যে এবং 4.5 ফুট প্রস্থে। বাড়িটি এবং পর্চের উপর ছাদ দিতে কত বর্গফুট শিঙ্গল প্রয়োজন হবে?",
+    "de": "Das Haus ist 20,5 Fuß mal 10 Fuß groß. Die Veranda misst 6 Fuß mal 4,5 Fuß. Das Haus und die Veranda benötigen Schindeln. Wie viele Quadratfuß Schindeln werden benötigt, um das Haus und die Veranda zu bedecken?",
+    "es": "La casa mide 20.5 pies por 10 pies. El porche mide 6 pies por 4.5 pies. La casa y el porche necesitan tejas. ¿Cuántos pies cuadrados de tejas se necesitarán para cubrir la casa y el porche?",
+    "fr": "La maison mesure 20,5 pieds sur 10 pieds. Le porche mesure 6 pieds sur 4,5 pieds. La maison et le porche ont besoin de bardeaux. Combien de pieds carrés de bardeaux seront nécessaires pour couvrir la toiture de la maison et du porche ?",
+    "ja": "家の大きさは20.5フィート×10フィートです。ポーチの大きさは6フィート×4.5フィートです。家とポーチには屋根材が必要です。家とポーチの屋根に必要な屋根材の面積は何平方フィートですか？",
+    "ru": "Дом имеет размеры 20,5 футов на 10 футов. Веранда имеет размеры 6 футов на 4,5 фута. Для крыши дома и веранды понадобится кровельный материал. Сколько квадратных футов кровельного материала понадобится?",
+    "sw": "Nyumba ina urefu wa futi 20.5 kwa 10 futi. Veranda ina urefu wa futi 6 kwa 4.5 futi. Nyumba na veranda zinahitaji vigae. Ni eneo la vigae ngapi litahitajika kwa ajili ya kufunika nyumba na veranda?",
+    "th": "บ้านมีขนาด 20.5 ฟุต x 10 ฟุต ระเบียงมีขนาด 6 ฟุต x 4.5 ฟุต บ้านและระเบียงต้องใช้กระเบื้องหลังคา ต้องใช้กระเบื้องหลังคากี่ตารางฟุต?",
+    "zh": "这个房子的尺寸是20.5英尺乘以10英尺。门廊的尺寸是6英尺乘以4.5英尺。房子和门廊都需要屋顶瓦片。需要多少平方英尺的屋顶瓦片来覆盖房子和门廊？"
    },
    "complete": true
   },

@@ -58,3 +58,21 @@ def test_parse_eval_formats():
 def test_hf_endpoint_is_respected(monkeypatch):
     monkeypatch.setenv("HF_ENDPOINT", "https://hf-mirror.com/")
     assert data.source_url("mgsm", "mgsm_en.tsv").startswith("https://hf-mirror.com/datasets/juletxara/mgsm/resolve/f52417ca")
+
+
+def test_degenerate_translation_is_flagged():
+    from mlopd.data import degenerate
+    english = "Tom has 3 apples and buys 2 more. How many apples does he have?"
+    good = {"en": english, "bn": "টমের কাছে ৩টি আপেল আছে এবং সে আরও ২টি কেনে। তার কাছে কয়টি আপেল আছে?"}
+    broken = dict(good, bn="টম " + "জন্য " * 200)
+    assert degenerate(good) == []
+    assert degenerate(broken) == ["bn"]
+
+
+def test_processed_pool_has_no_degenerate_translation():
+    import json
+    from pathlib import Path
+    from mlopd.data import degenerate
+    processed = json.loads((Path(__file__).resolve().parents[1] / "data/processed/processed.json").read_text())
+    assert len(processed["pool"]) == 1024
+    assert not [x for x in processed["pool"] if degenerate(processed["items"][x]["questions"])]

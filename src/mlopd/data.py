@@ -130,6 +130,21 @@ def _squash(text):
     return " ".join(text.split())
 
 
+# A translation more than DEGENERATE_RATIO times longer (in characters) than its English question is a broken
+# machine translation: in MGSM8KInstruct ten such records (nine bn, one th) repeat one word hundreds of times and
+# are 9-34 times the English length, while every other translation is at most 1.8 times. Items with one are not
+# complete, so the pool fill replaces them (prompts stay short enough for max_context without truncation).
+DEGENERATE_RATIO = 4.0
+
+
+def degenerate(questions):
+    """Languages whose translation is more than DEGENERATE_RATIO times the English question's length."""
+    english = len(questions.get("en", ""))
+    if not english:
+        return []
+    return [l for l in L10 if l != "en" and len(questions.get(l, "")) > DEGENERATE_RATIO * english]
+
+
 def parse_parallel(lines, gsm8k_rows):
     """Group MGSM8KInstruct records into items (a new item starts at every English record) and attach GSM8K gold.
     Returns ({train id: item}, report)."""
@@ -159,11 +174,13 @@ def parse_parallel(lines, gsm8k_rows):
             mismatch.append(index)
         items[f"train:{index}"] = {"id": f"train:{index}", "gsm8k_index": index, "gold": gsm8k_gold(row["answer"]),
                                    "english_question": row["question"].strip(), "questions": group["questions"],
-                                   "complete": not group["duplicates"] and all(l in group["questions"] for l in L10)}
+                                   "complete": not group["duplicates"] and all(l in group["questions"] for l in L10)
+                                               and not degenerate(group["questions"])}
     if len(mismatch) > 0.01 * len(groups):
         raise ValueError(f"{len(mismatch)} groups do not match GSM8K train questions; grouping rule broken")
     report = {"groups": len(groups), "records_outside_L10": unknown, "english_question_mismatch": mismatch,
               "complete_items": sum(i["complete"] for i in items.values()),
+              "degenerate_translations": sorted([k, l] for k, i in items.items() for l in degenerate(i["questions"])),
               "per_language": {l: sum(l in i["questions"] for i in items.values()) for l in L10}}
     return items, report
 

@@ -124,6 +124,30 @@ print("data: processed.json matches manifest", h[:16])
 PY
 }
 
+# runs/ holds results of one processed.json. When the data changes (a new commit), the old results are moved
+# aside to $WORK/runs-data-<old sha> (kept, not deleted) and the queue starts again on the new data.
+# runs/ without a stamp was made before this check existed, by the data before 2026-11-26 (broken bn/th
+# translations in the pool).
+data_guard() {
+  local py=$1 cur old stamp=$WORK/runs/.data-sha256
+  check_data "$py" >/dev/null
+  cur=$(sha256sum data/processed/processed.json | cut -c1-64)
+  if [ -f "$stamp" ]; then old=$(cat "$stamp"); else old=; fi
+  [ "$old" = "$cur" ] && return
+  if [ -z "$old" ] && [ -z "$(ls -A "$WORK/runs" 2>/dev/null)" ]; then echo "$cur" > "$stamp"; return; fi
+  if [ -n "$(find "$WORK/runs/.leases" -name owner.json -mmin -10 2>/dev/null | head -1)" ]; then
+    echo "data changed, but workers still hold leases in $WORK/runs/.leases (another node?); stop them first" >&2
+    exit 1
+  fi
+  local dest=$WORK/runs-data-${old:0:12}
+  [ -n "$old" ] || dest=$WORK/runs-data-before-2026-11-26
+  [ -e "$dest" ] && dest=$dest-$(date +%Y%m%d%H%M%S)
+  mv "$WORK/runs" "$dest"
+  mkdir -p "$WORK/runs"
+  echo "$cur" > "$stamp"
+  log "data changed (processed.json ${cur:0:12}); earlier results moved to $dest, queue starts again"
+}
+
 setup() {
   local stamp=$WORK/.setup-v$SETUP_VERSION.done lock=$WORK/.setup.lock
   if [ -f "$stamp" ]; then log "setup already done ($(cat "$stamp"))"; return; fi
@@ -254,7 +278,7 @@ case "$ACTION" in
   status) queue_cmd "$CONFIG" status ;;
   retry-failed) queue_cmd "$CONFIG" retry-failed ;;
   stop) touch runs/STOP; log "runs/STOP created; workers stop after their current task (delete it to run again)" ;;
-  analyze) analyze ;;
+  analyze) data_guard "$(python_path)"; analyze ;;
   smoke|workers|all)
     rm -f runs/STOP
     setup
@@ -262,6 +286,7 @@ case "$ACTION" in
     gpu_check "$PY"
     if [ "$ACTION" != workers ] && [ "${SKIP_SMOKE:-0}" != 1 ]; then smoke; fi
     [ "$ACTION" = smoke ] && exit 0
+    data_guard "$PY"
     log "real queue (config $CONFIG)"
     run_workers "$CONFIG" queue || true
     queue_cmd "$CONFIG" status
