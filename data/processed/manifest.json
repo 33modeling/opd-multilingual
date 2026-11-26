@@ -1,0 +1,190 @@
+{
+ "created": "2026-11-25T10:57:26+0900",
+ "hf_endpoint": "https://hf-mirror.com",
+ "sources": {
+  "mgsm8kinstruct": {
+   "repo": "Mathoctopus/GSM8KInstruct_Parallel",
+   "revision": "dd8076b83bacd7c6ade2829317e8a500c6ffbec4",
+   "license": "apache-2.0",
+   "files": {
+    "MGSM8KInstruct_Parallel.json": {
+     "sha256": "57864b498f8ea0bc0f8903e8fd912c079ea1a824fad23b1077a0149b455f5022",
+     "bytes": 72359441
+    }
+   }
+  },
+  "gsm8k_train": {
+   "repo": "openai/grade-school-math",
+   "revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+   "license": "MIT",
+   "files": {
+    "train.jsonl": {
+     "sha256": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+     "bytes": 4166206
+    }
+   }
+  },
+  "mgsm": {
+   "repo": "juletxara/mgsm",
+   "revision": "f52417ca77bd71e9888ddc29f92587660725d2b4",
+   "license": "cc-by-sa-4.0",
+   "files": {
+    "mgsm_bn.tsv": {
+     "sha256": "6b00bc7cc635547e866989284afa924d789b5affa2eb8de623c385dd943ad977",
+     "bytes": 156684
+    },
+    "mgsm_de.tsv": {
+     "sha256": "4dfea30fede44b813e2e496f5f0534049e83c7cc8aed6e00600b30ec62053626",
+     "bytes": 69640
+    },
+    "mgsm_en.tsv": {
+     "sha256": "50021d0f28cc957edcb44e7806425b1c7fbd648ddcb9e0a8ec689d10e57d40fa",
+     "bytes": 61299
+    },
+    "mgsm_es.tsv": {
+     "sha256": "5bd27ebdf00140cec845c5298dc17715f5cd57d8edda6df1976db40bf3f0750a",
+     "bytes": 66896
+    },
+    "mgsm_fr.tsv": {
+     "sha256": "36207c1c03fd7cd3ea491441eb755408199f94e4a647851df531bbaedc99d606",
+     "bytes": 69141
+    },
+    "mgsm_ja.tsv": {
+     "sha256": "59a2b50debe77981fd784cb3b2bef1505e3abf2a37116dc9d7a366ab029b4637",
+     "bytes": 81043
+    },
+    "mgsm_ru.tsv": {
+     "sha256": "6bd30fd2e80c5bac23f566fb4ae0e6a55a19578401fbf9a01fb21beb3645fef8",
+     "bytes": 110953
+    },
+    "mgsm_sw.tsv": {
+     "sha256": "2bac828d77229e65d7c7197b1ad4a2cb5b1fe99b163f2cbdd66501de6a2115c4",
+     "bytes": 67456
+    },
+    "mgsm_th.tsv": {
+     "sha256": "f3932dc5ad8e9d0ea82b017adc1e1461dd647af861e7166d6741986602a0cfd6",
+     "bytes": 151921
+    },
+    "mgsm_zh.tsv": {
+     "sha256": "b2fa63151022370a0de1f4211c8c284eae74b0f5a3b003b1d5982c0d4a73f661",
+     "bytes": 57838
+    }
+   }
+  },
+  "msvamp": {
+   "repo": "Mathoctopus/MSVAMP",
+   "revision": "301e2b3b168be70058c89c21c2fbdc9262102add",
+   "license": "apache-2.0",
+   "files": {
+    "test_Bengali.json": {
+     "sha256": "d1c0bb8e3a93127bdffab516ef9bb739ae5007f9071ae97c447c294b1fd65e82",
+     "bytes": 644605
+    },
+    "test_Chinese.json": {
+     "sha256": "31e136303b56ed1734d3e9fbcdcff4499f974a0857298816c41e1c5c0be6b4bd",
+     "bytes": 395550
+    },
+    "test_English.json": {
+     "sha256": "9431a24e993a8f83fd602393ffbb368e1d91fa36b2110ad8f1e0ec319792eed0",
+     "bytes": 236601
+    },
+    "test_French.json": {
+     "sha256": "3a756d228f3d9ee219b673f9dda091b6d64f7c4d0e71045d6a6dbf315539e0ea",
+     "bytes": 441373
+    },
+    "test_German.json": {
+     "sha256": "f5b854da48da762163fb3ccf60307bb9a97e0efac2fd44fdb5ba0969ee1464aa",
+     "bytes": 430816
+    },
+    "test_Japanese.json": {
+     "sha256": "04f89b370bb22a6a78de99fc36e30658186149858172abf8e68665890e81322b",
+     "bytes": 495398
+    },
+    "test_Russian.json": {
+     "sha256": "05d2d317c24f1180c0839d7813f6bebcaeeb57d919cd2d748a0b9964fd77a1c0",
+     "bytes": 539571
+    },
+    "test_Spanish.json": {
+     "sha256": "0aecc731e945d196c8eb38ddb5ad683821e5fd72c55273db1f2233d559495275",
+     "bytes": 426865
+    },
+    "test_Swahili.json": {
+     "sha256": "15f863a79b7e4adf820d76b61044f4e4489f7710d14128ad7b4e915e133a2c16",
+     "bytes": 421440
+    },
+    "test_Thai.json": {
+     "sha256": "60b81f4458f584f637a35e57e85f503173ef67434a83a449c6ee6670a730e9f8",
+     "bytes": 636572
+    }
+   }
+  }
+ },
+ "parallel": {
+  "groups": 7473,
+  "records_outside_L10": 1,
+  "english_question_mismatch": [],
+  "complete_items": 6531,
+  "per_language": {
+   "en": 7473,
+   "es": 7470,
+   "fr": 7469,
+   "de": 7466,
+   "ru": 7361,
+   "zh": 7364,
+   "ja": 7471,
+   "th": 7473,
+   "sw": 7472,
+   "bn": 6539
+  }
+ },
+ "pool": {
+  "english_pool": 1024,
+  "complete_in_english_pool": 914,
+  "filled": 110,
+  "size": 1024
+ },
+ "eval_counts": {
+  "en": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "es": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "fr": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "de": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "ru": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "zh": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "ja": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "th": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "sw": {
+   "mgsm": 250,
+   "msvamp": 250
+  },
+  "bn": {
+   "mgsm": 250,
+   "msvamp": 250
+  }
+ },
+ "processed_sha256": "6a7fc1a610b7ec165eebca4e470882b1f94cd897afcc578c31def7a69f328302",
+ "processed_content_sha256": "5816cf7826d72f0bd7b27868812257004e4defa04bb31e5b71fb8658e001ce97"
+}

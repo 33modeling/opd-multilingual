@@ -1,0 +1,111 @@
+{
+ "name": "mlopd-h100-smoke",
+ "note": "Real models and data, three languages, few items and updates, loose gates: checks loading, memory and the task kinds on the GPU before the real queue. Results are not used.",
+ "languages": [
+  "en",
+  "ru",
+  "zh"
+ ],
+ "splits": {
+  "S0": 16,
+  "F": 16,
+  "U": 8
+ },
+ "seeds": {
+  "grid": [
+   87,
+   97
+  ],
+  "grid_extra": [
+   137,
+   147
+  ],
+  "allocation": [
+   201,
+   211
+  ],
+  "washout": [
+   301,
+   311
+  ],
+  "x": [
+   87,
+   97
+  ]
+ },
+ "train": {
+  "checkpoint_every": 2,
+  "handoff": {
+   "updates": 4,
+   "batch": 8,
+   "extended_updates": 6
+  },
+  "opd": {
+   "updates": 4
+  },
+  "rl": {
+   "updates": 4
+  },
+  "sft_continue": {
+   "updates": 4,
+   "batch": 8
+  },
+  "allocation": {
+   "updates": 4
+  },
+  "washout_sft": {
+   "updates": 4,
+   "batch": 8
+  },
+  "washout_rl": {
+   "updates": 4
+  }
+ },
+ "teacher_targets": {
+  "samples": 2
+ },
+ "stage0": {
+  "samples": 2,
+  "latin_items": 8,
+  "s0d_tags": [
+   "r0",
+   "r1"
+  ]
+ },
+ "gates": {
+  "p_min": 0.0,
+  "q_min": 0.0,
+  "verified_min": 1,
+  "format_ratio": 0.0,
+  "min_languages_for_m3": 3,
+  "range_min": -1.0,
+  "rl_sd_max_pp": 1000.0,
+  "rl_english_above_start": 0,
+  "opd_sd_max_pp": 1000.0,
+  "latin_mass_gap": -1.0,
+  "teacher_ratio_gap": -1.0,
+  "gap_manipulation": -1.0,
+  "imprint_languages_needed": 1,
+  "gap_languages_needed": 1,
+  "washout_sft_gap_pp": -1000.0,
+  "washout_positive_pilots": 0,
+  "washout_pilot_seeds": 2,
+  "scorer_agreement": 0.0,
+  "m3_pilot_spread_pp": -1.0
+ },
+ "selection": {
+  "m1_count": 2,
+  "m4_count": 2,
+  "m5_group": 1,
+  "b_languages": 1
+ },
+ "queue": {
+  "min_free_gb": 10
+ },
+ "eval": {
+  "limit_per_set": 16
+ },
+ "paths": {
+  "runs": "smoke-runs"
+ }
+}

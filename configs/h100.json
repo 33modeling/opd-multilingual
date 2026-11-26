@@ -1,0 +1,23 @@
+{
+ "name": "mlopd-h100",
+ "note": "H100 run of configs/default.json: the teacher stays on the GPU and generation batches are larger. parallel_blocks: after stage 0 every block (G with all ten languages and six seeds, I, K, A, W, B, X) is queued at once; the gates are still computed and decide whether a result is a verdict or a record, but they no longer hold runs back. Learning settings, seeds, splits and gate thresholds are unchanged.",
+ "runtime": {
+  "teacher_offload": false,
+  "sample_batch": 128,
+  "vocab_chunk": 512
+ },
+ "model_revisions": {
+  "Qwen/Qwen3-0.6B": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "Qwen/Qwen3-1.7B": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "Qwen/Qwen2.5-0.5B-Instruct": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "Qwen/Qwen2.5-1.5B-Instruct": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+ },
+ "langid": {
+  "backend": "fasttext",
+  "model_sha256": "7e69ec5451bc261cc7844e49e4792a85d7f09c06789ec800fc4a44aec362764e"
+ },
+ "queue": {
+  "min_free_gb": 30,
+  "parallel_blocks": true
+ }
+}

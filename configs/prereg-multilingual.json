@@ -1,0 +1,261 @@
+{
+ "plan": "multilingual-signal-imprint",
+ "status": "registered",
+ "verdict_rule": "run-pair one-sided paired t, alpha 0.05, no multiplicity correction for verdicts, Holm-adjusted p recorded; language-level hypotheses use a one-sided permutation test of Spearman correlation",
+ "analysis_tests_supported": [
+  "greater",
+  "less",
+  "two-sided",
+  "noninferior",
+  "spearman-perm"
+ ],
+ "eval": {
+  "set": "E_l = MGSM-250 + MSVAMP-250",
+  "samples": 4,
+  "temperature": 1.0,
+  "max_new_tokens": 512,
+  "primary_metric": "lenient_norm pass@1",
+  "recorded": [
+   "strict pass@1",
+   "lenient_norm pass@4",
+   "lenient_ascii pass@1",
+   "target-language ratio r",
+   "language-consistent accuracy",
+   "truncation rate",
+   "collapse count (start - 6pp)"
+  ]
+ },
+ "gates": {
+  "scorer": "agreement(lenient_norm, lenient) >= 0.99 on English",
+  "language_inclusion": "p_l >= 0.05 and q_l >= 0.10 and verified-target items in F >= 56",
+  "format": "strict/lenient >= 0.8 at handoff",
+  "range_M3": "max(g_l) - min(g_l) >= 0.15 over included languages",
+  "rl_noise": "rerun SD <= 3.0pp in both languages; English 3 of 4 above start",
+  "opd_noise": "rerun SD <= 1.5pp",
+  "imprint_manipulation": "teacher Latin-script mass (first 16 positions, student prefixes): T-en - T-def >= 0.10 in 3 of 4 languages; teacher-sample target ratio: T-def - T-en >= 0.30",
+  "gap_manipulation": "teacher lenient pass@1: T-priv - T-def >= 0.10 in 3 of 4 languages",
+  "allocation_M5": "M3a or M3a-p supported and mean D(A) - mean D(B) >= 6pp in the grid",
+  "washout_M6": "SFT-end (W - N) on non-English >= +2pp, 3 of 4 pilot seeds positive",
+  "m3_pilot": {
+   "rule": "before the rest of grid G: D on the highest-p and lowest-p included languages, first 2 grid seeds; the rest of G runs only if |D(low p) - D(high p)| >= 4 pp",
+   "kept_when_no_go": "OPD T-def runs of the M1 and M4 languages (the reference arms of M1b and M4) and the G-ref SFT runs of the M1 languages",
+   "effect_on_verdicts": "none (a compute stop rule); in parallel mode it is computed and recorded only"
+  },
+  "washout_M6_eval": "the pilot gate uses SFT-end evaluation a; the verdict's SFT-end difference uses evaluation b (independent of the gate)"
+ },
+ "hypotheses": {
+  "M1a": {
+   "contrast": "r(SFT | T-def targets) - r(SFT | T-en targets)",
+   "test": "greater",
+   "pairs": "4 languages x 4 seeds"
+  },
+  "M1b": {
+   "contrast": "r(OPD | T-def) - r(OPD | T-en)",
+   "test": "greater",
+   "pairs": "4 languages x 4 seeds",
+   "requires": [
+    "imprint_manipulation"
+   ]
+  },
+  "M3a": {
+   "statistic": "Spearman(mean_s D_l, g_l)",
+   "test": "spearman-perm greater",
+   "units": "included languages",
+   "requires": [
+    "range_M3",
+    "rl_noise"
+   ],
+   "predictor_pair": "M3a (g) and M3a-p (p) form one Holm family of two; each is supported when its Holm-adjusted p < 0.05"
+  },
+  "M3b": {
+   "statistic": "Spearman(mean_s G0_RL_l, p_l)",
+   "test": "spearman-perm greater"
+  },
+  "M3c": {
+   "statistic": "Spearman(mean_s G0_OPD_l, g_l)",
+   "test": "spearman-perm greater"
+  },
+  "M4": {
+   "contrast": "Acc(OPD | T-priv) - Acc(OPD | T-def)",
+   "test": "greater",
+   "pairs": "4 languages x 4 seeds",
+   "requires": [
+    "gap_manipulation"
+   ]
+  },
+  "M5": {
+   "contrast": "mean Acc(matched) - mean Acc(swapped)",
+   "test": "greater",
+   "pairs": "8 new seeds",
+   "requires": [
+    "allocation_M5"
+   ]
+  },
+  "M6a": {
+   "contrast": "(W - N) at SFT end - (W - N) after RL, non-English accuracy",
+   "test": "greater",
+   "pairs": "8 seeds",
+   "requires": [
+    "washout_M6"
+   ]
+  },
+  "M6b": {
+   "contrast": "(W - N) at SFT end - (W - N) after RL, target-language ratio",
+   "test": "greater",
+   "pairs": "8 seeds"
+  },
+  "M3a-p": {
+   "statistic": "Spearman(mean_s D_l, p_l)",
+   "test": "spearman-perm less",
+   "units": "included languages",
+   "requires": [
+    "range of p over included languages >= 0.15",
+    "rl_noise"
+   ],
+   "rationale": "RL gets no reward signal on groups where all samples fail, which is most groups when p_l is low; OPD still gets a dense per-token signal. Prediction: D falls as p rises."
+  }
+ },
+ "reporting_condition": "M1 and M4 are described as supported only if the pair-level test, the per-language sign count (>= 3 of 4), and the seed-aggregated direction agree",
+ "selection_rules": "languages for M1, M4, M5, M6 are computed from stage-0 files only; file hashes recorded here before the grid starts",
+ "source": "docs/OPD-ACL-PAPER-DESIGN-v0.2.0.md §13 (copied verbatim above this key)",
+ "implementation": {
+  "verdicts": "src/mlopd/analysis.py verdicts(); statistics in src/mlopd/stats.py",
+  "gates": "src/mlopd/gates.py (pure rules) and src/mlopd/experiment.py gate_* (file inputs, sha256 of every input file)",
+  "scoring": "src/mlopd/scoring.py (Appendix B)",
+  "language_ratio": "src/mlopd/langid.py (§6.3)",
+  "prompts": "src/mlopd/prompts.py",
+  "settings": "configs/default.json",
+  "sha256_at_registration": {
+   "src/mlopd/analysis.py": "98434584b29dc9e15ad2c81e0cd672428e85b71d278edff549aca8d13e2e35aa",
+   "src/mlopd/stats.py": "91a61c61f6f6251a27400fb93b303974a5dc61306d066b3190d80124dbc6b43e",
+   "src/mlopd/gates.py": "f0b1d1161fb368bcc4f933c3c922ff460b53bd51ccff8864668bc2f93afbdb37",
+   "src/mlopd/experiment.py": "77a543e6a320ea3cd3822eca47989e4c228b73d5ce6add328305f0074d059bd7",
+   "src/mlopd/scoring.py": "d1d188df7098612ffab1aaf22b6dce2fb412297ff7e3ee8f6f410071bf791c94",
+   "src/mlopd/langid.py": "f26da77de4fd37e52f159d0a105f862d57927fe152b898c79ff6f17536da664a",
+   "src/mlopd/prompts.py": "d7d6166ecaee3299890d8fb764c9347416cbcea0c84c0b3a5ef916b47f187726",
+   "src/mlopd/train.py": "7e55074e08f4a07a9f20ad5a208fd8dc49254787a64c19b2284d8126bfefa601",
+   "src/mlopd/measure.py": "97f95f7e5bb1dd926d75914b94e62644b4ee74405917c784a948fd7e03a9e637",
+   "src/mlopd/records.py": "c5f845dbdaeb5c1b36c5e13a9db076147084bd8ca6c215f064c7cab4ec649ff9",
+   "src/mlopd/data.py": "a02a70307a141688875a4643d16860a90018baae09da307192dfb7e30b756a05",
+   "configs/default.json": "77d30af45a6cbeacacf608bb2f171ad11b030fbaa941a6c141b28fc6050e86c4",
+   "configs/h100.json": "ddb0881503b1f2d9391ae203f63b7965120b82baa9d853601eb6652569815beb",
+   "data/processed/manifest.json": "586d266daffdb9f8f0784eb427ac06ac91a604d057522b9367ed5f0364eef313",
+   "data/processed/processed.json": "6a7fc1a610b7ec165eebca4e470882b1f94cd897afcc578c31def7a69f328302"
+  }
+ },
+ "selection_file_hashes": "written after stage 0: every gate COMPLETE.json carries the sha256 of its input files and of gates.py (input_files, gates_source_sha256); the language selections are read from gates/a-u<updates>/COMPLETE.json",
+ "registered_commit": "a6fd44bb3dbefda3be525c8ceccee23cdb1bead4",
+ "execution": {
+  "parallel_blocks": "configs/h100.json: after stage 0 every block is queued at once (G with all ten languages and six seeds, I, K, A, W, B, X). Gates are computed from the same files as in sequential mode and decide the label of each result: a block whose gate failed is reported as 'record (gate no-go)', never as a verdict, and is left out of the Holm family. Verdicts use the pre-registered seeds (grid: 4, or 6 when the RL-noise gate fails) and the included languages; the extra seeds and languages are records.",
+  "reason": "the user's decision of 2026-11-25: a failed gate should not leave the cluster idle or cost calendar time; GPU time is not the constraint"
+ },
+ "paper_focus": "main claim: the transfer of the teacher's reasoning-language convention by OPD (M1) and the accuracy-versus-convention trade-off of the privileged teacher (M4); method-utility prediction (M3, M5) is the secondary claim",
+ "decisions": [
+  {
+   "n": 1,
+   "question": "imprint gate, second condition (T-en teacher ratio drop >= 0.30)",
+   "decision": "counted per language, 3 of 4, like the first condition",
+   "reason": "the design states '3 of 4' for the first condition only; one counting rule for both keeps the gate symmetric"
+  },
+  {
+   "n": 2,
+   "question": "S0 and the per-seed splits",
+   "decision": "S0 (256 items) is shared by all seeds (split_seed 20261124); F and U are drawn per seed from P - S0",
+   "reason": "p_l, q_l, g_l must be measured on the same items in every seed; seed-to-seed variation of F and U is part of the run variance the design wants to measure"
+  },
+  {
+   "n": 3,
+   "question": "items and seeds for p_l and r^S_l",
+   "decision": "measured on S0, the same items as q_l, averaged over the four grid seeds' handoff checkpoints",
+   "reason": "g_l = q_l - p_l is only meaningful on common items"
+  },
+  {
+   "n": 4,
+   "question": "languages of the handoff SFT",
+   "decision": "a language enters the handoff SFT if, in every grid seed, at least 56 of the 112 F items have a verified teacher solution (minimum over seeds)",
+   "reason": "all seeds then share one SFT language set, so seeds differ only in items and randomness"
+  },
+  {
+   "n": 5,
+   "question": "M6 evaluations",
+   "decision": "SFT-end checkpoint evaluated twice: evaluation b (second_eval_seed) gives the SFT-end difference in the contrast; evaluation a (eval_seed) is the start value of the RL change and the input of the M6 gate",
+   "reason": "the gate must not select on the evaluation used in the contrast; the start value must not share noise with the SFT-end difference (design 2.3)"
+  },
+  {
+   "n": 6,
+   "question": "M2b and X languages",
+   "decision": "M2b: the first two M1 languages (M1 order: r^S_l descending, ties by p_l); X: English and the included non-English language with the largest g_l",
+   "reason": "M2b needs languages where M1 is measured; X needs one language at the end of the predictor range"
+  },
+  {
+   "n": 7,
+   "question": "form of the teacher conditions",
+   "decision": "T-en is a system message on the teacher side only; T-priv adds 'The same problem in English:' and the English parallel question to the user turn; the student prompt is identical in all conditions",
+   "reason": "the design says 'teacher system instruction' for T-en; T-priv must change only the teacher's input"
+  },
+  {
+   "n": 8,
+   "question": "S0-b conditions",
+   "decision": "solve_en, solve_native, control_format, control_language (prompts.py)",
+   "reason": "a_l is solve_en - solve_native; the two controls separate the effect of any extra instruction line from the language instruction"
+  },
+  {
+   "n": 9,
+   "question": "Appendix B rule 3",
+   "decision": "a space-like separator is removed only when exactly three digits follow it",
+   "reason": "'1 000' is one number, '3 4' stays two numbers"
+  },
+  {
+   "n": 10,
+   "question": "auxiliary scores",
+   "decision": "lenient_ascii = lenient_norm with rules 2 and 4 off; lenient_legacy / strict_legacy = the English record's rules on the raw text, used only by the scorer gate",
+   "reason": "keeps the English record comparable and gives the over-scoring bound of Appendix B rule 7"
+  },
+  {
+   "n": 11,
+   "question": "r of a response without letters",
+   "decision": "r is None; such samples are left out of r means and of the item bootstrap, and count as not language-matched",
+   "reason": "a ratio is undefined without letters; the match rate keeps them in the denominator so they cannot raise it"
+  },
+  {
+   "n": 12,
+   "question": "RL groups with equal rewards",
+   "decision": "advantages are 0, the update is applied (no gradient) and counts toward the 128 updates; the number of such updates is recorded",
+   "reason": "English record rule (kdrl/stage_data); resampling would give RL more samples than OPD at equal updates"
+  },
+  {
+   "n": 13,
+   "question": "M2b baseline",
+   "decision": "non-inferiority of the language-match rate against the handoff checkpoint (margin 3 pp); accuracy against plain OPD under T-en recorded",
+   "reason": "as stated in design 3.3 M2b"
+  },
+  {
+   "n": 14,
+   "question": "Qwen2.5 default system prompt (pair X)",
+   "decision": "the chat template's default system message is kept for student and teacher; pair X has no T-en or T-priv runs, so it is never replaced",
+   "reason": "no condition differs in the system message within pair X"
+  },
+  {
+   "n": 15,
+   "question": "seeds used by the verdicts when all blocks run at once",
+   "decision": "the grid verdicts use the first 4 grid seeds, or all 6 if the RL-noise gate (gates/b) fails; runs on the other seeds are records",
+   "reason": "the six-seed grid is run for speed; the registered seed count stays the one the design fixes"
+  }
+ ],
+ "registered_at": "2026-11-25T22:37:22+0900",
+ "registration_record": "git tag prereg-multilingual-v1 on the commit that adds this file version, pushed to the private GitHub repository 33modeling/opd-multilingual-acl2027 before any multilingual run; no external registry",
+ "changes_after_registration": "none allowed for hypotheses, tests, gates or selection rules; any change is a new version with a new tag, and results under the old version are reported as such",
+ "version": "1.1",
+ "version_history": [
+  {
+   "version": "1.0",
+   "tag": "prereg-multilingual-v1",
+   "note": "first registration"
+  },
+  {
+   "version": "1.1",
+   "tag": "prereg-multilingual-v1.1",
+   "note": "text of gates.allocation_M5 aligned with the code registered in 1.0 (src/mlopd/experiment.py gate_allocation at a6fd44b already accepts M3a or M3a-p); no rule changed; OSF registration made from this version"
+  }
+ ]
+}
