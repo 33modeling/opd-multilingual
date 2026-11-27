@@ -5,6 +5,7 @@
 #   bash scripts/h100/run.sh smoke      the smoke queue only (real models, few items, loose gates; not results)
 #   bash scripts/h100/run.sh workers    the real queue only (skips setup checks that already passed)
 #   bash scripts/h100/run.sh analyze    runs/analysis/verdicts.json from the finished runs
+#   bash scripts/h100/run.sh rl-check       RL diagnosis per run (start -> end accuracy, reward groups, truncation)
 #   bash scripts/h100/run.sh retry-failed   clear failure records (a task is skipped after 2 failures)
 #   bash scripts/h100/run.sh stop       every worker on every node stops after its current task
 # Storage: code here (user-volume), everything else under $OPD_WORK (default /group-volume/<cluster user>/opd-multilingual-acl2027).
@@ -291,6 +292,7 @@ analyze() {
 case "$ACTION" in
   status) queue_cmd "$CONFIG" status ;;
   retry-failed) queue_cmd "$CONFIG" retry-failed ;;
+  rl-check) "$(python_path)" scripts/h100/rl_check.py "$CONFIG" | tee "$WORK/logs/rl-check-$HOST.txt" ;;
   stop) touch runs/STOP; log "runs/STOP created; workers stop after their current task (delete it to run again)" ;;
   analyze) data_guard "$(python_path)"; analyze ;;
   smoke|workers|all)
