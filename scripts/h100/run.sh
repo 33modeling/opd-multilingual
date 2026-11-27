@@ -203,6 +203,20 @@ PY
 }
 
 PIDS=()
+# A task that failed twice is skipped until its failure record is deleted. When the code changed since the last start
+# (a fix was pulled), the old failures may be the bug that was fixed, so they are cleared and those tasks run again.
+code_guard() {
+  local cur old stamp=$WORK/runs/.code-sha256
+  cur=$(cat src/mlopd/*.py | sha256sum | cut -c1-64)
+  if [ -f "$stamp" ]; then old=$(cat "$stamp"); else old=; fi
+  [ "$old" = "$cur" ] && return
+  if [ -n "$(ls -A "$WORK/runs/.failures" 2>/dev/null)" ]; then
+    queue_cmd "$CONFIG" retry-failed >/dev/null
+    log "code changed since the last start; failure records cleared, failed tasks run again"
+  fi
+  echo "$cur" > "$stamp"
+}
+
 stop_workers() {
   trap - INT TERM
   log "stopping workers on this node"
@@ -287,6 +301,7 @@ case "$ACTION" in
     if [ "$ACTION" != workers ] && [ "${SKIP_SMOKE:-0}" != 1 ]; then smoke; fi
     [ "$ACTION" = smoke ] && exit 0
     data_guard "$PY"
+    code_guard
     log "real queue (config $CONFIG)"
     run_workers "$CONFIG" queue || true
     queue_cmd "$CONFIG" status
