@@ -204,6 +204,32 @@ PY
 }
 
 PIDS=()
+# Pre-registration change 2026-11-27 (RL dynamic sampling): results that used the old RL updates are moved once to
+# runs-rl-before-dynamic (same layout), so the queue runs them again: S0-d and grid RL runs (main, x), block A,
+# washout RL runs, the gates computed from them (b, m3-pilot, m5, m6) and the analysis. OPD, SFT and handoff stay.
+rl_guard() {
+  local stamp=$WORK/runs/.rl-dynamic-sampling R=$WORK/runs dest=$WORK/runs-rl-before-dynamic p rel moved=0
+  [ -f "$stamp" ] && return
+  if [ -n "$(find "$R/.leases" -name owner.json -mmin -10 2>/dev/null | head -1)" ]; then
+    echo "RL results must be moved, but workers still hold leases in $R/.leases (another node?); stop them first" >&2
+    exit 1
+  fi
+  shopt -s nullglob
+  for p in "$R"/main/s0d/rl-* "$R"/main/g/rl-* "$R"/x/g/rl-* "$R"/main/a "$R"/main/w/rl-* \
+           "$R"/main/gates/b "$R"/main/gates/m3-pilot "$R"/main/gates/m5 "$R"/main/gates/m6 "$R"/analysis; do
+    [ -e "$p" ] || continue
+    rel=${p#"$R"/}
+    mkdir -p "$dest/$(dirname "$rel")"
+    mv "$p" "$dest/$rel"
+    moved=$((moved + 1))
+  done
+  shopt -u nullglob
+  mkdir -p "$R"
+  date -Iseconds > "$stamp"
+  [ "$moved" -gt 0 ] && log "RL dynamic sampling: $moved earlier RL result folders moved to $dest; those runs start again"
+  return 0
+}
+
 # A task that failed twice is skipped until its failure record is deleted. When the code changed since the last start
 # (a fix was pulled), the old failures may be the bug that was fixed, so they are cleared and those tasks run again.
 code_guard() {
@@ -303,6 +329,7 @@ case "$ACTION" in
     if [ "$ACTION" != workers ] && [ "${SKIP_SMOKE:-0}" != 1 ]; then smoke; fi
     [ "$ACTION" = smoke ] && exit 0
     data_guard "$PY"
+    rl_guard
     code_guard
     log "real queue (config $CONFIG)"
     run_workers "$CONFIG" queue || true

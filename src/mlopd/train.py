@@ -11,7 +11,9 @@ One unit = one training run: a start adapter (or the fresh adapter of the initia
             cross-entropy on its own sampled token instead of the KL; the rest use the KL.
   rl        GRPO: the same 4 samples per problem, reward = strict with normalization (Appendix B), advantages
             (r - mean) / (std + 1e-4) with the unbiased std (English kdrl/stage_data rule), loss per sample =
-            -A * mean token log-prob; the update averages the 4.
+            -A * mean token log-prob; the update averages the 4. Dynamic sampling (change of 2026-11-27): a problem
+            whose 4 samples all get the same reward gives no gradient, so the update moves on to the next candidate
+            problem (up to 8) and uses the first one with mixed rewards; if none has, it is a zero-gradient step.
   mixed     a step list whose steps name their own method (block A: OPD on one language group, RL on the other).
 
 Rollout seeds are stable_seed(seed, tag, item, lang, cycle, j), so two arms with the same seed, items, order and
@@ -245,8 +247,17 @@ class Unit:
     # ---------------------------------------------------------------- RL
     def rl_step(self, optimizer, spec):
         runtime = self.runtime
-        problem, prompt, samples = self.rollouts(spec)
-        rewards = [strict_correct(s["text"], problem["gold"]) for s in samples]
+        # Dynamic sampling: try the candidate problems in order until one gives mixed rewards (spec["candidates"],
+        # built by experiment.rl_candidates; the first is spec["item"]). Retry j uses rollout cycle + 1000 j.
+        candidates = spec.get("candidates") or [spec["item"]]
+        tries = []
+        for j, item in enumerate(candidates):
+            sub = dict(spec, item=item, cycle=spec.get("cycle", 0) + 1000 * j)
+            problem, prompt, samples = self.rollouts(sub)
+            rewards = [strict_correct(s["text"], problem["gold"]) for s in samples]
+            tries.append({"item": item, "rewards": rewards, **self._common(samples)})
+            if len(set(rewards)) > 1:
+                break
         advantages = grpo_advantages(rewards)
         optimizer.zero_grad(set_to_none=True)
         runtime.student.train()
@@ -269,7 +280,8 @@ class Unit:
                 parameter.grad = torch.zeros_like(parameter)
             norm = self._finish(optimizer)
         group = "all_correct" if all(rewards) else ("all_wrong" if not any(rewards) else "mixed")
-        return {"item": spec["item"], "lang": spec["lang"], "cycle": spec.get("cycle", 0), "rewards": rewards,
+        return {"item": item, "scheduled_item": spec["item"], "tries": tries, "lang": spec["lang"],
+                "cycle": spec.get("cycle", 0), "rewards": rewards,
                 "reward_mean": sum(rewards) / len(rewards), "advantages": advantages.tolist(), "group": group,
                 "zero_advantage": int(zero), "loss": sum(losses) / len(losses) if losses else 0.,
                 "gradient_norm": norm, **self._common(samples)}
@@ -291,6 +303,9 @@ def summarize_updates(rows):
                                                           for g in ("all_correct", "all_wrong", "mixed")},
                      "reward_mean": sum(r["reward_mean"] for r in rl) / len(rl),
                      "zero_advantage_updates": sum(r["zero_advantage"] for r in rl),
+                     "problems_tried": sum(len(r.get("tries", [None])) for r in rl),
+                     "first_try_zero_advantage": sum(len(set(r["tries"][0]["rewards"])) == 1 if r.get("tries")
+                                                     else r["zero_advantage"] for r in rl),
                      "per_update_group": groups}
     opd = [r for r in rows if r["method"] in ("opd", "opd_mask")]
     if opd:

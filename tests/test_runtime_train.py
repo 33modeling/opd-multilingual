@@ -139,8 +139,30 @@ def test_rl_and_opd_share_rollouts(setup, tmp_path):
     Unit(rt, ds, _plan(setup["cfg"], "opd", ds), tmp_path / "opd").run()
     first_rl = json.loads((tmp_path / "rl" / "updates.jsonl").read_text().splitlines()[0])
     first_opd = json.loads((tmp_path / "opd" / "updates.jsonl").read_text().splitlines()[0])
-    assert first_rl["response_tokens"] == first_opd["response_tokens"]
-    assert first_rl["rewards"] == first_opd["strict_rewards"]
+    assert first_rl["tries"][0]["response_tokens"] == first_opd["response_tokens"]
+    assert first_rl["tries"][0]["rewards"] == first_opd["strict_rewards"]
+
+
+def test_rl_dynamic_sampling_moves_past_zero_advantage(setup, tmp_path, monkeypatch):
+    import json
+    from mlopd import train
+    from mlopd.train import Unit
+    rt, ds = setup["runtime"], setup["dataset"]
+    order = sorted(ds.pool)[:3]
+    plan = _plan(setup["cfg"], "rl", ds)
+    plan["steps"] = [{"method": "rl", "item": order[0], "lang": "zh", "cycle": 0, "candidates": order}]
+    # rewards: first problem all wrong (zero advantage), second mixed
+    calls = []
+
+    def fake(text, gold):
+        calls.append(1)
+        return int(len(calls) == 4)
+    monkeypatch.setattr(train, "strict_correct", fake)
+    out = Unit(rt, ds, plan, tmp_path / "dyn").run()
+    row = json.loads((tmp_path / "dyn" / "updates.jsonl").read_text().splitlines()[0])
+    assert [t["item"] for t in row["tries"]] == order[:2] and row["item"] == order[1]
+    assert row["zero_advantage"] == 0 and out["records"]["rl"]["problems_tried"] == 2
+    assert out["records"]["rl"]["first_try_zero_advantage"] == 1
 
 
 def test_gumbel_sampling_matches_softmax_frequencies(setup):

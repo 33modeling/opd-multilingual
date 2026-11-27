@@ -760,6 +760,9 @@ def build_plan(ctx, t):
         updates = tr["rl" if name == "rl" else "opd"]["updates"]
         plan["steps"] = [{"method": name, "item": order[k % len(order)], "lang": p["lang"], "cycle": k // len(order),
                           "condition": p.get("condition", "T-def")} for k in range(updates)]
+        if name == "rl":
+            for k, s in enumerate(plan["steps"]):
+                s["candidates"] = rl_candidates(cfg, order, k)
         plan["kind"] = name
         if name == "opd_mask":
             plan["mask"] = dict(tr["opd_mask"])
@@ -774,9 +777,21 @@ def build_plan(ctx, t):
             langs = groups[group]
             steps.append({"method": methods[group], "group": group, "lang": langs[j % len(langs)],
                           "item": order[(j // len(langs)) % len(order)], "cycle": 0, "condition": "T-def"})
+            if methods[group] == "rl":
+                steps[-1]["candidates"] = rl_candidates(cfg, order, j // len(langs))
         plan["steps"], plan["kind"], plan["arm"] = steps, "mixed", arm
         return plan
     raise ValueError(name)
+
+
+def rl_candidates(cfg, order, k):
+    """Dynamic sampling (pre-registration change 2026-11-27): the RL update at position k tries order[k] first and,
+    while all samples of a problem get the same reward (zero advantage, no gradient), the next problems
+    order[k + j * stride], up to max_tries problems. The first candidate is the item of the original schedule, so
+    the first rollout of an RL arm and an OPD arm with the same seed are still identical."""
+    d = cfg["train"]["rl"].get("dynamic_sampling") or {}
+    tries, stride, n = int(d.get("max_tries", 1)), int(d.get("stride", 1)), len(order)
+    return [order[(k + j * stride) % n] for j in range(max(1, min(tries, n)))]
 
 
 def run_train(ctx, t, out):

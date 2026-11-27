@@ -21,7 +21,7 @@
   "train": {"lr": 1e-4, "clip": 1.0, "checkpoint_every": 16,
             "handoff": {"updates": 32, "batch": 8, "extended_updates": 48},
             "opd": {"updates": 128, "samples": 4, "max_new": 384, "segment_first": 16},
-            "rl": {"updates": 128, "samples": 4, "max_new": 384},
+            "rl": {"updates": 128, "samples": 4, "max_new": 384, "dynamic_sampling": {"max_tries": 8, "stride": 37}},
             "sft_continue": {"updates": 128, "batch": 8},
             "opd_mask": {"first": 16, "answer_line": true},
             "allocation": {"updates": 128},
