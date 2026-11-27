@@ -102,6 +102,11 @@ def paired_contrast(ctx, cfg, pairs, key, *, alternative="greater", reporting=Fa
 def _runs_seeds(ctx):
     b = ctx.gate("main", "b")
     count = b["grid_seed_count"] if b else len(ctx.cfg["seeds"]["grid"])
+    if not count:
+        # Gate B said no-go or hold (grid_seed_count 0). In parallel mode the grid ran anyway; its results are
+        # records on the pre-registered seeds, and m3_verdicts labels them so. Without this the seed list was empty
+        # and every mean over seeds raised StatisticsError (gates/m5 failed on the H100 run, 2026-11-27).
+        count = len(ctx.cfg["seeds"]["grid"])
     return (ctx.cfg["seeds"]["grid"] + ctx.cfg["seeds"]["grid_extra"])[:count]
 
 
@@ -180,6 +185,8 @@ def m3_verdicts(cfg, grid, a, b=None):
             entry["predictor_range"] = {"max_minus_min": p_range, "threshold": cfg["gates"]["range_min"]}
         if a["m3_mode"] != "verdict":
             entry["status"] = "record"
+        elif b is not None and not b.get("grid_seed_count"):
+            entry["status"] = "record (gate B: %s)" % b.get("decision")
         elif h in ranges and not ranges[h]:
             entry["status"] = "not measured (gate no-go)"
         else:

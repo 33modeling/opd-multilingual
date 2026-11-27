@@ -958,7 +958,8 @@ def gate_allocation(ctx, t):
     from .analysis import collect_grid, m3_verdicts
     a = final_stage0(ctx)
     grid = collect_grid(ctx, a)
-    m3 = m3_verdicts(ctx.cfg, grid, a)
+    b = ctx.gate("main", "b")
+    m3 = m3_verdicts(ctx.cfg, grid, a, b)
     groups = a["selection"]["M5"]
     d = grid["D_mean"]
     d_mean = {k: (sum(d[l] for l in groups[k]) / len(groups[k]) if all(l in d for l in groups[k]) else None)
@@ -966,6 +967,9 @@ def gate_allocation(ctx, t):
     supported = any(m3[h]["status"] == "supported" for h in ("M3a", "M3a-p"))
     out = G.allocation_gate(ctx.cfg, m3a_supported=supported, d_mean=d_mean)
     out["d_mean_pp"] = d_mean
+    if b is not None and not b.get("grid_seed_count"):
+        out["go"] = False
+        out["gate_b"] = b.get("decision")
     out["M3a"], out["M3a-p"] = m3["M3a"], m3["M3a-p"]
     return out
 

@@ -86,3 +86,19 @@ def test_allocation_gate_from_files(tmp_path):
     ctx = make_runs(tmp_path)
     out = gate_allocation(ctx, None)
     assert out["m3a_supported"] and out["d_gap_pp"] is not None
+
+
+def test_allocation_gate_when_gate_b_says_no_go(tmp_path):
+    # H100 run 2026-11-27: gate B returned grid_seed_count 0, the seed list came out empty and gates/m5 raised
+    # StatisticsError. The grid ran anyway (parallel mode); it is now read on the pre-registered seeds as a record.
+    from mlopd.analysis import verdicts
+    from mlopd.experiment import gate_allocation
+    ctx = make_runs(tmp_path)
+    write_json(ctx.runs / "main/gates/b/COMPLETE.json",
+               {"grid_seed_count": 0, "decision": "no-go: English RL not above start in 3 of 4 (check the setting)",
+                "rl_sd_pass": True, "rl_english_pass": False})
+    out = gate_allocation(ctx, None)
+    assert out["go"] is False and out["d_gap_pp"] is not None and out["gate_b"].startswith("no-go")
+    assert out["M3a"]["status"].startswith("record (gate B")
+    v = verdicts(ctx)
+    assert v["M3a"]["status"].startswith("record (gate B") and "M3a" not in v["holm_family"]
