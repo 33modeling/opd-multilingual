@@ -42,6 +42,10 @@
             "allocation_d_gap_pp": 6.0, "washout_sft_gap_pp": 2.0, "washout_positive_pilots": 3,
             "washout_pilot_seeds": 4, "collapse_pp": 6.0, "m3_pilot_spread_pp": 4.0, "m3_pilot_seeds": 2, "override_opd_noise_gate": false},
   "selection": {"m1_count": 4, "m4_count": 4, "m5_group": 2, "b_languages": 2, "x_languages": null},
+  "confirm": {"note": "block C, pre-registration amendment 2026-11-28 (docs/prereg/OSF-PREREGISTRATION.md): new seeds, listed only after every gate of the original blocks exists; original verdicts unchanged",
+              "enabled": true, "seeds": [401, 411, 421, 431, 441, 451, 461, 471], "grid_seeds": 4,
+              "washout_seeds": [401, 411, 421, 431, 441, 451, 461, 471],
+              "blocks": {"M4": true, "M1b": true, "M3a-p": true, "M6": true}},
   "langid": {"backend": "fasttext", "model_path": null},
   "queue": {"min_free_gb": 30, "parallel_blocks": false},
   "analysis": {"alpha": 0.05, "power": 0.8, "bootstrap": 10000, "permutations": 100000, "exact_max_n": 10,
@@ -49,5 +53,6 @@
   "estimates_hours": {"note": "planning figures from design §8.1-§8.2 (English record unit costs), not results",
                       "student_generations_per_hour": 8400, "teacher_generations_per_hour": 4200,
                       "opd_128": 0.25, "rl_128": 0.2, "sft_128x8": 0.065, "sft_32x8": 0.016,
-                      "eval_E": 0.27, "eval_E_mgsm": 0.135, "latin_mass": 0.1, "gate": 0.0}
+                      "eval_E": 0.27, "eval_E_mgsm": 0.135, "latin_mass": 0.1, "gate": 0.0,
+                      "block_C": {"tasks": 688, "gpu_hours": 136, "basis": "experiment.confirm_hours with the unit costs above and the H100 stage-0 outcome (9 handoff and included languages, M1 and M4 sharing 3 languages); 72 teacher-target sets 7.7 h, 72 start evaluations 19.4 h, 120 OPD 30 h, 36 RL 7.2 h, 156 evaluations 42 h, washout 16 SFT + 16 RL + 192 MGSM evaluations 29 h"}}
 }

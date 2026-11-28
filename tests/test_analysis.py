@@ -102,3 +102,127 @@ def test_allocation_gate_when_gate_b_says_no_go(tmp_path):
     assert out["M3a"]["status"].startswith("record (gate B")
     v = verdicts(ctx)
     assert v["M3a"]["status"].startswith("record (gate B") and "M3a" not in v["holm_family"]
+
+
+def make_confirm_runs(tmp_path, *, ratio_check=True, m4_effect=0.03):
+    """Synthetic block C on top of make_runs: new seeds, C-M4 (T-priv above T-def), C-M1b (T-en lowers r),
+    C-M3a-p (D falls as p rises), C-M6a/b (washout), and an X record."""
+    ctx = make_runs(tmp_path)
+    runs, cfg = ctx.runs, ctx.cfg
+    rng = random.Random(2)
+    a = json.loads((runs / "main/gates/a-u32/COMPLETE.json").read_text())
+    a["handoff_languages"] = list(L10)
+    a["r_teacher"] = {"T-def": {l: 0.9 for l in L10}, "T-en": {l: 0.9 - (0.5 if ratio_check else 0.1) for l in L10}}
+    a["imprint"] = {"outcome": "m1a_only", "latin_mass": {l: {"T-def": 0.7, "T-en": 0.75} for l in a["selection"]["M1"]},
+                    "latin_ok": {l: False for l in a["selection"]["M1"]},
+                    "ratio_ok": {l: ratio_check for l in a["selection"]["M1"]}}
+    write_json(runs / "main/gates/a-u32/COMPLETE.json", a)
+    seeds = cfg["confirm"]["seeds"]
+    grid_seeds = seeds[:cfg["confirm"]["grid_seeds"]]
+    for s in seeds:
+        for l in L10:
+            put_eval(runs, f"start/s{s}-u32/{l}", 0.4, 0.9)
+            opd = 0.45 + a["g"][l] * 0.6 + rng.gauss(0, 0.005)
+            put_eval(runs, f"c/opd-{l}-s{s}/eval-{l}", opd, 0.9)
+            if s in grid_seeds:
+                put_eval(runs, f"c/rl-{l}-s{s}/eval-{l}", 0.45 + rng.gauss(0, 0.005), 0.9)
+        for l in a["selection"]["M4"]:
+            base = json.loads((runs / f"main/c/opd-{l}-s{s}/eval-{l}/COMPLETE.json").read_text())["acc"]
+            put_eval(runs, f"c/opd-tpriv-{l}-s{s}/eval-{l}", base + m4_effect + rng.gauss(0, 0.004), 0.8)
+        for l in a["selection"]["M1"]:
+            put_eval(runs, f"c/opd-ten-{l}-s{s}/eval-{l}", 0.44, 0.6 + rng.gauss(0, 0.01))
+    for s in cfg["confirm"]["washout_seeds"]:
+        for l in a["selection"]["M6"]:
+            for which in ("a", "b"):
+                put_eval(runs, f"c/w/sft-W-s{s}/eval-{which}-{l}", 0.40 + rng.gauss(0, 0.003), 0.9)
+                put_eval(runs, f"c/w/sft-N-s{s}/eval-{which}-{l}", 0.37 + rng.gauss(0, 0.003), 0.7)
+            put_eval(runs, f"c/w/rl-W-s{s}/eval-{l}", 0.45 + rng.gauss(0, 0.003), 0.85)
+            put_eval(runs, f"c/w/rl-N-s{s}/eval-{l}", 0.44 + rng.gauss(0, 0.003), 0.7)
+    return ctx
+
+
+def test_confirmation_verdicts(tmp_path):
+    from mlopd.analysis import verdicts
+    v = verdicts(make_confirm_runs(tmp_path))
+    assert v["C-M4"]["status"] == "supported" and v["C-M4"]["test"]["n"] == 4 * 8
+    assert v["C-M4"]["seed_aggregate"]["n"] == 8 and v["C-M4"]["seed_aggregate"]["p"] < 0.05
+    assert v["C-M1b"]["status"] == "supported" and v["C-M1b"]["manipulation_check"]["pass"]
+    assert v["C-M1b"]["latin_mass_record"]["latin_ok"] == {l: False for l in v["C-M1b"]["languages"]}
+    m3 = v["C-M3a-p"]
+    assert m3["status"] == "supported" and m3["test"]["method"] == "exact" and m3["test"]["rho"] < -0.9
+    assert m3["seeds"] == [401, 411, 421, 431] and len(m3["languages"]) == 10
+    assert v["C-M6a"]["status"] == "supported" and v["C-M6a"]["test"]["n"] == 8
+    assert "C-M6b" in v and "C-M6b" not in v["confirm_holm_family"]
+    assert set(v["confirm_holm_family"]) == {"C-M4", "C-M3a-p", "C-M1b", "C-M6a"}
+    assert all(v[h]["p_holm_confirm"] >= v[h]["test"]["p"] for h in v["confirm_holm_family"])
+    # the original verdicts are untouched by block C (M1b stays unjudged: its Latin-mass gate failed)
+    assert v["M1b"]["status"].startswith("not measured (gate no-go)") and v["M4"]["test"]["n"] == 16
+    assert set(v["holm_family"]) == {"M3a", "M3a-p", "M4"}
+
+
+def test_confirmation_m1b_record_when_teacher_ratio_check_fails(tmp_path):
+    from mlopd.analysis import verdicts
+    v = verdicts(make_confirm_runs(tmp_path, ratio_check=False))
+    assert v["C-M1b"]["status"] == "record (gate no-go)"
+    assert v["C-M1b"]["verdict_if_gate_had_passed"] == "supported"
+    assert "C-M1b" not in v["confirm_holm_family"]
+
+
+def test_confirmation_m4_not_supported_without_effect(tmp_path):
+    from mlopd.analysis import verdicts
+    v = verdicts(make_confirm_runs(tmp_path, m4_effect=-0.01))
+    assert v["C-M4"]["status"] == "not supported" and "p_holm_confirm" in v["C-M4"]
+
+
+def test_confirmation_incomplete_and_switched_off(tmp_path):
+    from mlopd.analysis import confirm_verdicts
+    ctx = make_runs(tmp_path)
+    a = json.loads((ctx.runs / "main/gates/a-u32/COMPLETE.json").read_text())
+    v = confirm_verdicts(ctx, a)
+    assert all(v[h]["status"] == "incomplete" for h in ("C-M4", "C-M1b", "C-M3a-p", "C-M6a", "C-M6b"))
+    assert v["confirm_holm_family"] == []
+    ctx.cfg["confirm"]["blocks"]["M4"] = False
+    assert confirm_verdicts(ctx, a)["C-M4"]["status"].startswith("not run")
+    ctx.cfg["confirm"]["enabled"] = False
+    assert confirm_verdicts(ctx, a)["C-M3a-p"]["status"].startswith("not run")
+
+
+def test_record_X(tmp_path):
+    from mlopd.analysis import record_X
+    ctx = make_runs(tmp_path)
+    runs, seeds = ctx.runs, ctx.cfg["seeds"]["x"]
+    assert record_X(ctx)["status"] == "incomplete"
+    write_json(runs / ("x/gates/handoff-languages-" + "-".join(map(str, seeds))) / "COMPLETE.json",
+               {"languages": ["en", "de"]})
+    for l in ("en", "de"):
+        for s in seeds:
+            put_eval(runs, f"start/s{s}-u32/{l}", 0.30, 0.9, pair="x")
+            put_eval(runs, f"g/opd-{l}-s{s}/eval-{l}", 0.36, 0.9, pair="x")
+            put_eval(runs, f"g/rl-{l}-s{s}/eval-{l}", 0.40, 0.9, pair="x")
+    x = record_X(ctx)
+    assert x["status"] == "record" and set(x["per_language"]) == {"en", "de"}
+    de = x["per_language"]["de"]
+    assert abs(de["D_mean_pp"] + 4.0) < 1e-9 and abs(de["G0_pp"]["rl"] - 10.0) < 1e-9
+    assert abs(de["start_acc"] - 0.30) < 1e-9 and abs(de["strict"]["opd"] - 0.18) < 1e-9
+    assert de["collapses"] == {"opd": 0, "rl": 0} and de["D_test"]["n"] == len(seeds)
+
+
+def test_confirm_queue_listing(tmp_path):
+    """Block C on the H100 stage-0 outcome: new seeds only, shared T-def OPD runs, no id clash with earlier blocks."""
+    from mlopd.experiment import Context, confirm_tasks, load_config
+    ctx = Context(load_config(), root=tmp_path)
+    L = ["en", "es", "fr", "de", "ru", "zh", "ja", "th", "bn"]
+    a = {"handoff_updates": 32, "handoff_languages": L, "included": L,
+         "selection": {"M4": ["bn", "th", "ja", "de"], "M1": ["de", "ru", "th", "ja"], "M6": ["en", "es", "zh", "bn"]}}
+    tasks = {t["id"]: t for t in confirm_tasks(ctx, a)}
+    cfg = ctx.cfg
+    old = set(cfg["seeds"]["grid"] + cfg["seeds"]["grid_extra"] + cfg["seeds"]["allocation"] + cfg["seeds"]["washout"]
+              + cfg["seeds"]["x"])
+    assert not old & {t["params"].get("seed") for t in tasks.values()} - {None}
+    assert len(tasks) == 688 and all(t["block"] == "C" for t in tasks.values())
+    runs = [t for t in tasks.values() if t["kind"] == "train" and t["id"].startswith("c/opd-")]
+    assert sum(t["params"]["condition"] == "T-def" for t in runs) == 5 * 8 + 4 * 4
+    assert sum(t["params"]["condition"] == "T-priv" for t in runs) == 4 * 8
+    assert sum(t["params"]["condition"] == "T-en" for t in runs) == 4 * 8
+    assert sum(i.startswith("c/rl-") and i.count("/") == 1 for i in tasks) == 9 * 4
+    assert tasks["c/opd-tpriv-de-s401"]["deps"] == ["handoff/s401-u32"]

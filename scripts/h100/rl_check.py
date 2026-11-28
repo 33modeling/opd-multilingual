@@ -1,7 +1,7 @@
 """RL diagnosis from finished runs (no GPU): why gate B said English RL is not above start.
 
-Prints, for the S0-d reruns and the grid runs of every language: start accuracy, accuracy after the run, the
-change, and the run records (share of all-correct / all-wrong / mixed groups, zero-advantage updates, reward in
+Prints, for the S0-d reruns, the grid runs of every language and the RL runs of block C (grid and washout): start
+accuracy, accuracy after the run, the change, and the run records (share of all-correct / all-wrong / mixed groups, zero-advantage updates, reward in
 the first and last 32 updates, rollout truncation and marker-line rates, mean rollout length).
 Usage: python scripts/h100/rl_check.py [config]   (run.sh rl-check)
 """
@@ -9,7 +9,7 @@ import json
 import sys
 from pathlib import Path
 
-from mlopd.experiment import Context, final_stage0, load_config
+from mlopd.experiment import Context, confirm_plan, final_stage0, load_config
 from mlopd.util import read_jsonl
 
 
@@ -71,6 +71,21 @@ def main():
                 i = f"g/{method}-{l}-s{s}"
                 if ctx.complete("main", i):
                     print(run_line(ctx, i, f"{i}/eval-{l}", f"start/s{s}-u{u}/{l}"))
+    if (cfg.get("confirm") or {}).get("enabled"):
+        plan = confirm_plan(cfg, a)
+        for method in ("rl", "opd"):
+            print(f"\n== confirmation block C, grid {method} (seeds {plan['grid_seeds']})")
+            for l in plan["grid"]:
+                for s in plan["grid_seeds"]:
+                    i = f"c/{method}-{l}-s{s}"
+                    if ctx.complete("main", i):
+                        print(run_line(ctx, i, f"{i}/eval-{l}", f"start/s{s}-u{u}/{l}"))
+        print("\n== confirmation block C, washout English RL (start: SFT-end evaluation a, English)")
+        for s in plan["washout_seeds"]:
+            for arm in ("W", "N"):
+                i = f"c/w/rl-{arm}-s{s}"
+                if plan["M6"] and ctx.complete("main", i):
+                    print(run_line(ctx, i, f"{i}/eval-en", f"c/w/sft-{arm}-s{s}/eval-a-en"))
 
 
 if __name__ == "__main__":

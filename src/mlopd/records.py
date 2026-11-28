@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import gzip
 import json
+import os
 from pathlib import Path
 
 from . import langid
@@ -97,7 +98,7 @@ def item_accuracy(rows, key="lenient_norm"):
 def write_rows(path, rows):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + ".tmp")
+    tmp = path.with_name(path.name + f".tmp{os.getpid()}")  # workers may write one cache file at once
     with gzip.open(tmp, "wt", encoding="utf-8") as handle:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")

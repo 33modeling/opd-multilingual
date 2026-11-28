@@ -107,5 +107,16 @@
  },
  "paths": {
   "runs": "smoke-runs"
+ },
+ "confirm": {
+  "seeds": [
+   401,
+   411
+  ],
+  "grid_seeds": 2,
+  "washout_seeds": [
+   401,
+   411
+  ]
  }
 }

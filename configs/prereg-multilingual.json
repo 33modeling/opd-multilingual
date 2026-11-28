@@ -245,7 +245,7 @@
  "registered_at": "2026-11-25T22:37:22+0900",
  "registration_record": "git tag prereg-multilingual-v1 on the commit that adds this file version, pushed to the private GitHub repository 33modeling/opd-multilingual-acl2027 before any multilingual run; no external registry",
  "changes_after_registration": "none allowed for hypotheses, tests, gates or selection rules; any change is a new version with a new tag, and results under the old version are reported as such",
- "version": "1.1",
+ "version": "1.2",
  "version_history": [
   {
    "version": "1.0",
@@ -256,6 +256,113 @@
    "version": "1.1",
    "tag": "prereg-multilingual-v1.1",
    "note": "text of gates.allocation_M5 aligned with the code registered in 1.0 (src/mlopd/experiment.py gate_allocation at a6fd44b already accepts M3a or M3a-p); no rule changed; OSF registration made from this version"
+  },
+  {
+   "version": "1.2",
+   "tag": "prereg-multilingual-v1.2",
+   "note": "amendment 2026-11-28: confirmation block C (new seeds), registered after the original results and before any C run; original hypotheses, tests and gates unchanged"
+  }
+ ],
+ "amendments": [
+  {
+   "date": "2026-11-28",
+   "title": "confirmation block C",
+   "registered": "after the full H100 queue of the original blocks finished (1447 tasks, docs/results/RESULTS-2026-11-28.md) and before any block C task started; the original results were known when it was written",
+   "original_verdicts": "unchanged: M1a-M6b, their gates, seeds and Holm family are computed as registered and do not read any C run; C-* are new verdicts",
+   "why": [
+    "M4: +1.53 pp, p 0.030, Holm 0.060, languages bn, th, ja, de (M4 selection of gates/a-u32)",
+    "M3a-p: rho -0.62, p 0.043, Holm 0.060, 9 languages (sw excluded by the handoff-language rule)",
+    "M1b: -64 pp, 16 of 16 pairs, recorded because the first-16-position Latin-mass gate failed; that gate is not meaningful for de (Latin script, T-def mass already 0.71) and weak for ru, th, ja; the teacher own-sample ratio check passed in all 4",
+    "M6a: pilot mean 1.86 pp < 2.0 pp gate (4 of 4 positive), so recorded; the test gave +1.50 pp, 7 of 8, p 0.011",
+    "block X (Qwen2.5-0.5B-Instruct <- Qwen2.5-1.5B-Instruct, en and de) finished but the analysis printed no record"
+   ],
+   "seeds": {
+    "confirm": [
+     401,
+     411,
+     421,
+     431,
+     441,
+     451,
+     461,
+     471
+    ],
+    "grid_C-M3a-p": [
+     401,
+     411,
+     421,
+     431
+    ],
+    "washout": [
+     401,
+     411,
+     421,
+     431,
+     441,
+     451,
+     461,
+     471
+    ],
+    "rule": "no earlier block used these seeds; each gets teacher targets on F, a handoff SFT on the original handoff languages (32 updates) and a start evaluation on every handoff language"
+   },
+   "hypotheses": {
+    "C-M4": {
+     "contrast": "Acc(OPD | T-priv) - Acc(OPD | T-def)",
+     "test": "greater",
+     "pairs": "original M4 languages (gates/a-u32) x 8 confirm seeds = 32",
+     "also": "seed-level t over the 8 seed means; M4 reporting condition",
+     "gate": "none (gap manipulation passed in stage 0, recorded)"
+    },
+    "C-M1b": {
+     "contrast": "r(OPD | T-def) - r(OPD | T-en)",
+     "test": "greater",
+     "pairs": "original M1 languages x 8 confirm seeds = 32",
+     "also": "M1b reporting condition; accuracy difference recorded",
+     "manipulation_check": "teacher own-sample ratio T-def - T-en >= 0.30 in >= 3 of 4 languages (stage 0); otherwise a record",
+     "record_only": "first-16-position teacher Latin-script mass"
+    },
+    "C-M3a-p": {
+     "statistic": "Spearman(mean over confirm seeds 401-431 of D_l, p_l from stage 0)",
+     "test": "spearman-perm less",
+     "units": "included languages of gates/a-u32",
+     "permutation": "exact (n <= 10)",
+     "gate": "none"
+    },
+    "C-M6a": {
+     "contrast": "(W - N) at SFT end - (W - N) after English RL, non-English accuracy",
+     "test": "greater",
+     "pairs": "8 confirm seeds",
+     "gate": "none (no pilot gate)"
+    },
+    "C-M6b": {
+     "contrast": "as C-M6a, target-language ratio",
+     "test": "greater",
+     "pairs": "8 confirm seeds",
+     "multiplicity": "reported alone"
+    },
+    "X": {
+     "record": "per language: D per seed and mean (two-sided paired t), G0 of OPD and RL, start accuracy, strict pass@1 (start, OPD, RL), collapse counts"
+    }
+   },
+   "multiplicity": "Holm over {C-M4, C-M3a-p, C-M1b, C-M6a} (records left out), recorded as p_holm_confirm; each verdict is also reported alone (unadjusted)",
+   "unchanged": "models, prompts, learning settings, evaluation, scoring, language identification, RL dynamic sampling (2026-11-27), data",
+   "execution": "the queue lists block C only after every gate of the original blocks exists; no finished run is moved or invalidated",
+   "size": {
+    "tasks": 688,
+    "gpu_hours_planned": 136
+   },
+   "implementation": {
+    "config": "configs/default.json confirm",
+    "queue": "src/mlopd/experiment.py confirm_plan, confirm_ready, confirm_tasks",
+    "verdicts": "src/mlopd/analysis.py confirm_verdicts, verdict_C_M4, verdict_C_M1b, verdict_C_M3ap, record_X",
+    "sha256_at_amendment": {
+     "src/mlopd/analysis.py": "aabb36c59c738244add5828ed6d02091e9ecd115a2e67dd844332882a352fd12",
+     "src/mlopd/experiment.py": "692b630c2dcb149adf1b2392e462a029bf4d907f3c60a69f0c940ffea5f689e9",
+     "src/mlopd/stats.py": "91a61c61f6f6251a27400fb93b303974a5dc61306d066b3190d80124dbc6b43e",
+     "configs/default.json": "0e1665ffc2f2115aba7f3a1ef19a68e77ac79190c7e22a900e1ef3e3487c9ae4"
+    }
+   },
+   "text": "docs/prereg/OSF-PREREGISTRATION.md, section 'Amendment (2026-11-28): confirmation block C'"
   }
  ]
 }

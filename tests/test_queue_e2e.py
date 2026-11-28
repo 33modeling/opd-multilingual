@@ -1,5 +1,6 @@
 """The whole run grid on tiny models: stage 0, gates A/B, G, G-ref, G-x, I, K, W (pilot gate, then RL), A and B
-(their conditional gates are forced in this test only), X (second pair), and the analysis verdicts."""
+(their conditional gates are forced in this test only), X (second pair), the confirmation block C (new seeds,
+listed after every original gate exists), and the analysis verdicts."""
 import json
 
 import pytest
@@ -50,6 +51,43 @@ def test_every_block_ran(finished):
         assert (runs / f"main/b/opdmask-ten-{l}-s1/eval-{l}/COMPLETE.json").exists()
 
 
+def test_confirmation_block_ran(finished):
+    from mlopd.experiment import build_queue
+    ctx, _ = finished
+    runs = ctx.runs / "main"
+    a = json.loads((runs / "gates/a-u2/COMPLETE.json").read_text())
+    tasks = [t for t in build_queue(ctx) if t["block"] == "C"]
+    assert tasks and all(ctx.done(t) for t in tasks)
+    used = set(ctx.cfg["seeds"]["grid"] + ctx.cfg["seeds"]["grid_extra"] + ctx.cfg["seeds"]["allocation"]
+               + ctx.cfg["seeds"]["washout"])
+    assert not used & set(t["params"].get("seed") for t in tasks if t["params"].get("seed") is not None)
+    for s in (9, 10):
+        assert (runs / f"handoff/s{s}-u2/COMPLETE.json").exists()
+        for l in a["handoff_languages"]:
+            assert (runs / f"start/s{s}-u2/{l}/COMPLETE.json").exists()
+        for l in a["selection"]["M4"]:
+            assert (runs / f"c/opd-tpriv-{l}-s{s}/eval-{l}/COMPLETE.json").exists()
+        for l in a["selection"]["M1"]:
+            assert (runs / f"c/opd-ten-{l}-s{s}/eval-{l}/COMPLETE.json").exists()
+        for l in a["included"]:
+            assert (runs / f"c/rl-{l}-s{s}/eval-{l}/COMPLETE.json").exists()
+            assert (runs / f"c/opd-{l}-s{s}/eval-{l}/COMPLETE.json").exists()
+        for arm in ("W", "N"):
+            assert (runs / f"c/w/sft-{arm}-s{s}/eval-b-{a['selection']['M6'][1]}/COMPLETE.json").exists()
+            assert (runs / f"c/w/rl-{arm}-s{s}/eval-en/COMPLETE.json").exists()
+    priv = json.loads((runs / f"c/opd-tpriv-{a['selection']['M4'][0]}-s9/plan.json").read_text())
+    assert priv["start"]["task"] == "handoff/s9-u2" and priv["steps"][0]["condition"] == "T-priv"
+
+
+def test_confirmation_not_listed_before_original_gates(tiny, stub_identifier, tmp_path):
+    from mlopd.experiment import Context, build_queue, confirm_ready, load_config
+    make_dataset(tmp_path / "p.json")
+    cfg = load_config(overrides=smoke_overrides(tiny, tmp_path / "p.json"))
+    ctx = Context(cfg, root=tmp_path)
+    tasks = build_queue(ctx)
+    assert not confirm_ready(ctx, tasks) and not any(t["block"] == "C" for t in tasks)
+
+
 def test_records_present(finished):
     ctx, _ = finished
     opd = json.loads((ctx.runs / "main/g/opd-zh-s1/COMPLETE.json").read_text())["records"]
@@ -88,6 +126,17 @@ def test_verdicts(finished):
     assert verdicts["M5"]["test"]["n"] == 2 and verdicts["M6a"]["test"]["n"] == 2
     assert verdicts["M2b"]["status"] == "not run (condition not met)"  # M1b is not supported
     assert set(verdicts["holm_family"]) <= {"M1b", "M2b", "M3a", "M4", "M5", "M6a", "M6b"}
+    for h in ("C-M4", "C-M1b", "C-M3a-p", "C-M6a", "C-M6b"):
+        assert h in verdicts and verdicts[h]["status"] != "incomplete", (h, verdicts[h])
+    assert verdicts["C-M4"]["test"]["n"] == 2 * 2 and verdicts["C-M1b"]["test"]["n"] == 2 * 2
+    assert verdicts["C-M3a-p"]["test"]["n"] == 3 and verdicts["C-M3a-p"]["alternative"] == "less"
+    assert verdicts["C-M6a"]["test"]["n"] == 2 and verdicts["C-M6a"]["seeds"] == [9, 10]
+    assert set(verdicts["confirm_holm_family"]) <= {"C-M4", "C-M3a-p", "C-M1b", "C-M6a"}
+    x = verdicts["X"]
+    assert x["status"] == "record" and set(x["per_language"]) == set(x["languages"])
+    for v in x["per_language"].values():
+        assert set(v) >= {"D_mean_pp", "G0_pp", "start_acc", "strict", "collapses"}
+    assert json.loads(path.read_text())["C-M4"]["status"] == verdicts["C-M4"]["status"]
 
 
 def test_dry_run_before_any_run(tiny, stub_identifier, tmp_path):
@@ -131,6 +180,10 @@ def test_parallel_blocks_run_despite_no_go_gates(tiny, stub_identifier, tmp_path
     for h in ("M1b", "M4", "M6a", "M5"):
         assert v[h]["status"] == "record (gate no-go)", (h, v[h].get("status"))
     assert "M3a-p" in v and v["M3a-p"]["alternative"] == "less"
+    # Block C ran after the original gates; C-M1b is a record because the teacher-ratio check failed here.
+    assert (runs / f"c/opd-ten-{a['selection']['M1'][0]}-s10/eval-{a['selection']['M1'][0]}/COMPLETE.json").exists()
+    assert v["C-M1b"]["status"] == "record (gate no-go)" and not v["C-M1b"]["manipulation_check"]["pass"]
+    assert v["C-M6a"]["status"] in ("supported", "not supported")  # no pilot gate in block C
 
 
 def test_status_after_the_run(finished, tmp_path):
@@ -141,7 +194,7 @@ def test_status_after_the_run(finished, tmp_path):
     assert result["totals"]["done"] == result["tasks"] and result["tasks"] > 0
     text = format_status(result)
     assert text.splitlines()[1].startswith(f"done {result['tasks']}/{result['tasks']} (100%)")
-    assert "next: all tasks done" in text and "main/G " in text
+    assert "next: all tasks done" in text and "main/G " in text and "main/C " in text
     # A running train task shows its update count; a failed one shows its last error line.
     t = next(t for t in __import__("mlopd.experiment", fromlist=["build_queue"]).build_queue(ctx) if t["kind"] == "train")
     leases = Leases(ctx.runs)

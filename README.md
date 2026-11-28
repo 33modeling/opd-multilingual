@@ -22,7 +22,7 @@ python scripts/prefetch_models.py main  # model weights into the HF cache (x for
 python -m mlopd queue dry-run           # every task with its state and estimated GPU hours
 scripts/run_queue.sh                    # run tasks one at a time (resumable; touch runs/STOP to stop)
 python -m mlopd gates                   # stage-0 decisions (gates and language selections, with file hashes)
-python -m mlopd analyze                 # runs/analysis/verdicts.json
+python -m mlopd analyze                 # runs/analysis/verdicts.json (original, C-*, X record)
 python -m mlopd prompts                 # every prompt text
 python -m pytest tests                  # CPU tests on tiny random models, no downloads
 ```
@@ -31,6 +31,15 @@ The queue starts with stage 0 (S0-a, S0-b, scorer, teacher targets on F, handoff
 p-measurement, Latin mass), computes the gates of design §5.4 from those files only, then S0-d, and only then
 enumerates the grid blocks (G, G-ref, G-x, I, K) and the conditional blocks (A, W, B, X). Outputs go to
 `runs/<pair>/<task id>/` with a `COMPLETE.json` per finished task. `src/mlopd/README.md` maps design sections to code.
+
+**Confirmation block C** (pre-registration amendment 2026-11-28, `confirm` in `configs/default.json`): once every
+gate of the original blocks exists, the queue also lists block C on new seeds 401-471: per seed teacher targets,
+handoff SFT and start evaluation; OPD T-def / T-priv (C-M4 languages) / T-en (C-M1b languages); OPD and RL on all
+included languages for the first 4 seeds (C-M3a-p); washout W/N + English RL (C-M6a/b). No new command: after
+`git pull`, `scripts/h100/run.sh` picks the tasks up (`run.sh status` shows a `main/C` row) and `analyze` writes the
+C-* verdicts (with `p_holm_confirm`) and the block X record next to the original verdicts in `verdicts.json`.
+Finished runs of the original blocks are not moved or re-run; `confirm.enabled: false` or `confirm.blocks` switch
+the block or its parts off.
 
 ## H100 nodes
 

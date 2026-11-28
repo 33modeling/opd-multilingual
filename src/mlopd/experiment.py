@@ -1,7 +1,8 @@
 """Run grid of design §5.3 as a resumable queue, and the executor for every task kind.
 
 The queue is rebuilt from the config and the gate files after every task, so blocks that depend on a stage-0
-decision appear only once that decision file exists. One task runs at a time; a task is finished when its
+decision appear only once that decision file exists. The confirmation block C (pre-registration amendment
+2026-11-28) appears only after every gate of the original blocks exists. One task runs at a time; a task is finished when its
 COMPLETE.json exists and is skipped afterwards. Outputs: runs/<pair>/<task id>/.
 
 Task kinds
@@ -422,12 +423,116 @@ def x_tasks(ctx, a):
     return out
 
 
+def confirm_plan(cfg, a):
+    """Seeds and languages of block C (pre-registration amendment 2026-11-28), from the config and the stage-0
+    decision file only: C-M4 uses the original M4 selection, C-M1b the original M1 selection, C-M3a-p the included
+    languages, C-M6 the original M6 languages. A sub-block switched off in `confirm.blocks` gets no languages."""
+    C = cfg.get("confirm") or {}
+    on = C.get("blocks") or {}
+    sel = a["selection"]
+    seeds = [int(s) for s in C.get("seeds") or []]
+    return {"seeds": seeds, "grid_seeds": seeds[:int(C.get("grid_seeds", 4))],
+            "washout_seeds": [int(s) for s in C.get("washout_seeds") or []],
+            "handoff_languages": list(a.get("handoff_languages") or a["included"]),
+            "handoff_updates": a["handoff_updates"],
+            "M4": list(sel["M4"]) if on.get("M4", True) else [],
+            "M1": list(sel["M1"]) if on.get("M1b", True) else [],
+            "grid": list(a["included"]) if on.get("M3a-p", True) else [],
+            "M6": list(sel["M6"]) if on.get("M6", True) else []}
+
+
+def confirm_ready(ctx, tasks):
+    """Block C is listed only when it is switched on and every gate task of the original blocks (both pairs) is
+    finished, and gates b and m6 exist: the confirmation is registered after the original results and must not
+    change which original runs exist or how they are labelled."""
+    if not (ctx.cfg.get("confirm") or {}).get("enabled"):
+        return False
+    gates = [t for t in tasks if t["kind"] == "gate"]
+    return bool(gates) and all(ctx.done(t) for t in gates) \
+        and ctx.gate("main", "b") is not None and ctx.gate("main", "m6") is not None
+
+
+def confirm_tasks(ctx, a):
+    """Block C on new seeds (confirm.seeds, used by no earlier block): teacher targets on F, handoff SFT on the
+    original handoff languages and start evaluation per seed; OPD T-def, OPD T-priv (C-M4 languages) and OPD T-en
+    (C-M1b languages) on every confirm seed; OPD and RL on every included language for the first grid_seeds seeds
+    (C-M3a-p; the OPD T-def runs are shared); washout W/N handoff SFT and English RL on confirm.washout_seeds
+    (C-M6a/b, no pilot gate). Task ids start with c/ except the shared per-seed ones (targets/, handoff/, start/),
+    whose seeds are new."""
+    cfg = ctx.cfg
+    plan = confirm_plan(cfg, a)
+    E, T = cfg["eval"], cfg["teacher_targets"]
+    updates = plan["handoff_updates"]
+    hlangs = plan["handoff_languages"]
+    target_hours = _gen_hours(cfg, cfg["splits"]["F"] * T["samples"], "teacher")
+
+    def targets(seed, l):
+        return task(f"targets/T-def/F-s{seed}/{l}", "C", "teacher_targets", hours=target_hours, condition="T-def",
+                    lang=l, itemset="F", seed=seed)
+    out = []
+    if plan["M4"] or plan["M1"] or plan["grid"]:
+        for seed in plan["seeds"]:
+            out += [targets(seed, l) for l in hlangs]
+            h = f"handoff/s{seed}-u{updates}"
+            out.append(task(h, "C", "train", deps=[f"targets/T-def/F-s{seed}/{l}" for l in hlangs],
+                            hours=_hours(cfg, "sft_32x8", updates / 32), plan="handoff", seed=seed, langs=hlangs,
+                            updates=updates))
+            for l in hlangs:
+                out.append(task(f"start/s{seed}-u{updates}/{l}", "C", "eval", deps=[h], hours=_hours(cfg, "eval_E"),
+                                adapter=h, lang=l, eval_seed=E["eval_seed"], sets=E["sets"]))
+            grid = plan["grid"] if seed in plan["grid_seeds"] else []
+            opd_langs = [l for l in cfg["languages"] if l in set(plan["M4"]) | set(plan["M1"]) | set(grid)]
+            for l in opd_langs:
+                out += second_stage(ctx, f"c/opd-{l}-s{seed}", "C", "opd", seed=seed, lang=l, start=h, eval_langs=[l])
+            for l in grid:
+                out += second_stage(ctx, f"c/rl-{l}-s{seed}", "C", "rl", seed=seed, lang=l, start=h, eval_langs=[l])
+            for l in plan["M4"]:
+                out += second_stage(ctx, f"c/opd-tpriv-{l}-s{seed}", "C", "opd", seed=seed, lang=l, start=h,
+                                    eval_langs=[l], condition="T-priv")
+            for l in plan["M1"]:
+                out += second_stage(ctx, f"c/opd-ten-{l}-s{seed}", "C", "opd", seed=seed, lang=l, start=h,
+                                    eval_langs=[l], condition="T-en")
+    langs = plan["M6"]
+    if langs:
+        for seed in plan["washout_seeds"]:
+            out += [targets(seed, l) for l in langs]
+            for arm, arm_langs in (("W", langs), ("N", ["en"])):
+                sft = f"c/w/sft-{arm}-s{seed}"
+                out.append(task(sft, "C", "train", deps=[f"targets/T-def/F-s{seed}/{l}" for l in arm_langs],
+                                hours=_hours(cfg, "sft_32x8"), plan="washout_sft", seed=seed, langs=arm_langs))
+                for l in langs:
+                    for which, es in (("a", E["eval_seed"]), ("b", E["second_eval_seed"])):
+                        out.append(task(f"{sft}/eval-{which}-{l}", "C", "eval", deps=[sft],
+                                        hours=_hours(cfg, "eval_E_mgsm"), adapter=sft, lang=l, eval_seed=es,
+                                        sets=E["washout_sets"]))
+                out += second_stage(ctx, f"c/w/rl-{arm}-s{seed}", "C", "rl", seed=seed, lang="en", start=sft,
+                                    eval_langs=langs, eval_sets=E["washout_sets"])
+    return out
+
+
+def confirm_hours(c, *, handoff_languages=9, included=9, shared_opd_languages=5):
+    """Planning figure of block C (design §8 unit costs) for the H100 stage-0 outcome: 9 handoff and included
+    languages, M1 and M4 selections sharing 3 of 4 languages (5 languages with OPD T-def on every seed)."""
+    C = c.get("confirm") or {}
+    S, Gs, Ws = len(C.get("seeds") or []), int(C.get("grid_seeds", 4)), len(C.get("washout_seeds") or [])
+    m4, m1 = c["selection"]["m4_count"], c["selection"]["m1_count"]
+    opd = S * shared_opd_languages + Gs * (included - shared_opd_languages) + S * (m4 + m1)
+    rl = Gs * included
+    return (S * handoff_languages * (_gen_hours(c, c["splits"]["F"] * c["teacher_targets"]["samples"], "teacher")
+                                     + _hours(c, "eval_E"))
+            + S * _hours(c, "sft_32x8") + opd * _hours(c, "opd_128") + rl * _hours(c, "rl_128")
+            + (opd + rl) * _hours(c, "eval_E")
+            + Ws * (2 * _hours(c, "sft_32x8") + 2 * _hours(c, "rl_128") + 2 * 4 * 3 * _hours(c, "eval_E_mgsm")))
+
+
 def build_queue(ctx):
     tasks = stage0_tasks(ctx, "main")
     tasks += stage0_gate_tasks(ctx, tasks)
     a, b = final_stage0(ctx), ctx.gate("main", "b")
     if a is not None and a.get("proceed") and (parallel_blocks(ctx.cfg) or (b is not None and b.get("grid_seed_count"))):
         tasks += grid_tasks(ctx, a, b)
+        if confirm_ready(ctx, tasks):
+            tasks += confirm_tasks(ctx, a)
     seen, unique = set(), []
     for t in tasks:
         key = (t["pair"], t["id"])
@@ -455,6 +560,9 @@ PENDING_BLOCKS = {  # design §5.3 run counts, shown by the dry run before the g
           + 16 * 4 * 3 * _hours(c, "eval_E_mgsm")),
     "X": ("second pair: stage 0 + 16 runs", lambda c: 2. + 16 * (_hours(c, "opd_128") + _hours(c, "eval_E"))),
     "B": ("8 masked-OPD runs (conditional)", lambda c: 8 * (_hours(c, "opd_128") + _hours(c, "eval_E"))),
+    "C": ("confirmation (amendment 2026-11-28): 8 new seeds, handoff + start, OPD T-def/T-priv/T-en, "
+          "grid OPD/RL on 4 seeds, washout W/N + English RL; listed after every original gate exists",
+          lambda c: confirm_hours(c) if (c.get("confirm") or {}).get("enabled") else 0.),
 }
 
 

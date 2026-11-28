@@ -137,6 +137,7 @@ def smoke_overrides(tiny, data_path, runs="runs"):
                     "max_context": 1024},
         "splits": {"S0": 6, "F": 6, "U": 4, "pool_size": 40, "split_seed": 5},
         "seeds": {"grid": [1, 2], "grid_extra": [3, 4], "allocation": [5, 6], "washout": [7, 8], "x": [1, 2]},
+        "confirm": {"enabled": True, "seeds": [9, 10], "grid_seeds": 2, "washout_seeds": [9, 10]},
         "train": {"checkpoint_every": 1, "handoff": {"updates": 2, "batch": 2, "extended_updates": 3},
                   "opd": {"updates": 2, "samples": 2, "max_new": 5, "segment_first": 2},
                   "rl": {"updates": 2, "samples": 2, "max_new": 5},

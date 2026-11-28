@@ -4,7 +4,8 @@
   queue dry-run         list every task of the run grid with its state and estimated hours
   queue run             run tasks one at a time (finished tasks are skipped; safe to restart)
   gates                 print the stage-0 decision files that exist
-  analyze               write runs/analysis/verdicts.json from finished runs
+  analyze               write runs/analysis/verdicts.json from finished runs (original verdicts, block C
+                        confirmation verdicts with Holm over the C family, block X record)
   prompts               print every prompt text (for the paper appendix)
 """
 from __future__ import annotations
@@ -105,7 +106,14 @@ def main(argv=None):
         for key, value in result.items():
             if isinstance(value, dict) and "status" in value:
                 p = value.get("test", {}).get("p") if isinstance(value.get("test"), dict) else None
-                print(f"{key:5s} {value['status']}" + (f"  p={p:.4g}" if p is not None else ""))
+                holm = value.get("p_holm_confirm")
+                print(f"{key:8s} {value['status']}" + (f"  p={p:.4g}" if p is not None else "")
+                      + (f"  Holm(C)={holm:.4g}" if holm is not None else ""))
+        for l, v in (result.get("X", {}).get("per_language") or {}).items():
+            print(f"X {l:5s}  D {v['D_mean_pp']:+.2f}pp  G0 OPD {v['G0_pp']['opd']:+.2f} RL {v['G0_pp']['rl']:+.2f}  "
+                  f"start {100 * v['start_acc']:.1f}  strict start/OPD/RL {100 * v['strict']['start']:.1f}/"
+                  f"{100 * v['strict']['opd']:.1f}/{100 * v['strict']['rl']:.1f}  collapses OPD {v['collapses']['opd']} "
+                  f"RL {v['collapses']['rl']}")
         return
 
 

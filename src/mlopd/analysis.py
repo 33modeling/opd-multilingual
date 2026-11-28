@@ -10,6 +10,12 @@ Status values: "supported", "not supported", "not measured (gate no-go)", "not r
 Reporting condition (§13): M1a/M1b/M4 are "supported" only if the pair-level test is significant, at least 3 of the 4
 language means are positive, and the seed-aggregated mean (languages averaged within seed) is positive; otherwise a
 significant pair test is reported as "pair test significant; reporting condition not met".
+
+Confirmation block C (pre-registration amendment 2026-11-28; new seeds, registered after the original results and
+before any C run): C-M4, C-M1b, C-M3a-p, C-M6a, C-M6b. Each is decided alone (unadjusted, same tests as the
+original hypothesis); Holm-adjusted p over {C-M4, C-M3a-p, C-M1b, C-M6a} is recorded as p_holm_confirm. The
+original verdicts above are computed exactly as registered and do not read any C run. "X" is a record of the second
+model pair (per-language D, G0, start accuracy, strict, collapses); it has no verdict.
 """
 from __future__ import annotations
 
@@ -21,6 +27,8 @@ from .records import read_rows
 from .util import write_json
 
 PRIMARY = ("M1b", "M2b", "M3a", "M3a-p", "M4", "M5", "M6a", "M6b")
+CONFIRM_FAMILY = ("C-M4", "C-M3a-p", "C-M1b", "C-M6a")
+CONFIRM = ("C-M4", "C-M1b", "C-M3a-p", "C-M6a", "C-M6b")
 
 
 def _eval(ctx, id, pair="main"):
@@ -348,6 +356,8 @@ def verdicts(ctx):
     for h, p in adjusted.items():
         out[h]["p_holm"] = p
     out["holm_family"] = sorted(adjusted)
+    out.update(confirm_verdicts(ctx, a))
+    out["X"] = record_X(ctx)
     return out
 
 
@@ -367,13 +377,23 @@ def washout_verdicts(ctx, a):
     if not gate.get("go") and not _parallel(cfg):
         return {h: {"status": "not measured (gate no-go)", "gate": gate} for h in ("M6a", "M6b")}
     langs = [l for l in a["selection"]["M6"] if l != "en"]
+    out = _washout_contrast(ctx, langs, cfg["seeds"]["washout"], "w")
+    if out is None:
+        return {h: {"status": "incomplete"} for h in ("M6a", "M6b")}
+    return out if gate.get("go") else {h: _as_record(v, gate) for h, v in out.items()}
+
+
+def _washout_contrast(ctx, langs, seeds, prefix):
+    """M6a / M6b contrasts of the washout runs under `prefix` ("w" for block W, "c/w" for block C); None when a
+    run is missing."""
+    cfg = ctx.cfg
     rows = {"acc": [], "r": []}
     record = []
-    for s in cfg["seeds"]["washout"]:
-        def mean_of(prefix, key, which=None):
+    for s in seeds:
+        def mean_of(run, key, which=None):
             values = []
             for l in langs:
-                id = f"{prefix}/eval-{which}-{l}" if which else f"{prefix}/eval-{l}"
+                id = f"{run}/eval-{which}-{l}" if which else f"{run}/eval-{l}"
                 e = _eval(ctx, id)
                 if e is None:
                     return None
@@ -381,19 +401,167 @@ def washout_verdicts(ctx, a):
             return statistics.fmean(values)
         entry = {"seed": s}
         for key in rows:
-            sft_w, sft_n = mean_of(f"w/sft-W-s{s}", key, "b"), mean_of(f"w/sft-N-s{s}", key, "b")
-            rl_w, rl_n = mean_of(f"w/rl-W-s{s}", key), mean_of(f"w/rl-N-s{s}", key)
-            base_w, base_n = mean_of(f"w/sft-W-s{s}", key, "a"), mean_of(f"w/sft-N-s{s}", key, "a")
+            sft_w, sft_n = mean_of(f"{prefix}/sft-W-s{s}", key, "b"), mean_of(f"{prefix}/sft-N-s{s}", key, "b")
+            rl_w, rl_n = mean_of(f"{prefix}/rl-W-s{s}", key), mean_of(f"{prefix}/rl-N-s{s}", key)
+            base_w, base_n = mean_of(f"{prefix}/sft-W-s{s}", key, "a"), mean_of(f"{prefix}/sft-N-s{s}", key, "a")
             if None in (sft_w, sft_n, rl_w, rl_n):
-                return {h: {"status": "incomplete"} for h in ("M6a", "M6b")}
+                return None
             rows[key].append(100 * ((sft_w - sft_n) - (rl_w - rl_n)))
             entry[key] = {"sft_end_diff": 100 * (sft_w - sft_n), "after_rl_diff": 100 * (rl_w - rl_n),
                           "rl_change_W": 100 * (rl_w - base_w) if base_w is not None else None,
                           "rl_change_N": 100 * (rl_n - base_n) if base_n is not None else None}
         record.append(entry)
-    out = {"M6a": {**_simple(cfg, rows["acc"], "greater"), "per_seed": record},
-           "M6b": {**_simple(cfg, rows["r"], "greater"), "per_seed": record}}
-    return out if gate.get("go") else {h: _as_record(v, gate) for h, v in out.items()}
+    return {"M6a": {**_simple(cfg, rows["acc"], "greater"), "per_seed": record},
+            "M6b": {**_simple(cfg, rows["r"], "greater"), "per_seed": record}}
+
+
+# ================================================================ confirmation block C (amendment 2026-11-28)
+def _off(name):
+    return {"status": f"not run ({name} switched off in confirm.blocks)"}
+
+
+def verdict_C_M4(ctx, a, plan):
+    """Acc(OPD | T-priv) - Acc(OPD | T-def), original M4 languages x the confirm seeds; one-sided paired t over the
+    (language, seed) pairs, the seed-level test (languages averaged within seed) and the M4 reporting condition.
+    No gate: the gap manipulation was confirmed in stage 0 (recorded)."""
+    if not plan["M4"]:
+        return _off("M4")
+    pairs = [{"lang": l, "seed": s, "a": f"c/opd-tpriv-{l}-s{s}/eval-{l}", "b": f"c/opd-{l}-s{s}/eval-{l}"}
+             for l in plan["M4"] for s in plan["seeds"]]
+    out = paired_contrast(ctx, ctx.cfg, pairs, "acc", reporting=True)
+    if out.get("test"):
+        out["target_ratio_change"] = paired_contrast(ctx, ctx.cfg, pairs, "r", alternative="two-sided",
+                                                     bootstrap=False)["test"]
+    out.update(languages=plan["M4"], seeds=plan["seeds"], manipulation_record=a.get("gap"))
+    return out
+
+
+def verdict_C_M1b(ctx, a, plan):
+    """r(OPD | T-def) - r(OPD | T-en), original M1 languages x the confirm seeds, reporting condition as M1b.
+    Manipulation check: the teacher own-sample target-ratio gap (T-def - T-en >= teacher_ratio_gap in at least
+    imprint_languages_needed languages, stage 0). The first-16-position Latin mass is a record, not a gate."""
+    if not plan["M1"]:
+        return _off("M1b")
+    cfg = ctx.cfg
+    pairs = [{"lang": l, "seed": s, "a": f"c/opd-{l}-s{s}/eval-{l}", "b": f"c/opd-ten-{l}-s{s}/eval-{l}"}
+             for l in plan["M1"] for s in plan["seeds"]]
+    out = paired_contrast(ctx, cfg, pairs, "r", reporting=True)
+    if out.get("test"):
+        out["M1d_accuracy_difference"] = paired_contrast(ctx, cfg, pairs, "acc", alternative="two-sided",
+                                                         bootstrap=False).get("test")
+    imprint = a.get("imprint") or {}
+    r_t = a.get("r_teacher") or {}
+    gap = {l: (r_t["T-def"][l] - r_t["T-en"][l]) if r_t.get("T-def", {}).get(l) is not None
+           and r_t.get("T-en", {}).get(l) is not None else None for l in plan["M1"]}
+    ok = imprint.get("ratio_ok") or {l: v is not None and v >= cfg["gates"]["teacher_ratio_gap"] for l, v in gap.items()}
+    passed = sum(bool(ok.get(l)) for l in plan["M1"]) >= cfg["gates"]["imprint_languages_needed"]
+    check = {"teacher_ratio_gap": gap, "ok": ok, "pass": passed,
+             "rule": f"T-def - T-en teacher own-sample ratio >= {cfg['gates']['teacher_ratio_gap']} in "
+                     f"{cfg['gates']['imprint_languages_needed']} of {len(plan['M1'])} languages"}
+    out.update(languages=plan["M1"], seeds=plan["seeds"], manipulation_check=check,
+               latin_mass_record={"latin_mass": imprint.get("latin_mass"), "latin_ok": imprint.get("latin_ok"),
+                                  "note": "record only in block C (Latin-script language de starts high under T-def)"})
+    return out if passed else _as_record(out, check)
+
+
+def verdict_C_M3ap(ctx, a, plan):
+    """Spearman(mean D_l over the first grid_seeds confirm seeds, p_l from stage 0), one-sided less, permutation
+    test (exact for n <= exact_max_n), included languages. D_l = Acc(OPD) - Acc(RL) from the same new handoff."""
+    if not plan["grid"]:
+        return _off("M3a-p")
+    langs, seeds, u = plan["grid"], plan["grid_seeds"], plan["handoff_updates"]
+    D, G0, missing = {}, {"opd": {}, "rl": {}}, []
+    for l in langs:
+        e = {(m, s): _eval(ctx, f"c/{m}-{l}-s{s}/eval-{l}") for m in ("opd", "rl") for s in seeds}
+        st = {s: _eval(ctx, f"start/s{s}-u{u}/{l}") for s in seeds}
+        gone = [k for k, v in e.items() if v is None] + [("start", s) for s, v in st.items() if v is None]
+        if gone:
+            missing.append(l)
+            continue
+        D[l] = {s: 100 * (e[("opd", s)]["acc"] - e[("rl", s)]["acc"]) for s in seeds}
+        for m in G0:
+            G0[m][l] = statistics.fmean(100 * (e[(m, s)]["acc"] - st[s]["acc"]) for s in seeds)
+    if missing or not langs:
+        return {"status": "incomplete", "languages_missing": missing}
+    d_mean = {l: statistics.fmean(D[l].values()) for l in langs}
+    p = a["p"]
+    result = _spearman(ctx.cfg, [d_mean[l] for l in langs], [p[l] for l in langs], "less")
+    p_values = [p[l] for l in langs]
+    out = {"test": result, "languages": langs, "seeds": seeds, "alternative": "less", "outcome": d_mean,
+           "predictor": {l: p[l] for l in langs}, "D_per_seed": D, "G0_mean": G0,
+           "predictor_range": {"max_minus_min": max(p_values) - min(p_values),
+                               "threshold": ctx.cfg["gates"]["range_min"], "note": "record (p is the stage-0 value)"},
+           "status": "supported" if result["p"] is not None and result["p"] < ctx.cfg["analysis"]["alpha"]
+           else "not supported"}
+    ys, xs, la, se = [], [], [], []
+    for l in langs:
+        for s, v in D[l].items():
+            ys.append(v); xs.append(p[l]); la.append(l); se.append(s)
+    try:
+        out["mixed_model_slope"] = stats.mixed_slope(ys, xs, la, se)
+    except Exception as error:  # noqa: BLE001 - recorded secondary
+        out["mixed_model_slope"] = {"error": repr(error)}
+    return out
+
+
+def confirm_verdicts(ctx, a):
+    """C-M4, C-M1b, C-M3a-p, C-M6a, C-M6b and the Holm-adjusted p over the confirmation family."""
+    from .experiment import confirm_plan
+    cfg = ctx.cfg
+    if not (cfg.get("confirm") or {}).get("enabled"):
+        return {h: {"status": "not run (confirm.enabled is false)"} for h in CONFIRM}
+    plan = confirm_plan(cfg, a)
+    out = {"C-M4": verdict_C_M4(ctx, a, plan), "C-M1b": verdict_C_M1b(ctx, a, plan),
+           "C-M3a-p": verdict_C_M3ap(ctx, a, plan)}
+    langs = [l for l in plan["M6"] if l != "en"]
+    if not plan["M6"]:
+        out["C-M6a"], out["C-M6b"] = _off("M6"), _off("M6")
+    else:
+        w = _washout_contrast(ctx, langs, plan["washout_seeds"], "c/w")
+        for h in ("C-M6a", "C-M6b"):
+            out[h] = {"status": "incomplete"} if w is None else \
+                {**w[h[2:]], "languages": langs, "seeds": plan["washout_seeds"], "gate": "none (no pilot gate in C)"}
+    pvalues = {h: out[h]["test"]["p"] for h in CONFIRM_FAMILY if out[h].get("test")
+               and out[h]["test"].get("p") is not None and out[h].get("status") in ("supported", "not supported")}
+    for h, adjusted in stats.holm(pvalues).items():
+        out[h]["p_holm_confirm"] = adjusted
+        out[h]["supported_after_holm"] = adjusted < cfg["analysis"]["alpha"]
+    out["confirm_holm_family"] = sorted(pvalues)
+    out["confirm_plan"] = plan
+    return out
+
+
+def record_X(ctx):
+    """Second model pair (block X): per language, D = Acc(OPD) - Acc(RL) per seed with a two-sided paired t, G0 of
+    OPD and RL against the start, start accuracy, strict pass@1 (start, OPD, RL) and collapse counts. A record."""
+    cfg = ctx.cfg
+    seeds = cfg["seeds"]["x"]
+    decision = ctx.complete("x", "gates/handoff-languages-" + "-".join(map(str, seeds)))
+    if decision is None:
+        return {"status": "incomplete", "missing": "x handoff-language decision"}
+    u = cfg["train"]["handoff"]["updates"]
+    per, missing = {}, []
+    for l in decision["languages"]:
+        e = {(m, s): _eval(ctx, f"g/{m}-{l}-s{s}/eval-{l}", "x") for m in ("opd", "rl") for s in seeds}
+        st = {s: _eval(ctx, f"start/s{s}-u{u}/{l}", "x") for s in seeds}
+        if None in e.values() or None in st.values():
+            missing.append(l)
+            continue
+        D = [100 * (e[("opd", s)]["acc"] - e[("rl", s)]["acc"]) for s in seeds]
+        per[l] = {"D_pp": dict(zip(seeds, D)), "D_mean_pp": statistics.fmean(D),
+                  "D_test": stats.paired_t(D, "two-sided"),
+                  "G0_pp": {m: statistics.fmean(100 * (e[(m, s)]["acc"] - st[s]["acc"]) for s in seeds)
+                            for m in ("opd", "rl")},
+                  "start_acc": statistics.fmean(st[s]["acc"] for s in seeds),
+                  "strict": {"start": statistics.fmean(st[s]["combined"]["strict_acc"] for s in seeds),
+                             **{m: statistics.fmean(e[(m, s)]["combined"]["strict_acc"] for s in seeds)
+                                for m in ("opd", "rl")}},
+                  "collapses": {m: sum(int(bool(e[(m, s)].get("collapse"))) for s in seeds) for m in ("opd", "rl")}}
+    out = {"status": "record" if not missing else "incomplete", "pair": cfg["model_pairs"].get("x"),
+           "seeds": seeds, "languages": decision["languages"], "per_language": per}
+    if missing:
+        out["languages_missing"] = missing
+    return out
 
 
 def write_verdicts(ctx, path=None):
