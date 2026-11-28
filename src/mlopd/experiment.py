@@ -577,29 +577,170 @@ def _peak_gpu_gb():
         return None
 
 
+def _iso_seconds(text):
+    try:
+        return time.mktime(time.strptime(text[:19], "%Y-%m-%dT%H:%M:%S"))
+    except (TypeError, ValueError):
+        return None
+
+
+def _duration_hours(out):
+    """Wall hours of a finished task: task.json is written when it starts, COMPLETE.json when it ends.
+    A task resumed after a kill counts from its last start, so this is a rough figure."""
+    try:
+        return max(0., ((out / "COMPLETE.json").stat().st_mtime - (out / "task.json").stat().st_mtime) / 3600.)
+    except OSError:
+        return None
+
+
+def _train_progress(out):
+    """(updates done, updates planned) of a running train task, from plan.json and latest.json."""
+    try:
+        total = len(read_json(out / "plan.json")["steps"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+    try:
+        done = int(read_json(out / "latest.json")["step"])
+    except (OSError, ValueError, KeyError, TypeError):
+        done = 0
+    return done, total
+
+
 def status(ctx, leases):
-    """Per block: done / running / ready / waiting / failed task counts and remaining estimated hours."""
+    """Everything `queue status` prints: totals, per-block counts, running tasks with progress, failures,
+    what the waiting tasks wait on, and the time left measured from the tasks this cluster has finished."""
     tasks = build_queue(ctx)
     running = {(r.get("pair"), r.get("task")): r for r in leases.live()}
-    rows, total_left = {}, 0.
+    failed_by_key = {(f.get("pair"), f.get("task")): f for f in leases.failed_list()}
+    rows, totals = {}, {k: 0 for k in ("done", "running", "ready", "waiting", "failed")}
+    measured = {}  # (block, kind) and kind -> finished wall hours
+    waiting_on, states = {}, []
     for t in tasks:
         if ctx.done(t):
             state = "done"
+            h = _duration_hours(ctx.dir(t))
+            if h is not None:
+                measured.setdefault((t["block"], t["kind"]), []).append(h)
+                measured.setdefault(t["kind"], []).append(h)
         elif (t["pair"], t["id"]) in running:
             state = "running"
         elif leases.failed(t):
             state = "failed"
-        elif all(ctx.complete(t["pair"], d) is not None for d in t["deps"]):
-            state = "ready"
         else:
-            state = "waiting"
-        row = rows.setdefault(f"{t['pair']}/{t['block']}", {k: 0 for k in
-                                                           ("done", "running", "ready", "waiting", "failed")})
+            missing = [d for d in t["deps"] if ctx.complete(t["pair"], d) is None]
+            if not missing:
+                state = "ready"
+            else:
+                state = "waiting"
+                first = missing[0]
+                gate = first if first.startswith("gates/") else None
+                key = (f"gate {t['pair']}/{gate}" if gate else
+                       f"earlier tasks {t['pair']}/{first.split('/')[0]}/... (e.g. {first})")
+                waiting_on[key] = waiting_on.get(key, 0) + 1
+        states.append((t, state))
+        name = f"{t['pair']}/{t['block']}"
+        row = rows.setdefault(name, {k: 0 for k in ("done", "running", "ready", "waiting", "failed")})
         row[state] += 1
-        row["hours_left"] = row.get("hours_left", 0.) + (0. if state == "done" else t["hours"])
-        total_left += 0. if state == "done" else t["hours"]
-    return {"blocks": rows, "running": list(running.values()), "failed": leases.failed_list(),
-            "hours_left": total_left, "tasks": len(tasks)}
+        totals[state] += 1
+
+    def estimate(t):
+        for key in ((t["block"], t["kind"]), t["kind"]):
+            values = measured.get(key)
+            if values and len(values) >= 2:
+                return sum(values) / len(values), True
+        return float(t.get("hours") or 0.), False
+
+    left, measured_share, run_rows = 0., [0, 0], []
+    for t, state in states:
+        if state == "done":
+            continue
+        h, real = estimate(t)
+        if state == "running":
+            prog = _train_progress(ctx.dir(t)) if t["kind"] == "train" else None
+            if prog and prog[1]:
+                h *= max(0., 1. - prog[0] / prog[1])
+            r = running[(t["pair"], t["id"])]
+            started = _iso_seconds(r.get("started"))
+            run_rows.append({"task": f"{t['pair']}/{t['id']}", "kind": t["kind"], "worker": r.get("worker"),
+                             "progress": prog, "for_s": None if started is None else max(0, time.time() - started)})
+        if state == "failed":
+            continue
+        left += h
+        measured_share[0 if real else 1] += 1
+    workers = max(1, len({r.get("worker") for r in running.values()}))
+    failed = []
+    for (pair, task), f in failed_by_key.items():
+        lines = [x for x in (f.get("error") or "").strip().splitlines() if x.strip()]
+        failed.append({"task": f"{pair}/{task}", "count": f.get("count"), "time": f.get("time"),
+                       "error": lines[-1].strip() if lines else "", "skipped": f.get("count", 0) >= leases.max_failures})
+    for name, row in rows.items():
+        row["total"] = sum(row[k] for k in ("done", "running", "ready", "waiting", "failed"))
+    return {"blocks": rows, "totals": totals, "tasks": len(tasks), "running": run_rows, "failed": failed,
+            "waiting_on": dict(sorted(waiting_on.items(), key=lambda kv: -kv[1])),
+            "hours_left_gpu": left, "workers": workers, "hours_left_wall": left / workers,
+            "estimate_from_cluster": measured_share[0], "estimate_from_plan": measured_share[1],
+            "parallel_blocks": bool(ctx.cfg.get("queue", {}).get("parallel_blocks"))}
+
+
+def _hm(seconds):
+    if seconds is None:
+        return "?"
+    m = int(seconds // 60)
+    return f"{m // 60}:{m % 60:02d}"
+
+
+def format_status(result, now=None):
+    """Text for `queue status` (and run.sh status). One screen: the totals and the next step come first."""
+    T, n = result["totals"], result["tasks"]
+    out = []
+    stamp = time.strftime("%Y-%m-%d %H:%M", time.localtime(now or time.time()))
+    pct = 100. * T["done"] / n if n else 0.
+    out.append(f"== queue status {stamp} ==")
+    out.append(f"done {T['done']}/{n} ({pct:.0f}%)   running {T['running']}   ready {T['ready']}   "
+               f"waiting {T['waiting']}   failed {T['failed']}")
+    if T["done"] == n and n:
+        nxt = "all tasks done -> analysis runs at the end of run.sh (runs/analysis/verdicts.json)"
+    elif T["failed"] and not (T["running"] or T["ready"]):
+        nxt = "stopped on failures below; after a code fix run.sh retries them by itself"
+    elif T["running"]:
+        nxt = "running normally; nothing to do"
+    elif T["ready"]:
+        nxt = f"{T['ready']} task(s) can start but no worker is running -> bash scripts/h100/run.sh"
+    else:
+        nxt = "nothing can start: every left task waits on the gates/inputs listed below"
+    out.append(f"next: {nxt}")
+    if T["done"] < n:
+        src = result["estimate_from_cluster"], result["estimate_from_plan"]
+        basis = ("measured on this cluster" if not src[1] else
+                 f"{src[0]} tasks from this cluster's times, {src[1]} from plan figures (no finished task of that kind yet)")
+        out.append(f"time left: about {result['hours_left_wall']:.1f} h with {result['workers']} worker(s) "
+                   f"({result['hours_left_gpu']:.1f} GPU-h; {basis}; tasks still to be listed after gates not included)")
+    out.append("")
+    out.append(f"{'block':18s} {'done/all':9s} {'run':>4s} {'ready':>5s} {'wait':>5s} {'fail':>4s}")
+    for name, row in result["blocks"].items():
+        cell = lambda k: f"{row[k]:d}" if row[k] else "."
+        mark = "  ok" if row["done"] == row["total"] else ""
+        out.append(f"{name:18s} {str(row['done']) + '/' + str(row['total']):9s} {cell('running'):>4s} {cell('ready'):>5s} "
+                   f"{cell('waiting'):>5s} {cell('failed'):>4s}{mark}")
+    if result["running"]:
+        out.append("")
+        out.append(f"running ({len(result['running'])})")
+        for r in sorted(result["running"], key=lambda r: r["task"]):
+            prog = r["progress"]
+            p = f"update {prog[0]}/{prog[1]}" if prog else r["kind"]
+            out.append(f"  {r['task']:34s} {p:16s} for {_hm(r['for_s']):>6s}  {r['worker']}")
+    if result["failed"]:
+        out.append("")
+        out.append(f"failed ({len(result['failed'])}) - "
+                   "skipped after 2 failures; run.sh retries them by itself when the code changes")
+        for f in result["failed"]:
+            out.append(f"  {f['task']:34s} x{f['count']}  {f['error'][:160]}")
+    if result["waiting_on"]:
+        out.append("")
+        out.append("waiting on")
+        for key, count in list(result["waiting_on"].items())[:8]:
+            out.append(f"  {count:4d} task(s)  {key}")
+    return "\n".join(out)
 
 
 # ================================================================ executors

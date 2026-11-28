@@ -89,18 +89,8 @@ def main(argv=None):
             elif args.action == "retry-failed":
                 print(f"cleared {leases.clear_failures()} failure record(s)")
             else:
-                result = status(ctx, leases)
-                print(f"{'block':10s} {'done':>5s} {'run':>4s} {'ready':>5s} {'wait':>5s} {'fail':>4s} {'h left':>7s}")
-                for name, row in result["blocks"].items():
-                    print(f"{name:10s} {row['done']:5d} {row['running']:4d} {row['ready']:5d} {row['waiting']:5d} "
-                          f"{row['failed']:4d} {row['hours_left']:7.1f}")
-                print(f"\n{result['tasks']} tasks listed so far (gated blocks appear after their gate); "
-                      f"estimated {result['hours_left']:.1f} single-GPU hours left (3050-based figures)")
-                for r in result["running"]:
-                    print(f"running  {r.get('pair')}/{r.get('task')}  on {r.get('worker')}  since {r.get('started')}")
-                for f in result["failed"]:
-                    last = (f.get("error") or "").strip().splitlines()[-1:] or [""]
-                    print(f"failed x{f.get('count')}  {f.get('pair')}/{f.get('task')}  {last[0][:300]}")
+                from .experiment import format_status
+                print(format_status(status(ctx, leases)))
         return
     if args.command == "gates":
         from pathlib import Path

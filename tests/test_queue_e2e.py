@@ -131,3 +131,33 @@ def test_parallel_blocks_run_despite_no_go_gates(tiny, stub_identifier, tmp_path
     for h in ("M1b", "M4", "M6a", "M5"):
         assert v[h]["status"] == "record (gate no-go)", (h, v[h].get("status"))
     assert "M3a-p" in v and v["M3a-p"]["alternative"] == "less"
+
+
+def test_status_after_the_run(finished, tmp_path):
+    from mlopd.experiment import format_status, status
+    from mlopd.lease import Leases
+    ctx, _ = finished
+    result = status(ctx, Leases(ctx.runs))
+    assert result["totals"]["done"] == result["tasks"] and result["tasks"] > 0
+    text = format_status(result)
+    assert text.splitlines()[1].startswith(f"done {result['tasks']}/{result['tasks']} (100%)")
+    assert "next: all tasks done" in text and "main/G " in text
+    # A running train task shows its update count; a failed one shows its last error line.
+    t = next(t for t in __import__("mlopd.experiment", fromlist=["build_queue"]).build_queue(ctx) if t["kind"] == "train")
+    leases = Leases(ctx.runs)
+    out = ctx.dir(t)
+    (out / "COMPLETE.json").rename(out / "COMPLETE.bak")
+    try:
+        (out / "latest.json").write_text(json.dumps({"step": 3}))
+        with leases.acquire(t):
+            r = status(ctx, leases)
+            row = next(x for x in r["running"] if x["task"] == f"{t['pair']}/{t['id']}")
+            assert row["progress"][0] == 3 and "update 3/" in format_status(r)
+        leases.record_failure(t, RuntimeError("boom"))
+        leases.record_failure(t, RuntimeError("boom"))
+        r = status(ctx, leases)
+        assert r["totals"]["failed"] == 1 and "RuntimeError: boom" in format_status(r)
+    finally:
+        leases.clear_failures()
+        (out / "latest.json").unlink(missing_ok=True)
+        (out / "COMPLETE.bak").rename(out / "COMPLETE.json")
