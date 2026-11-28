@@ -7,6 +7,8 @@
 #   bash scripts/h100/run.sh analyze    runs/analysis/verdicts.json from the finished runs
 #   bash scripts/h100/run.sh rl-check       RL diagnosis per run (start -> end accuracy, reward groups, truncation)
 #   bash scripts/h100/run.sh retry-failed   clear failure records (a task is skipped after 2 failures)
+#   bash scripts/h100/run.sh report     analyze + rl-check + status in one file (logs/report-<host>.txt); sent with
+#                                       `tailscale file cp` when OPD_REPORT_TO names a tailnet device
 #   bash scripts/h100/run.sh stop       every worker on every node stops after its current task
 # Storage: code here (user-volume), everything else under $OPD_WORK (default /group-volume/<cluster user>/opd-multilingual-acl2027).
 # Each GPU runs $WORKERS_PER_GPU worker processes (default 2; the models are 0.6B-1.7B). Workers take tasks under
@@ -321,6 +323,24 @@ case "$ACTION" in
   rl-check) "$(python_path)" scripts/h100/rl_check.py "$CONFIG" | tee "$WORK/logs/rl-check-$HOST.txt" ;;
   stop) touch runs/STOP; log "runs/STOP created; workers stop after their current task (delete it to run again)" ;;
   analyze) data_guard "$(python_path)"; analyze ;;
+  report)
+    data_guard "$(python_path)"
+    OUT="$WORK/logs/report-$HOST.txt"
+    { echo "== report $(date -u +%FT%TZ) $HOST code $(git -C "$REPO" rev-parse --short HEAD 2>/dev/null)"
+      echo; echo "== verdicts"; analyze 2>&1
+      echo; echo "== status"; queue_cmd "$CONFIG" status 2>&1
+      echo; echo "== rl-check"; "$(python_path)" scripts/h100/rl_check.py "$CONFIG" 2>&1
+      echo; echo "== gates"; "$(python_path)" -m mlopd --config "$CONFIG" gates 2>&1 | head -c 200000
+      echo; echo "== verdicts.json"; cat runs/analysis/verdicts.json 2>/dev/null | head -c 300000
+    } > "$OUT"
+    log "report written: $OUT ($(wc -c < "$OUT") bytes)"
+    if [ -n "${OPD_REPORT_TO:-}" ]; then
+      if tailscale file cp "$OUT" "$OPD_REPORT_TO:" 2>/dev/null || sudo -n tailscale file cp "$OUT" "$OPD_REPORT_TO:"; then
+        log "report sent to $OPD_REPORT_TO"
+      else
+        log "could not send with tailscale; the file is at $OUT"
+      fi
+    fi ;;
   smoke|workers|all)
     rm -f runs/STOP
     setup
